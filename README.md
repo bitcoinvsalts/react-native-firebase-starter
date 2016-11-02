@@ -82,4 +82,4 @@ I barely created the application. I just created the front end shell and done so
  - [Lodash](https://lodash.com/)
 
 
-Made with ♥ by [JSapp.me](https://twitter.com/jsappme)
+Made with ♥ by [JSapp.me](http://jsapp.me)

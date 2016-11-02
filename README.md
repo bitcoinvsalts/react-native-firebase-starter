@@ -1,10 +1,11 @@
 # JSapp React Native Firebase Starter, the Original
 ![Preview](https://pbs.twimg.com/profile_images/631286882316320768/WaiX_jqN.png)
 
-#### Create and build your React Native / Firebase app, 0 to 100 (Real Quick)
+#### Create and build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
 
-Try the iOS app : [iOS app](https://itunes.apple.com/us/app/jsapp-my-app/id1165501349?mt=8)
-Try the android app: [android app](https://play.google.com/store/apps/details?id=me.jsapp.myapp)
+Try the [iOS app](https://itunes.apple.com/us/app/jsapp-my-app/id1165501349?mt=8)
+
+Try the [Android app](https://play.google.com/store/apps/details?id=me.jsapp.myapp)
 
 ![Preview](./graphics/app-store-badge.png)
 
@@ -55,7 +56,7 @@ Then run the React Native server using:
 Open your emulator and wait until it completely boot up. Then run the following command to run the app on the emulator.
 
     react-native run-android
-    
+
 Now, you have your own copy of this application!
 
 

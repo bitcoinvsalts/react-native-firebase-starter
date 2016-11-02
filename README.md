@@ -10,8 +10,6 @@
   [3]: https://play.google.com/store/apps/details?id=me.jsapp.myapp
   [4]: ./graphics/google-play-badge.png  
 
-![Preview](./graphics/app-store-badge.png)
-
 ## Built With
  - [React Native](https://facebook.github.io/react-native/)
  - [Redux](https://github.com/reactjs/redux)

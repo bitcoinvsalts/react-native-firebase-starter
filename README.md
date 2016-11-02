@@ -3,9 +3,12 @@
 
 #### Create and build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
 
-Try the [iOS app](https://itunes.apple.com/us/app/jsapp-my-app/id1165501349?mt=8)
+[![iOS app][2]][1] [![Android app][4]][3]
 
-Try the [Android app](https://play.google.com/store/apps/details?id=me.jsapp.myapp)
+  [1]: https://itunes.apple.com/us/app/jsapp-my-app/id1165501349?mt=8
+  [2]: ./graphics/app-store-badge.png
+  [3]: https://play.google.com/store/apps/details?id=me.jsapp.myapp
+  [4]: ./graphics/google-play-badge.png  
 
 ![Preview](./graphics/app-store-badge.png)
 

@@ -7,20 +7,19 @@ import {
   Platform,
   UIManager,
   StatusBar,
-  StyleSheet
+  StyleSheet,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as Animatable from 'react-native-animatable'
 import { getColor } from '../components/config'
 import HomeScreen from './home_screen'
-import Background from '../components/background'
 import LogoCircle from '../components/login_screen/logo_circle'
 import InitialView from '../components/login_screen/initial_view'
 import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
 import ForgotPassForm from '../components/login_screen/forgotPassword_form'
 import { firebaseApp } from '../firebase'
-import { observer } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 
 
@@ -28,21 +27,10 @@ import { Actions } from 'react-native-mobx'
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
-    console.log("---- LOGIN CONSTRUCTOR ---");
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(" --- User Signed In ---> " + user.uid)
-        this.props.appStore.username = user.displayName
-        this.props.appStore.userid = user.uid
-        Actions.home({ type: 'replace' });
-      }
-      else {
-        console.log(" --- User is Signed Off --- ");
-      }
-    })
+    console.log("---- LOGIN CONSTRUCTOR ---")
     this.state = {
       initialRun: true,
-      initialScreen: true,
+      initialScreen: false,
       signIn: false,
       signUp: false,
       forgotPass: false
@@ -50,12 +38,29 @@ export default class LoginScreen extends Component {
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
+    _unsubscribe = firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(" --- User Signed In ---> " + user.uid)
+        this.props.appStore.username = user.displayName
+        this.props.appStore.userid = user.uid
+        Actions.home({ type: 'replace' })
+      }
+      else {
+        console.log(" --- User is Signed Off --- ")
+        this.setState({initialScreen: true})
+      }
+      _unsubscribe()
+    })
+  }
+
+  componentWillUnmount() {
   }
 
   componentWillMount() {
   }
 
   componentDidMount() {
+    console.log("---- LOGIN didMOUNT ---")
     this.setState({initialRun: false})
   }
 
@@ -64,13 +69,13 @@ export default class LoginScreen extends Component {
   }
 
   render() {
-    const animationDelay = this.state.initialRun ? 500 : 0
+    //const animationDelay = this.state.initialRun ? 500 : 0
 
     const initialView = this.state.initialScreen ?
       <InitialView
       onSignIn={this._onSignIn}
       onSignUp={this._onSignUp}
-      animDelay={animationDelay}/>
+      animDelay={0}/>
     : null
 
     const signIn = this.state.signIn ?
@@ -96,15 +101,11 @@ export default class LoginScreen extends Component {
           barStyle='light-content'
           animated={true}
         />
-        <Background imgSrouce={require('../assets/images/surface-of-ocean-7.jpeg')}/>
-        <Animatable.View
-        animation="bounceInDown"
-        style={styles.logoContainer}
-        delay={animationDelay}>
+        <View style={styles.logoContainer}>
           <TouchableOpacity onPress={this._onLogoClicked}>
             <LogoCircle />
           </TouchableOpacity>
-        </Animatable.View>
+        </View>
         <KeyboardAwareScrollView>
           { initialView }
           { signIn }
@@ -173,7 +174,8 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    backgroundColor: '#FFFFFF'
   },
   logoContainer: {
     justifyContent: 'center',

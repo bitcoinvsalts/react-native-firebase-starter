@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native'
 import { getColor } from '../config'
 
@@ -14,7 +15,7 @@ export default class LogoCircle extends Component {
   render() {
     return (
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>JSapp</Text>
+        <Image source={require('../../assets/images/jsapp.png')} style={styles.logoImage}/>
       </View>
     )
   }
@@ -22,13 +23,18 @@ export default class LogoCircle extends Component {
 
 const styles = StyleSheet.create({
   logoContainer : {
-    height: 200,
-    width: 200,
-    backgroundColor: '#ffffff',
-    borderRadius: 100,
-    justifyContent: 'center',
+    height: 400,
+    width: 300,
+    backgroundColor: '#fff',
+    //borderRadius: 100,
+    //elevation: 20,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    elevation: 20,
+  },
+  logoImage : {
+    height: 300,
+    width: 300,
+    //backgroundColor: '#333',
   },
   logoText : {
     fontSize: 60,

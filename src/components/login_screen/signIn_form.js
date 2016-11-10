@@ -116,6 +116,7 @@ export default class SignInForm extends Component {
         this.props.appStore.uid = user.uid
         this.props.appStore.username = user.displayName
         console.log("username: " + user.displayName);
+        Actions.home({ type: 'replace' })
       })
       .catch((error) => {
         this.setState({ errMsg: error.message })
@@ -145,6 +146,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
+    marginTop: 20,
     alignItems: 'center',
     paddingBottom: 20,
     backgroundColor: 'transparent',
@@ -152,18 +154,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     marginBottom: 10,
-    color: 'rgba(255,255,255,.8)'
+    color: '#000',
   },
   errMsg: {
     width: 280,
     textAlign: 'center',
     alignSelf: 'center',
-    color: '#ffffff',
+    color: '#000',
     marginBottom: 10,
     fontSize: 14,
   },
   inputContainer: {
-    backgroundColor: 'rgba(255,255,255,.3)',
+    backgroundColor: 'rgba(0,0,0,.3)',
     borderRadius: 5
   },
   inputField: {
@@ -181,22 +183,24 @@ const styles = StyleSheet.create({
     width: 280
   },
   fogotBtnContainer: {
-
+    height: 40,
+    justifyContent: 'center',
   },
   forgotBtn: {
     fontSize: 12,
-    color: '#ffffff',
+    color: '#000',
   },
   submitBtnContainer: {
     width: 120,
     height: 40,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ddd',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
   submitBtn: {
-    fontSize: 12,
+    fontWeight: '400',
+    fontSize: 20,
     color: getColor()
   }
 })

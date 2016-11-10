@@ -27,7 +27,7 @@ export default class InitialView extends Component {
       style={styles.container}
       delay={this.props.animDelay}
       onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>My beautiful app</Text>
+        <Text style={styles.title}>JSapp My App</Text>
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>
@@ -73,10 +73,11 @@ const styles = StyleSheet.create({
   },
   title: {
     backgroundColor: 'transparent',
-    marginBottom: 20,
+    marginTop: 20,
+    fontWeight: '800',
     fontSize: 20,
     marginBottom: 20,
-    color: 'rgba(255,255,255,.8)'
+    color: '#000',
   },
   btnBox: {
     height: 40,
@@ -88,14 +89,14 @@ const styles = StyleSheet.create({
   btnContainer: {
     width: 130,
     height: 40,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ddd',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 10
   },
   btnText: {
-    fontSize: 12,
+    fontWeight: '400',
+    fontSize: 20,
     color: getColor()
   }
 })

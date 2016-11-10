@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
+    marginTop: 40,
     alignItems: 'center',
     paddingBottom: 20,
     backgroundColor: 'transparent',
@@ -120,15 +121,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10,
-    color: 'rgba(255,255,255,.8)'
+    color: '#000'
   },
   errMsg: {
-    color: '#ffffff',
+    color: '#000',
     fontSize: 14,
     marginBottom: 10
   },
   inputContainer: {
-    backgroundColor: 'rgba(255,255,255,.3)',
+    backgroundColor: 'rgba(0,0,0,.3)',
     borderRadius: 5
   },
   inputField: {
@@ -147,13 +148,14 @@ const styles = StyleSheet.create({
   submitBtnContainer: {
     width: 240,
     height: 40,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ddd',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
   submitBtn: {
-    fontSize: 12,
+    fontSize: 16,
+    fontWeight: '400',
     color: getColor()
   }
 })

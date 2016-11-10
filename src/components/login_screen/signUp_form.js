@@ -149,6 +149,7 @@ export default class SignUpForm extends Component {
           })
           this.props.appStore.uid = user.uid
           this.props.appStore.username = user.displayName
+          Actions.home({ type: 'replace' })
         }, function(error) {
           console.log(error);
         });
@@ -182,15 +183,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     paddingBottom: 20,
+    marginTop: 10,
     backgroundColor: 'transparent',
   },
   title: {
     fontSize: 25,
     marginBottom: 10,
-    color: 'rgba(255,255,255,.8)'
+    color: '#000'
   },
   errMsg: {
-    color: '#ffffff',
+    color: '#000',
     fontSize: 12,
     marginBottom: 10,
     width: 280,
@@ -198,7 +200,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   inputContainer: {
-    backgroundColor: 'rgba(255,255,255,.3)',
+    backgroundColor: 'rgba(0,0,0,.3)',
     borderRadius: 5
   },
   inputField: {
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
-    color: '#ffffff'
+    color: '#000'
   },
   btnContainers: {
     marginTop: 15,
@@ -217,13 +219,14 @@ const styles = StyleSheet.create({
   submitBtnContainer: {
     width: 120,
     height: 40,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ddd',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center'
   },
   submitBtn: {
-    fontSize: 12,
+    fontSize: 20,
+    fontWeight: '400',
     color: getColor()
   }
 })

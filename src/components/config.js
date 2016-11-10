@@ -2,7 +2,6 @@
  * configuration file
  * colors, themes, base styles etc
  */
-
 // colors
 const colors = {
   'googleBlue100': {

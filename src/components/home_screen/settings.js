@@ -1,7 +1,3 @@
-/**
- * the settings tab
- */
-
 import React, { Component } from 'react'
 import {
   Text,
@@ -10,27 +6,19 @@ import {
   Alert,
   StyleSheet
 } from 'react-native'
-import { connect } from 'react-redux'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { observer } from 'mobx-react/native'
+import { Actions } from 'react-native-mobx'
 
-class Settings extends Component {
+
+@observer(['appStore'])
+export default class Settings extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      username: '',
-      email: '',
-      signOutMsg: 'Sign Out'
-    }
   }
 
   componentDidMount() {
-    const user = this.props.currentUser
-    this.setState({
-      username: user.name,
-      email: user.email,
-    })
   }
 
   render() {
@@ -39,7 +27,7 @@ class Settings extends Component {
         <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
           <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.itemName}>
-            {this.state.signOutMsg} - {this.state.username}
+            Sign Out - {this.props.appStore.username}
           </Text>
         </TouchableOpacity>
       </View>
@@ -47,7 +35,12 @@ class Settings extends Component {
   }
 
   _logOut = () => {
-    this.props.onLogOut()
+    firebaseApp.auth().signOut()
+    .then(() => {
+      Actions.login({ type: 'replace' });
+    }, function(error) {
+      console.log(error);
+    });
   }
 }
 
@@ -66,10 +59,3 @@ const styles = StyleSheet.create({
     fontSize: 14
   }
 })
-
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser
-  }
-}
-export default connect(mapStateToProps)(Settings)

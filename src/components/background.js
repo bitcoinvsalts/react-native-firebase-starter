@@ -1,8 +1,3 @@
-/**
- * background component for adding image
- * to the background and fit the window size
- */
-
 import React, { Component } from 'react'
 import {
   Image,

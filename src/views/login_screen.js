@@ -1,6 +1,3 @@
-/**
- * login screen
- */
 import React, { Component } from 'react'
 import {
   Text,
@@ -13,10 +10,8 @@ import {
   StyleSheet
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { connect } from 'react-redux'
 import * as Animatable from 'react-native-animatable'
 import { getColor } from '../components/config'
-import { signedIn } from '../actions'
 import HomeScreen from './home_screen'
 import Background from '../components/background'
 import LogoCircle from '../components/login_screen/logo_circle'
@@ -24,11 +19,27 @@ import InitialView from '../components/login_screen/initial_view'
 import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
 import ForgotPassForm from '../components/login_screen/forgotPassword_form'
+import { firebaseApp } from '../firebase'
+import { observer } from 'mobx-react/native'
+import { Actions } from 'react-native-mobx'
 
-class LoginScreen extends Component {
+
+@observer(['appStore'])
+export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
-
+    console.log("---- LOGIN CONSTRUCTOR ---");
+    firebaseApp.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(" --- User Signed In ---> " + user.uid)
+        this.props.appStore.username = user.displayName
+        this.props.appStore.userid = user.uid
+        Actions.home({ type: 'replace' });
+      }
+      else {
+        console.log(" --- User is Signed Off --- ");
+      }
+    })
     this.state = {
       initialRun: true,
       initialScreen: true,
@@ -36,10 +47,12 @@ class LoginScreen extends Component {
       signUp: false,
       forgotPass: false
     }
-
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
+  }
+
+  componentWillMount() {
   }
 
   componentDidMount() {
@@ -62,14 +75,12 @@ class LoginScreen extends Component {
 
     const signIn = this.state.signIn ?
       <SignInForm
-      goToHomeScreen={this._onSignInSuccess}
       onBackFromSignIn={this._onBackFromSignIn}
       onForgotPass = {this._onForgotPass} />
     : null
 
     const signUp = this.state.signUp ?
       <SignUpForm
-      goToHomeScreen={this._onSignInSuccess}
       onBackFromSignUp={this._onBackFromSignUp} />
     : null
 
@@ -85,9 +96,7 @@ class LoginScreen extends Component {
           barStyle='light-content'
           animated={true}
         />
-
         <Background imgSrouce={require('../assets/images/surface-of-ocean-7.jpeg')}/>
-
         <Animatable.View
         animation="bounceInDown"
         style={styles.logoContainer}
@@ -159,11 +168,6 @@ class LoginScreen extends Component {
     })
   }
 
-  _onSignInSuccess = (name, email, uid) => {
-    this.props.signedIn(name, email, uid)
-    //this.props.navigator.push({ view: HomeScreen })
-    this.props.navigator.resetTo({ view: HomeScreen })
-  }
 }
 
 const styles = StyleSheet.create({
@@ -177,5 +181,3 @@ const styles = StyleSheet.create({
     height: 260,
   }
 })
-
-export default connect(null,{signedIn})(LoginScreen)

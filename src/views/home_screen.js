@@ -1,8 +1,3 @@
-/**
- * Home screen
- * ScrollableTabView is used for different screens
- */
-
 import React, { Component } from 'react'
 import {
   Text,
@@ -11,18 +6,17 @@ import {
   ScrollView,
   StyleSheet
 } from 'react-native'
-import { connect } from 'react-redux'
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
+import { observer } from 'mobx-react/native'
 import { firebaseApp } from '../firebase'
 import { getColor } from '../components/config'
-import { signedOut } from '../actions'
 import NavigationTab from '../components/home_screen/navTab'
 import Timeline from '../components/home_screen/timeline'
 import CreateNew from '../components/home_screen/createNew'
 import Settings from '../components/home_screen/settings'
-import LoginScreen from './login_screen'
 
-class HomeScreen extends Component {
+
+export default class HomeScreen extends Component {
   constructor(props) {
     super(props)
   }
@@ -39,22 +33,16 @@ class HomeScreen extends Component {
         initialPage={0}
         style={{borderTopWidth:0}}
         renderTabBar={() => <NavigationTab />}>
-          <Timeline tabLabel="md-globe" navigator={this.props.navigator}/>
+          <Timeline tabLabel="md-globe"/>
           <CreateNew tabLabel="md-add"/>
-          <Settings
-          tabLabel="ios-settings"
-          onLogOut={ () => {this._onLogOut()} }
-          />
+          <Settings tabLabel="ios-settings"/>
         </ScrollableTabView>
       </View>
     )
   }
 
-  _onLogOut = () => {
-    firebaseApp.auth().signOut().then(() => {
-      this.props.navigator.resetTo({ view: LoginScreen })
-      this.props.signedOut()
-    })
+  componentWillUnmount() {
+    console.log("---- HOME UNMOUNT ---")
   }
 }
 
@@ -64,5 +52,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   }
 })
-
-export default connect(null, {signedOut})(HomeScreen)

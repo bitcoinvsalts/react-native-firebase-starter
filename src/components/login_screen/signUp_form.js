@@ -1,7 +1,3 @@
-/**
- * this is the sign up form of the login screen
- */
-
 import React, { Component } from 'react'
 import {
   View,
@@ -17,15 +13,17 @@ import {
 import { firebaseApp } from '../../firebase'
 import { getColor } from '../config'
 import * as Animatable from 'react-native-animatable'
+import { Actions } from 'react-native-mobx'
+import { observer } from 'mobx-react/native'
 
+
+@observer(['appStore'])
 export default class SignUpForm extends Component {
   constructor(props) {
     super(props)
-
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
-
     this.state = {
       init: true,
       errMsg: null,
@@ -138,23 +136,22 @@ export default class SignUpForm extends Component {
     else {
       firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        this.setState({errMsg: 'Welcome ' + this.state.name})
-        const uid = user.uid
-        const name = this.state.name
-        const email = this.state.email
-        firebaseApp.database().ref('users/' + uid)
-        .set({
-          name,
-          email,
-          uid
-        })
-        this.setState({
-                      errMsg: 'Thank you for signing up.',
-                      signUpSuccess: true
-                      })
-        setTimeout(() => {
-          this.props.goToHomeScreen(name, email, uid)
-        }, 1000)
+        user.updateProfile({displayName: this.state.name})
+        .then(() => {
+          const uid = user.uid
+          const username = user.displayName
+          const email = user.email
+          firebaseApp.database().ref('users/' + user.uid)
+          .set({
+            uid,
+            username,
+            email
+          })
+          this.props.appStore.uid = user.uid
+          this.props.appStore.username = user.displayName
+        }, function(error) {
+          console.log(error);
+        });
       })
       .catch((error) => {
         this.setState({ errMsg: error.message });
@@ -184,7 +181,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 25,

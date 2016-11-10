@@ -1,7 +1,3 @@
-/**
- * individual post component
- */
-
 import React, { Component } from 'react'
 import {
   Text,
@@ -10,8 +6,9 @@ import {
   StyleSheet,
   Image,
 } from 'react-native'
-
+import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
+
 
 export default class Posts extends Component {
   constructor(props) {
@@ -24,12 +21,15 @@ export default class Posts extends Component {
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
-        <Text style={styles.name}>
-          {this.props.posterName}
-        </Text>
-        <Text style={styles.time}>
-          {this.props.postTime}
-        </Text>
+        <View style={styles.postInfo}>
+          <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+          <Text style={styles.username}>
+            {this.props.posterName}
+          </Text>
+          <Text style={styles.time}>
+            {this.props.postTime}
+          </Text>
+        </View>
         <Text style={styles.content}>
           {this.props.postContent}
         </Text>
@@ -48,21 +48,26 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
   },
+  postInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  itemIcon: {
+    marginRight: 10
+  },
   title: {
     fontSize: 20,
   },
-  name: {
+  username: {
     color: getColor(),
-    fontSize: 15,
-    margin: 5,
+    fontSize: 16,
+    marginRight: 10,
   },
   time: {
-    margin: 5,
-    fontSize: 12,
-    paddingBottom: 10
+    fontSize: 15,
   },
   content: {
-    color: 'rgba(0,0,0,.8)',
+    marginTop: 5,
     fontSize: 14
   }
 })

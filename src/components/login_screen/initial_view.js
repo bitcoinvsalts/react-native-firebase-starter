@@ -1,8 +1,3 @@
-/**
- * this is the initial view of the login screen
- * it will show the buttons "sign in" and "sign up"
- */
-
 import React, { Component } from 'react'
 import {
   View,
@@ -13,10 +8,10 @@ import {
 import { getColor } from '../config'
 import * as Animatable from 'react-native-animatable'
 
+
 export default class InitialView extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       init: true,
       signInPressed: false,
@@ -77,6 +72,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   title: {
+    backgroundColor: 'transparent',
     marginBottom: 20,
     fontSize: 20,
     marginBottom: 20,

@@ -1,8 +1,3 @@
-/**
- * circle logo with white background
- * and the shadow (shadow doesn't work on android < 5.0)
- */
-
 import React, { Component } from 'react'
 import {
   View,

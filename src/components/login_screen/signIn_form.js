@@ -1,7 +1,3 @@
-/**
- * this is the sign in form of the login screen
- */
-
 import React, { Component } from 'react'
 import {
   View,
@@ -14,20 +10,20 @@ import {
   UIManager,
   StyleSheet
 } from 'react-native'
-import { connect } from 'react-redux'
-import { signIn } from '../../actions'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import * as Animatable from 'react-native-animatable'
+import { Actions } from 'react-native-mobx'
+import { observer } from 'mobx-react/native'
 
-class SignInForm extends Component {
+
+@observer(['appStore'])
+export default class SignInForm extends Component {
   constructor(props) {
     super(props)
-
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
-
     this.state = {
       init: true,
       errMsg: null,
@@ -52,7 +48,6 @@ class SignInForm extends Component {
   render() {
     const animation = this.state.init ? 'bounceInUp' : 'bounceOutDown'
     const errorMessage = this.state.errMsg ? <Text style={styles.errMsg}>{this.state.errMsg}</Text> : null
-
     return (
       <Animatable.View
       animation={animation}
@@ -118,20 +113,9 @@ class SignInForm extends Component {
     else {
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        const uid = user.uid;
-        console.log("--------");
-        console.log("user uid: " + uid);
-        console.log("--------");
-        firebaseApp.database().ref('users').child(uid).once('value')
-        .then((snapshot) => {
-          console.log(snapshot.val());
-          this.props.goToHomeScreen(snapshot.val().name, snapshot.val().email, snapshot.val().uid)
-          /*
-          setTimeout(()=> {
-            this._handleGoBack()
-          }, 1000)
-          */
-        })
+        this.props.appStore.uid = user.uid
+        this.props.appStore.username = user.displayName
+        console.log("username: " + user.displayName);
       })
       .catch((error) => {
         this.setState({ errMsg: error.message })
@@ -157,18 +141,13 @@ class SignInForm extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { currentUser: state.currentUser }
-}
-
-export default connect(mapStateToProps, {signIn})(SignInForm)
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 25,
@@ -206,7 +185,7 @@ const styles = StyleSheet.create({
   },
   forgotBtn: {
     fontSize: 12,
-    color: '#ffffff'
+    color: '#ffffff',
   },
   submitBtnContainer: {
     width: 120,

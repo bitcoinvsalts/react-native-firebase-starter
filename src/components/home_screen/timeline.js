@@ -11,20 +11,19 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
-import { connect } from 'react-redux'
-import { savePosts } from '../../actions'
+import { observer } from 'mobx-react/native'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import Post from './post'
 
-class Timeline extends Component {
+
+@observer(['appStore'])
+export default class Timeline extends Component {
   constructor(props) {
     super(props)
-
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
-
     this.state = {
       isRefreshing: false,
       updateNotification: null
@@ -32,11 +31,10 @@ class Timeline extends Component {
   }
 
   componentDidMount() {
-    console.log("---------YO---------");
+    console.log("--------- TIMELINE ---------")
     firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).once('value')
     .then((snapshot) => {
-      this.props.savePosts(snapshot.val())
-      console.log(snapshot.val());
+      this.props.appStore.posts = snapshot.val()
     })
     .catch((error) => {
       console.error(error);
@@ -51,10 +49,11 @@ class Timeline extends Component {
   }
 
   _onRefresh = () => {
+    console.log("--------- REFRESHING ---------");
     this.setState({ isRefreshing: true })
-    firebaseApp.database.ref('posts/').orderByChild('timestamp').limitToLast(30).once('value')
+    firebaseApp.database().ref('posts/').orderByChild('timestamp').limitToLast(30).once('value')
     .then((snapshot) => {
-      this.props.savePosts(snapshot.val())
+      this.props.appStore.posts = snapshot.val()
       this.setState({isRefreshing: false, updateNotification: null})
     })
   }
@@ -66,7 +65,7 @@ class Timeline extends Component {
     </Text>
     : null
 
-    const view = this.props.posts ?
+    const view = this.props.appStore.posts ?
       <ScrollView
       refreshControl={
         <RefreshControl
@@ -83,22 +82,22 @@ class Timeline extends Component {
       {this._renderPosts()}
       </ScrollView>
     :
-    <ScrollView
-    refreshControl={
-      <RefreshControl
-        refreshing={this.state.isRefreshing}
-        onRefresh={this._onRefresh}
-        tintColor="#ff0000"
-        title="Loading..."
-        titleColor="#00ff00"
-        colors={[getColor()]}
-        progressBackgroundColor={getColor('#ffffff')}
-      />
-    }>
-      <View style={styles.waitView}>
-        <Text>Nothing there yet.</Text>
-      </View>
-    </ScrollView>
+      <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.isRefreshing}
+          onRefresh={this._onRefresh}
+          tintColor="#ff0000"
+          title="Loading..."
+          titleColor="#00ff00"
+          colors={[getColor()]}
+          progressBackgroundColor={getColor('#ffffff')}
+        />
+      }>
+        <View style={styles.waitView}>
+          <Text>Nothing there yet.</Text>
+        </View>
+      </ScrollView>
 
     return (
       <View style={styles.container}>
@@ -108,23 +107,21 @@ class Timeline extends Component {
   }
 
   _renderPosts = () => {
+    console.log("--- renderPosts ---")
     const postArray = []
-    _.forEach(this.props.posts, (value, index) => {
-      const timestamp = value.time
-      //const timestamp = value.timestamp
-      const timeString = moment(timestamp).fromNow()
+    _.forEach(this.props.appStore.posts, (value, index) => {
+      const timeString = moment(value.timestamp).fromNow()
       postArray.push(
         <Post
         postTitle={value.title}
-        posterName={value.name}
+        posterName={value.username}
         postTime={timeString}
         postContent={value.text}
         key={index}
-        navigator={this.props.navigator}
         />
       )
     })
-    //_.reverse(postArray)
+    _.reverse(postArray)
     return postArray
   }
 }
@@ -145,11 +142,3 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   }
 })
-
-function mapStateToProps(state) {
-  return {
-    posts: state.posts
-  }
-}
-
-export default connect(mapStateToProps, {savePosts})(Timeline)

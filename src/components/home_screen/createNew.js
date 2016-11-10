@@ -1,7 +1,3 @@
-/**
- * create new tab
- */
-
 import React, { Component } from 'react'
 import {
   Text,
@@ -14,23 +10,23 @@ import {
   Image,
   UIManager
 } from 'react-native'
-import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/Ionicons'
-
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
+import { observer } from 'mobx-react/native'
+import { Actions } from 'react-native-mobx'
 
-class CreateNew extends Component {
+
+@observer(['appStore'])
+export default class CreateNew extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       postStatus: null,
       postText: '',
       postTitle: '',
     }
-
     if (Platform.OS === 'android') {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
@@ -91,48 +87,40 @@ class CreateNew extends Component {
     })
     if (this.state.postTitle.length > 0) {
       if (this.state.postText.length > 0) {
-
-        const uid = this.props.currentUser.uid;
-        const name = this.props.currentUser.name;
-        const time = Date.now();
-
-        firebaseApp.database.ref('posts').push().then((res) => {
-          let newPostKey = res.key;
-
-          firebaseApp.ServerValue.then(map => {
-            const postData = {
-              name: name,
-              timestamp: map.TIMESTAMP,
-              time: time,
-              text: this.state.postText,
-              title: this.state.postTitle,
-              puid: newPostKey
-            }
-            let updates = {}
-            updates['/posts/' + newPostKey] = postData
-            updates['/users/' + uid + '/posts/' + newPostKey] = postData
-            firebaseApp.database.ref().update(updates).then(() => {
-              this.setState({
-                              postStatus: 'Posted! Thank You.',
-                              postText: '',
-                            });
-            }).catch(() => {
-              this.setState({ postStatus: 'Something went wrong!!!' });
-            })
-          })
+        const uid = this.props.appStore.userid
+        const username = this.props.appStore.username
+        const timestamp = Date.now()
+        const newPostKey = firebaseApp.database().ref('posts').push().key
+        const postData = {
+          username: username,
+          timestamp: timestamp,
+          text: this.state.postText,
+          title: this.state.postTitle,
+          puid: newPostKey
+        }
+        let updates = {}
+        console.log("------> " + uid);
+        updates['/posts/' + newPostKey] = postData
+        updates['/users/' + uid + '/posts/' + newPostKey] = postData
+        firebaseApp.database().ref().update(updates)
+        .then(() => {
+          this.setState({
+                          postStatus: 'Posted! Thank You.',
+                          postTitle: '',
+                          postText: '',
+                        })
+        }).catch(() => {
+          this.setState({ postStatus: 'Something went wrong!!!' })
         })
-
       } else {
         this.setState({ postStatus: 'Please enter a post content.' })
       }
     } else {
       this.setState({ postStatus: 'Please enter a post title.' })
     }
-
     setTimeout(() => {
       this.setState({ postStatus: null })
     }, 3000)
-
   }
 }
 
@@ -196,10 +184,3 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
 })
-
-function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser
-  }
-}
-export default connect(mapStateToProps)(CreateNew)

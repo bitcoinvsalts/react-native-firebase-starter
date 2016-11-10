@@ -14,7 +14,6 @@ export default class NavigationTab extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.tabs}>
         {this.props.tabs.map((tab, i) => {
@@ -32,7 +31,6 @@ export default class NavigationTab extends Component {
       </View>
     )
   }
-
 }
 
 const styles = StyleSheet.create({

@@ -1,7 +1,3 @@
-/**
- * this is the forgot password form of the login screen
- */
-
 import React, { Component } from 'react'
 import {
   View,
@@ -118,7 +114,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: 20,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 20,

@@ -39,7 +39,7 @@ Then install the dependencies using:
 
     yarn
 
-To link the react-native-vector-icons package the to react native:
+To link the react-native-vector-icons package to react native:
 
     react-native link
 
@@ -51,7 +51,7 @@ or if you have Xcode installed:
 
     react-native run-ios
 
-if you want to see the logs:
+To see the logs:
 
     react-native log-android
 
@@ -59,7 +59,7 @@ or
 
     react-native log-ios
 
-feel free to change the firebase configuration file with your own settings:
+Feel free to edit the firebase configuration file with your own settings:
 
     atom src/firebase.js
 
@@ -71,7 +71,7 @@ Now, you have your own copy of this application!
 
 
 ## Credits
-I barely created the application. I just created the front end shell and done some integration with firebase. All the credits goes to all library creators and contributors to those repositories and libraries. I'm really grateful to all of them.
+All the credits goes to all library creators and contributors to those open source repositories and libraries. I'm very grateful to all of them.
 
  - [Mister Poster](https://github.com/shoumma/Mister-Poster)
  - [React Native](https://facebook.github.io/react-native/)

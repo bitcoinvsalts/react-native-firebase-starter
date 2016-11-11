@@ -3,7 +3,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Alert,
   StyleSheet
 } from 'react-native'
 import { firebaseApp } from '../../firebase'

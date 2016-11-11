@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import {
-  Text,
   View,
   StatusBar,
-  ScrollView,
   StyleSheet
 } from 'react-native'
-import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view'
-import { observer } from 'mobx-react/native'
-import { firebaseApp } from '../firebase'
+import ScrollableTabView from 'react-native-scrollable-tab-view'
 import { getColor } from '../components/config'
 import NavigationTab from '../components/home_screen/navTab'
 import Timeline from '../components/home_screen/timeline'

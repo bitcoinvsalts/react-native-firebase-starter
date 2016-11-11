@@ -60,7 +60,18 @@ or
 
     react-native log-ios
 
-Feel free to edit the firebase configuration file with your own settings:
+##Firebase Setup
+
+Create a new app at:
+https://console.firebase.google.com/
+
+Enable the Email/Password provider for your sign-in method at:
+https://console.firebase.google.com/project/test-850de/authentication/providers
+
+Copy your Firebase variables by clicking on Add Firebase to your web app at:
+https://console.firebase.google.com/project/test-850de/settings/general/
+
+and edit the firebase configuration file with your own settings:
 
     atom src/firebase.js
 

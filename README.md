@@ -17,7 +17,7 @@
  - [MobX](https://mobxjs.github.io/mobx/)
  - [Firebase](https://firebase.google.com/)
 
-I would really appricate any suggestions, feedback, PRs and Issues.
+I would really appreciate any suggestions, feedback, PRs and Issues.
 
 ## How to create your own copy of this app?
 ### Prerequisites

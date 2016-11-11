@@ -71,6 +71,19 @@ https://console.firebase.google.com/project/YOURPROJECT/authentication/providers
 Copy your Firebase variables by clicking on Add Firebase to your web app at:
 https://console.firebase.google.com/project/YOURPROJECT/settings/general/
 
+Edit and publish your rules and indexOn at:
+https://console.firebase.google.com/project/YOURPROJECT/database/rules
+
+with:
+
+    {
+      "rules": {
+      ".read": "auth != null",
+      ".write": "auth != null",
+      "posts": {".indexOn": "timestamp"}
+      }
+    }
+
 and edit the firebase configuration file with your own settings:
 
     atom src/firebase.js

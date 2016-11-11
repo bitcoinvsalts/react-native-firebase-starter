@@ -1,7 +1,4 @@
-import { observable, action, autorun, computed } from 'mobx'
-import { Actions } from 'react-native-mobx'
-//import { persist } from 'mobx-persist'
-
+import { observable, autorun } from 'mobx'
 
 class AppStore {
   @observable userid = null

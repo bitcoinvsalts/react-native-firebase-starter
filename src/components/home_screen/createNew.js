@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   LayoutAnimation,
   Platform,
-  Image,
   UIManager
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -15,7 +14,6 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import { observer } from 'mobx-react/native'
-import { Actions } from 'react-native-mobx'
 
 
 @observer(['appStore'])

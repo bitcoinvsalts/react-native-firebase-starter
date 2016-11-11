@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  Text,
   View,
   TouchableOpacity,
   LayoutAnimation,
@@ -10,9 +9,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import * as Animatable from 'react-native-animatable'
 import { getColor } from '../components/config'
-import HomeScreen from './home_screen'
 import LogoCircle from '../components/login_screen/logo_circle'
 import InitialView from '../components/login_screen/initial_view'
 import SignInForm from '../components/login_screen/signIn_form'
@@ -20,7 +17,7 @@ import SignUpForm from '../components/login_screen/signUp_form'
 import ForgotPassForm from '../components/login_screen/forgotPassword_form'
 import { firebaseApp } from '../firebase'
 import { inject, observer } from 'mobx-react/native'
-import { Actions } from 'react-native-mobx'
+
 
 
 @observer(['appStore'])

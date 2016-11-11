@@ -21,14 +21,14 @@ I would really appricate any suggestions, feedback, PRs and Issues.
 
 ## How to create your own copy of this app?
 ### Prerequisites
-To create an own copy of this application, you have some prerequisites. They are -
+To create your own copy of this application, here are the prerequisites:
 
- - [Yarn](https://yarnpkg.com/) installed on your system.
+ - [Yarn](https://yarnpkg.com/) installed on your system or simply use npm if you prefer.
  - [React Native](https://facebook.github.io/react-native/) installed on your system.
  - Have the [Android SDK](https://developer.android.com/studio/index.html) and paths set properly.
  - An android emulator or real device to run the app.
  - A google account for having [Firebase Web](https://firebase.google.com) configuration.
- - Xcode installed to install and test the app on an iOS devices or simulator.
+ - Xcode installed to test the app on an iOS devices or simulator.
 
 ### Build your own copy
 First clone the repository using:

@@ -1,9 +1,9 @@
-# JSapp React Native Firebase Starter, the Original
+# JSapp React Native Firebase Starter App
 ![Preview](./graphics/Screenshot_1.png)
 ![Preview](./graphics/Screenshot_2.png)
 ![Preview](./graphics/Screenshot_3.png)
 
-#### Create and build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
+#### Build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
 
 [![iOS app][2]][1] [![Android app][4]][3]
 
@@ -28,8 +28,9 @@ To create an own copy of this application, you have some prerequisites. They are
  - Have the [Android SDK](https://developer.android.com/studio/index.html) and paths set properly.
  - An android emulator or real device to run the app.
  - A google account for having [Firebase Web](https://firebase.google.com) configuration.
+ - Xcode installed to install and test the app on an iOS devices or simulator.
 
-### Make own copy
+### Build your own copy
 First clone the repository using:
 
     git clone https://github.com/jsappme/react-native-firebase-starter.git
@@ -71,7 +72,7 @@ Now, you have your own copy of this application!
 
 
 ## Credits
-All the credits goes to all library creators and contributors to those open source repositories and libraries. I'm very grateful to all of them.
+All the credits goes to all library creators and contributors to the open source repositories and libraries that I am using. I'm very grateful to all of them.
 
  - [Mister Poster](https://github.com/shoumma/Mister-Poster)
  - [React Native](https://facebook.github.io/react-native/)

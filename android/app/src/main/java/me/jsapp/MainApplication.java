@@ -1,4 +1,4 @@
-package com.myapp;
+package me.jsapp.myapp;
 
 import android.app.Application;
 import android.util.Log;

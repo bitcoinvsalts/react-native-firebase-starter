@@ -473,6 +473,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = D6E2BJ6F8G;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -793,6 +794,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = D6E2BJ6F8G;
@@ -809,7 +811,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.jsapp.MyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jsapp.myapp;
 				PRODUCT_NAME = MyApp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -819,6 +821,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D6E2BJ6F8G;
 				HEADER_SEARCH_PATHS = (
@@ -834,7 +837,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.jsapp.MyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = me.jsapp.myapp;
 				PRODUCT_NAME = MyApp;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

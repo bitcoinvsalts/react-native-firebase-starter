@@ -1,5 +1,7 @@
 # JSapp React Native Firebase Starter, the Original
-![Preview](https://pbs.twimg.com/profile_images/631286882316320768/WaiX_jqN.png)
+![Preview](./graphics/./graphics/Screenshot_1.png)
+![Preview](./graphics/./graphics/Screenshot_2.png)
+![Preview](./graphics/./graphics/Screenshot_3.png)
 
 #### Create and build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
 
@@ -12,8 +14,7 @@
 
 ## Built With
  - [React Native](https://facebook.github.io/react-native/)
- - [Redux](https://github.com/reactjs/redux)
- - [Redux Storage](https://github.com/michaelcontento/redux-storage) (with [async-storage engine](https://github.com/michaelcontento/redux-storage-engine-reactNativeAsyncStorage) for react native for application persistence)
+ - [MobX](https://mobxjs.github.io/mobx/)
  - [Firebase](https://firebase.google.com/)
 
 I would really appricate any suggestions, feedback, PRs and Issues.
@@ -22,41 +23,41 @@ I would really appricate any suggestions, feedback, PRs and Issues.
 ### Prerequisites
 To create an own copy of this application, you have some prerequisites. They are -
 
- - [NodeJS](https://nodejs.org/en/) installed on your system.
+ - [Yarn](https://yarnpkg.com/) installed on your system.
  - [React Native](https://facebook.github.io/react-native/) installed on your system.
  - Have the [Android SDK](https://developer.android.com/studio/index.html) and paths set properly.
  - An android emulator or real device to run the app.
- - A google account for having [Firebase Web](https://firebase.google.com/docs/web/setup) configuration.
+ - A google account for having [Firebase Web](https://firebase.google.com) configuration.
 
 ### Make own copy
 First clone the repository using:
 
     git clone https://github.com/jsappme/react-native-firebase-starter.git
+    cd react-native-firebase-starter
 
 Then install the dependencies using:
 
     yarn
 
-At this point you need to have the configurations for a Firebase App. Just go to [Firebase Console](https://firebase.google.com/docs/web/setup) and follow the instructions. Then open the file named `firebase.js` from the `src` folder. Add the Firebase configurations to the file. The file looks something like this:
+To link the react-native-vector-icons package the to react native:
 
-    // import and configure firebase
-    import * as firebase from 'firebase';
+    react-native link
 
-    const firebaseConfig = {
-      apiKey: [YOUR API KEY],
-      authDomain: [YOUR AUTH DOMAIN],
-      databaseURL: [YOUR DATABASE URL],
-      storageBucket: [STORAGE BUCKET],
-    }
-    export const firebaseApp = firebase.initializeApp(firebaseConfig)
-
-Then run the React Native server using:
-
-    react-native start
-
-Open your emulator and wait until it completely boot up. Then run the following command to run the app on the emulator.
+Then run the following command to run the app on the emulator.
 
     react-native run-android
+
+or if you have Xcode installed:
+
+    react-native run-ios
+
+if you want to see the logs:
+
+    react-native log-android
+
+or
+
+    react-native log-ios
 
 Now, you have your own copy of this application!
 

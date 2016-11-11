@@ -1,7 +1,7 @@
 # JSapp React Native Firebase Starter, the Original
-![Preview](./graphics/./graphics/Screenshot_1.png)
-![Preview](./graphics/./graphics/Screenshot_2.png)
-![Preview](./graphics/./graphics/Screenshot_3.png)
+![Preview](./graphics/Screenshot_1.png)
+![Preview](./graphics/Screenshot_2.png)
+![Preview](./graphics/Screenshot_3.png)
 
 #### Create and build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
 

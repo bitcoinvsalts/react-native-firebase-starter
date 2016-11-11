@@ -16,9 +16,8 @@ import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
 import ForgotPassForm from '../components/login_screen/forgotPassword_form'
 import { firebaseApp } from '../firebase'
-import { inject, observer } from 'mobx-react/native'
-
-
+import { observer } from 'mobx-react/native'
+import { Actions } from 'react-native-mobx'
 
 @observer(['appStore'])
 export default class LoginScreen extends Component {

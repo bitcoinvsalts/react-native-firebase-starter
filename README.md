@@ -59,6 +59,10 @@ or
 
     react-native log-ios
 
+feel free to change the firebase configuration file with your own settings:
+
+    atom src/firebase.js
+
 Now, you have your own copy of this application!
 
 
@@ -74,10 +78,9 @@ I barely created the application. I just created the front end shell and done so
  - [React Native Animatable](https://github.com/oblador/react-native-animatable)
  - [React Native Scrollable Tab View](https://github.com/skv-headless/react-native-scrollable-tab-view)
  - [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
- - [Redux](https://github.com/reactjs/redux)
- - [React Redux](https://github.com/reactjs/react-redux)
- - [Redux Storage](https://github.com/michaelcontento/redux-storage)
- - [Redux Storage Engine - React Native Async Storage](https://github.com/michaelcontento/redux-storage-engine-reactNativeAsyncStorage)
+ - [MobX](https://github.com/mobxjs/mobx)
+ - [MobX React](https://github.com/mobxjs/mobx-react)
+ - [React Native MobX](https://github.com/aksonov/react-native-mobx)
  - [Firebase](https://firebase.google.com/)
  - [Moment JS](http://momentjs.com/)
  - [Lodash](https://lodash.com/)

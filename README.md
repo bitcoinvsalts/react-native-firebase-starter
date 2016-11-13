@@ -44,6 +44,8 @@ To link the react-native-vector-icons package to react native:
 
     react-native link
 
+Perform the **Firebase Setup** below
+
 Then run the following command to run the app on the emulator.
 
     react-native run-android
@@ -68,7 +70,11 @@ https://console.firebase.google.com/
 Enable the Email/Password provider for your sign-in method at:
 https://console.firebase.google.com/project/YOURPROJECT/authentication/providers
 
-Copy your Firebase variables by clicking on Add Firebase to your web app at:
+Copy the `src/firebase-example.js` to `src/firebase.js`
+
+**Note:** the `.gitignore` includes `src/firebase.js` so it won't accidentally get checked in
+
+Copy your Firebase variables to the `src/firebase.js` by clicking on **Add Firebase to your web app** icon at:
 https://console.firebase.google.com/project/YOURPROJECT/settings/general/
 
 Edit and publish your rules and indexOn at:

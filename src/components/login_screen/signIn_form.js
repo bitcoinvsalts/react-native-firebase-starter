@@ -113,7 +113,7 @@ export default class SignInForm extends Component {
     else {
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        this.props.appStore.uid = user.uid
+        this.props.appStore.userid = user.uid
         this.props.appStore.username = user.displayName
         console.log("username: " + user.displayName);
         Actions.home({ type: 'replace' })

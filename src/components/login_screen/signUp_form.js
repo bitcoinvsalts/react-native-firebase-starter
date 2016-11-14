@@ -147,7 +147,7 @@ export default class SignUpForm extends Component {
             username,
             email
           })
-          this.props.appStore.uid = user.uid
+          this.props.appStore.userid = user.uid
           this.props.appStore.username = user.displayName
           Actions.home({ type: 'replace' })
         }, function(error) {

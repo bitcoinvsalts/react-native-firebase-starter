@@ -59,6 +59,7 @@ export default class ForgotPassForm extends Component {
           style={styles.inputField}
           underlineColorAndroid='transparent'
           placeholder='Enter Your Email'
+          autoCapitalize={false} 
           placeholderTextColor='rgba(255,255,255,.6)'
           onChangeText={(text) => this.setState({ email: text })}
           onSubmitEditing={(event) => {this._handleForgotPass()}}

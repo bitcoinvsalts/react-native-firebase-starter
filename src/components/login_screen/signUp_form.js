@@ -79,6 +79,7 @@ export default class SignUpForm extends Component {
           value={this.state.email}
           keyboardType='email-address'
           autoCorrect={false}
+          autoCapitalize={false} 
           onChangeText={(text) => this.setState({ email: text })}
           underlineColorAndroid='transparent'
           placeholder='Your Email'

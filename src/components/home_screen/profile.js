@@ -7,12 +7,13 @@ import {
 } from 'react-native'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
+import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import { observer } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 
 
 @observer(['appStore'])
-export default class Settings extends Component {
+export default class Profile extends Component {
   constructor(props) {
     super(props)
   }
@@ -23,6 +24,12 @@ export default class Settings extends Component {
   render() {
     return (
       <View>
+        <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
+          <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+          <Text style={styles.itemName}>
+            Edit your account
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
           <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.itemName}>
@@ -33,12 +40,16 @@ export default class Settings extends Component {
     )
   }
 
+  _userEdit = () => {
+    Actions.setting()
+  }
+
   _logOut = () => {
     firebaseApp.auth().signOut()
     .then(() => {
       Actions.login({ type: 'replace' });
     }, function(error) {
-      console.log(error);
+      console.log(error)
     });
   }
 }

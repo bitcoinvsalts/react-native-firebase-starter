@@ -61,7 +61,7 @@ export default class SignInForm extends Component {
           underlineColorAndroid='transparent'
           placeholder='Email'
           keyboardType='email-address'
-          autoCapitalize={false} 
+          autoCapitalize='none' 
           placeholderTextColor='rgba(255,255,255,.6)'
           value={this.state.email}
           onSubmitEditing={(event) => {

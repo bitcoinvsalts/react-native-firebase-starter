@@ -79,6 +79,7 @@ export default class SignUpForm extends Component {
           value={this.state.email}
           keyboardType='email-address'
           autoCorrect={false}
+          autoCapitalize='none'
           onChangeText={(text) => this.setState({ email: text })}
           underlineColorAndroid='transparent'
           placeholder='Your Email'
@@ -125,7 +126,7 @@ export default class SignUpForm extends Component {
   _handleSignUp = () => {
     this.setState({errMsg: 'Signing Up...'})
     if (this.state.name.length < 5) {
-      this.setState({errMsg: "Your name must be 5 characters long or more."})
+      this.setState({errMsg: "Your name should be at least 5 characters."})
     }
     else if (this.state.email.length == 0) {
       this.setState({errMsg: "Please enter your email."})
@@ -147,8 +148,8 @@ export default class SignUpForm extends Component {
             username,
             email
           })
-          this.props.appStore.uid = user.uid
           this.props.appStore.username = user.displayName
+          this.props.appStore.user = user
           Actions.home({ type: 'replace' })
         }, function(error) {
           console.log(error);

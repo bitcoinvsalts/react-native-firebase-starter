@@ -1,9 +1,10 @@
 import { observable, autorun } from 'mobx'
 
 class AppStore {
-  @observable userid = null
   @observable username = ''
+  @observable user = {}
   @observable posts = []
+  @observable myposts = []
 }
 
 const appStore = new AppStore()

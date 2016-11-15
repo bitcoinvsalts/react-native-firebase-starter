@@ -85,8 +85,8 @@ export default class CreateNew extends Component {
     })
     if (this.state.postTitle.length > 0) {
       if (this.state.postText.length > 0) {
-        const uid = this.props.appStore.uid
-        const username = this.props.appStore.username
+        const uid = this.props.appStore.user.uid
+        const username = this.props.appStore.user.displayName
         const timestamp = Date.now()
         const newPostKey = firebaseApp.database().ref('posts').push().key
         const postData = {

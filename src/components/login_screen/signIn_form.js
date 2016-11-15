@@ -61,6 +61,7 @@ export default class SignInForm extends Component {
           underlineColorAndroid='transparent'
           placeholder='Email'
           keyboardType='email-address'
+          autoCapitalize='none'
           placeholderTextColor='rgba(255,255,255,.6)'
           value={this.state.email}
           onSubmitEditing={(event) => {
@@ -113,10 +114,9 @@ export default class SignInForm extends Component {
     else {
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
-        this.props.appStore.uid = user.uid
-        console.log("uid: " + user.uid);          
+        this.props.appStore.user = user
         this.props.appStore.username = user.displayName
-        console.log("username: " + user.displayName);
+        console.log("user displayName: " + user.displayName);
         Actions.home({ type: 'replace' })
       })
       .catch((error) => {

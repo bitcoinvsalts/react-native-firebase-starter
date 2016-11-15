@@ -9,7 +9,7 @@ import { getColor } from '../components/config'
 import NavigationTab from '../components/home_screen/navTab'
 import Timeline from '../components/home_screen/timeline'
 import CreateNew from '../components/home_screen/createNew'
-import Settings from '../components/home_screen/settings'
+import Profile from '../components/home_screen/profile'
 
 
 export default class HomeScreen extends Component {
@@ -31,7 +31,7 @@ export default class HomeScreen extends Component {
         renderTabBar={() => <NavigationTab />}>
           <Timeline tabLabel="md-globe"/>
           <CreateNew tabLabel="md-add"/>
-          <Settings tabLabel="ios-settings"/>
+          <Profile tabLabel="md-person"/>
         </ScrollableTabView>
       </View>
     )

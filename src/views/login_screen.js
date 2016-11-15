@@ -23,7 +23,6 @@ import { Actions } from 'react-native-mobx'
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
-    console.log("---- LOGIN CONSTRUCTOR ---")
     this.state = {
       initialRun: true,
       initialScreen: false,
@@ -36,9 +35,9 @@ export default class LoginScreen extends Component {
     }
     _unsubscribe = firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(" --- User Signed In ---> " + user.uid)
+        console.log(" --- User Signed In ---> " + user.displayName)
+        this.props.appStore.user = user
         this.props.appStore.username = user.displayName
-        this.props.appStore.userid = user.uid
         Actions.home({ type: 'replace' })
       }
       else {
@@ -56,7 +55,6 @@ export default class LoginScreen extends Component {
   }
 
   componentDidMount() {
-    console.log("---- LOGIN didMOUNT ---")
     this.setState({initialRun: false})
   }
 

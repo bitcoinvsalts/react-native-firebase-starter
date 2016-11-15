@@ -30,6 +30,7 @@ export default class Profile extends Component {
     }
     this.state = {
       isLoadingTail: true,
+      isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
@@ -41,10 +42,16 @@ export default class Profile extends Component {
     (snapshot) => {
       console.log("USER POST RETRIEVED");
       //this.props.appStore.myposts = snapshot.val()
+      if (snapshot.val()) {
+        this.setState({ isEmpty: false })
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+        })
+      }
+      else {
+        this.setState({ isEmpty: true })
+      }
       this.setState({ isLoadingTail: false })
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
-      })
     })
   }
 
@@ -98,6 +105,13 @@ export default class Profile extends Component {
         </View>
       )
     }
+    if (this.state.isEmpty) {
+      return (
+        <View style={styles.waitView}>
+          <Text>Nothing there yet.</Text>
+        </View>
+      )
+    } 
   }
 
   _userEdit = () => {

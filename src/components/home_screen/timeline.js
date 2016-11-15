@@ -26,6 +26,7 @@ export default class Timeline extends Component {
     }
     this.state = {
       isLoadingTail: true,
+      isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
@@ -35,12 +36,17 @@ export default class Timeline extends Component {
     firebaseApp.database().ref('posts').orderByChild('timestamp').on('value',
     (snapshot) => {
       console.log("---- TIMELINE POST RETRIEVED ----");
-      console.log(snapshot.val());
       //this.props.appStore.posts = snapshot.val()
+      if (snapshot.val()) {
+        this.setState({ isEmpty: false })
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+        })
+      }
+      else {
+        this.setState({ isEmpty: true })
+      }
       this.setState({ isLoadingTail: false })
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
-      })
     })
   }
 
@@ -79,6 +85,13 @@ export default class Timeline extends Component {
       return (
         <View style={styles.waitView}>
           <ActivityIndicator size='large'/>
+        </View>
+      )
+    }
+    if (this.state.isEmpty) {
+      return (
+        <View style={styles.waitView}>
+          <Text>Nothing there yet.</Text>
         </View>
       )
     }

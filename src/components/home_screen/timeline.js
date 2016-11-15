@@ -7,7 +7,6 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
-  RefreshControl
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
@@ -25,35 +24,22 @@ export default class Timeline extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      isRefreshing: false,
       updateNotification: 'Loading...'
     }
   }
 
   componentDidMount() {
     console.log("--------- TIMELINE ---------")
-    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).once('value')
-    .then((snapshot) => {
+    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).on('value',
+    (snapshot) => {
+      console.log("---- TIMELINE POST RETRIEVED ----");
       this.props.appStore.posts = snapshot.val()
-      this.setState({ updateNotification: 'Pull to refresh...' })
-    })
-    .catch((error) => {
-      console.error(error);
+      this.setState({ updateNotification: '' })
     })
   }
 
   componentDidUpdate() {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-  }
-
-  _onRefresh = () => {
-    console.log("--------- REFRESHING ---------");
-    this.setState({ isRefreshing: true })
-    firebaseApp.database().ref('posts/').orderByChild('timestamp').limitToLast(30).once('value')
-    .then((snapshot) => {
-      this.props.appStore.posts = snapshot.val()
-      this.setState({isRefreshing: false, updateNotification: null})
-    })
   }
 
   render() {
@@ -64,34 +50,12 @@ export default class Timeline extends Component {
     : null
 
     const view = this.props.appStore.posts ?
-      <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.isRefreshing}
-          onRefresh={this._onRefresh}
-          tintColor="#ff0000"
-          title="Loading..."
-          titleColor="#00ff00"
-          colors={[getColor()]}
-          progressBackgroundColor={getColor('#ffffff')}
-        />
-      }>
-      {notify}
-      {this._renderPosts()}
+      <ScrollView>
+        { notify }
+        { this._renderPosts() }
       </ScrollView>
     :
-      <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.isRefreshing}
-          onRefresh={this._onRefresh}
-          tintColor="#ff0000"
-          title="Loading..."
-          titleColor="#00ff00"
-          colors={[getColor()]}
-          progressBackgroundColor={getColor('#ffffff')}
-        />
-      }>
+      <ScrollView>
         <View style={styles.waitView}>
           <Text>Nothing there yet.</Text>
         </View>

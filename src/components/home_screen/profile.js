@@ -8,7 +8,6 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
-  RefreshControl
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
@@ -29,7 +28,6 @@ export default class Profile extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      isRefreshing: false,
       updateNotification: 'Loading...'
     }
   }
@@ -37,13 +35,11 @@ export default class Profile extends Component {
   componentDidMount() {
     const uid = this.props.appStore.user.uid
     console.log("--------- MY POSTS --------- " + uid)
-    firebaseApp.database().ref('users/'+ uid +'/posts').orderByChild('timestamp').limitToLast(30).once('value')
-    .then((snapshot) => {
+    firebaseApp.database().ref('users/'+ uid +'/posts').orderByChild('timestamp').limitToLast(30).on('value',
+    (snapshot) => {
+      console.log("USER POST RETRIEVED");
       this.props.appStore.myposts = snapshot.val()
-      this.setState({ updateNotification: 'Pull to refresh...' })
-    })
-    .catch((error) => {
-      console.error(error);
+      this.setState({ updateNotification: '' })
     })
   }
 
@@ -59,22 +55,16 @@ export default class Profile extends Component {
     : null
 
     const view = this.props.appStore.myposts ?
-      <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.isRefreshing}
-          onRefresh={this._onRefresh}
-          tintColor="#ff0000"
-          title="Loading..."
-          titleColor="#00ff00"
-          colors={[getColor()]}
-          progressBackgroundColor={getColor('#ffffff')}
-        />
-      }>
-      {notify}
-      {this._renderPosts()}
+      <ScrollView>
+        {notify}
+        {this._renderPosts()}
       </ScrollView>
-    : null
+    :
+      <ScrollView>
+        <View style={styles.waitView}>
+          <Text>Nothing there yet.</Text>
+        </View>
+      </ScrollView>
 
     return (
       <View style={styles.container}>

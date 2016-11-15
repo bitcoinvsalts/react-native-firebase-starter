@@ -4,6 +4,7 @@ class AppStore {
   @observable username = ''
   @observable user = {}
   @observable posts = []
+  @observable myposts = []
 }
 
 const appStore = new AppStore()

@@ -26,7 +26,7 @@ export default class Timeline extends Component {
     }
     this.state = {
       isRefreshing: false,
-      updateNotification: null
+      updateNotification: 'Loading...'
     }
   }
 
@@ -35,13 +35,11 @@ export default class Timeline extends Component {
     firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).once('value')
     .then((snapshot) => {
       this.props.appStore.posts = snapshot.val()
+      this.setState({ updateNotification: 'Pull to refresh...' })
     })
     .catch((error) => {
       console.error(error);
     })
-    setTimeout(() => {
-      this.setState({ updateNotification: 'Pull to refresh...' })
-    }, 1000)
   }
 
   componentDidUpdate() {

@@ -14,10 +14,10 @@ import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import * as Animatable from 'react-native-animatable'
 import { Actions } from 'react-native-mobx'
-import { observer } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 
 
-@observer(['appStore'])
+@inject ('appStore') @observer
 export default class SignInForm extends Component {
   constructor(props) {
     super(props)
@@ -113,7 +113,7 @@ export default class SignInForm extends Component {
     }
     else {
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
+        .then((user) => {
         this.props.appStore.user = user
         this.props.appStore.username = user.displayName
         console.log("user displayName: " + user.displayName);

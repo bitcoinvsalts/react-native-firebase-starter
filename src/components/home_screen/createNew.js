@@ -13,10 +13,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
-import { observer } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 
 
-@observer(['appStore'])
+@inject('appStore') @observer
 export default class CreateNew extends Component {
   constructor(props) {
     super(props)
@@ -91,6 +91,7 @@ export default class CreateNew extends Component {
         const newPostKey = firebaseApp.database().ref('posts').push().key
         const postData = {
           username: username,
+          uid: uid,
           timestamp: timestamp,
           text: this.state.postText,
           title: this.state.postTitle,
@@ -99,7 +100,6 @@ export default class CreateNew extends Component {
         let updates = {}
         console.log("------> " + uid);
         updates['/posts/' + newPostKey] = postData
-        updates['/users/' + uid + '/posts/' + newPostKey] = postData
         firebaseApp.database().ref().update(updates)
         .then(() => {
           this.setState({

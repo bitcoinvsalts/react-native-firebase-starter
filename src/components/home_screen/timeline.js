@@ -3,7 +3,8 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
+  ActivityIndicator,
+  ListView,
   LayoutAnimation,
   Platform,
   UIManager,
@@ -24,17 +25,22 @@ export default class Timeline extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      updateNotification: 'Loading...'
+      isLoadingTail: true,
+      dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
 
   componentDidMount() {
-    console.log("--------- TIMELINE ---------")
-    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).on('value',
+    console.log("--------- TIMELINE --------- ")
+    firebaseApp.database().ref('posts').orderByChild('timestamp').on('value',
     (snapshot) => {
       console.log("---- TIMELINE POST RETRIEVED ----");
-      this.props.appStore.posts = snapshot.val()
-      this.setState({ updateNotification: '' })
+      console.log(snapshot.val());
+      //this.props.appStore.posts = snapshot.val()
+      this.setState({ isLoadingTail: false })
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+      })
     })
   }
 
@@ -43,48 +49,39 @@ export default class Timeline extends Component {
   }
 
   render() {
-    const notify = this.state.updateNotification ?
-    <Text style={styles.updateNotificationStyle}>
-      {this.state.updateNotification}
-    </Text>
-    : null
-
-    const view = this.props.appStore.posts ?
-      <ScrollView>
-        { notify }
-        { this._renderPosts() }
-      </ScrollView>
-    :
-      <ScrollView>
-        <View style={styles.waitView}>
-          <Text>Nothing there yet.</Text>
-        </View>
-      </ScrollView>
-
     return (
       <View style={styles.container}>
-        {view}
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          renderFooter={this._renderFooter}
+        />
       </View>
     )
   }
 
-  _renderPosts = () => {
-    console.log("--- renderPosts ---")
-    const postArray = []
-    _.forEach(this.props.appStore.posts, (value, index) => {
-      const timeString = moment(value.timestamp).fromNow()
-      postArray.push(
-        <Post
-        postTitle={value.title}
-        posterName={value.username}
+  _renderRow = (data) => {
+    console.log("--- _renderRow ---")
+    const timeString = moment(data.timestamp).fromNow()
+    return (
+      <Post
+        postTitle={data.title}
+        posterName={data.username}
         postTime={timeString}
-        postContent={value.text}
-        key={index}
-        />
+        postContent={data.text}
+      />
+    )
+  }
+
+  _renderFooter = () => {
+    console.log("--- _renderFooter ---")
+    if (this.state.isLoadingTail) {
+      return (
+        <View style={styles.waitView}>
+          <ActivityIndicator size='large'/>
+        </View>
       )
-    })
-    _.reverse(postArray)
-    return postArray
+    }
   }
 }
 
@@ -98,9 +95,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 100,
   },
-  updateNotificationStyle: {
-    textAlign: 'center',
-    marginTop: 10,
-    paddingBottom: 5
-  }
 })

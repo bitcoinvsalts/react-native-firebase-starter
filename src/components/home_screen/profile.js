@@ -4,7 +4,8 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
+  ActivityIndicator,
+  ListView,
   LayoutAnimation,
   Platform,
   UIManager,
@@ -28,18 +29,22 @@ export default class Profile extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      updateNotification: 'Loading...'
+      isLoadingTail: true,
+      dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
 
   componentDidMount() {
     const uid = this.props.appStore.user.uid
     console.log("--------- MY POSTS --------- " + uid)
-    firebaseApp.database().ref('users/'+ uid +'/posts').orderByChild('timestamp').limitToLast(30).on('value',
+    firebaseApp.database().ref('users/'+ uid +'/posts').orderByChild('timestamp').on('value',
     (snapshot) => {
       console.log("USER POST RETRIEVED");
-      this.props.appStore.myposts = snapshot.val()
-      this.setState({ updateNotification: '' })
+      //this.props.appStore.myposts = snapshot.val()
+      this.setState({ isLoadingTail: false })
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+      })
     })
   }
 
@@ -48,24 +53,6 @@ export default class Profile extends Component {
   }
 
   render() {
-    const notify = this.state.updateNotification ?
-    <Text style={styles.updateNotificationStyle}>
-      {this.state.updateNotification}
-    </Text>
-    : null
-
-    const view = this.props.appStore.myposts ?
-      <ScrollView>
-        {notify}
-        {this._renderPosts()}
-      </ScrollView>
-    :
-      <ScrollView>
-        <View style={styles.waitView}>
-          <Text>Nothing there yet.</Text>
-        </View>
-      </ScrollView>
-
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
@@ -80,28 +67,37 @@ export default class Profile extends Component {
             Sign Out - {this.props.appStore.username}
           </Text>
         </TouchableOpacity>
-        {view}
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          renderFooter={this._renderFooter}
+        />
       </View>
     )
   }
 
-  _renderPosts = () => {
-    console.log("--- render User Posts ---")
-    const postArray = []
-    _.forEach(this.props.appStore.myposts, (value, index) => {
-      const timeString = moment(value.timestamp).fromNow()
-      postArray.push(
-        <Post
-        postTitle={value.title}
-        posterName={value.username}
+  _renderRow = (data) => {
+    console.log("--- _renderRow ---")
+    const timeString = moment(data.timestamp).fromNow()
+    return (
+      <Post
+        postTitle={data.title}
+        posterName={data.username}
         postTime={timeString}
-        postContent={value.text}
-        key={index}
-        />
+        postContent={data.text}
+      />
+    )
+  }
+
+  _renderFooter = () => {
+    console.log("--- _renderFooter ---")
+    if (this.state.isLoadingTail) {
+      return (
+        <View style={styles.waitView}>
+          <ActivityIndicator size='large'/>
+        </View>
       )
-    })
-    _.reverse(postArray)
-    return postArray
+    }
   }
 
   _userEdit = () => {
@@ -127,11 +123,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 100,
-  },
-  updateNotificationStyle: {
-    textAlign: 'center',
-    marginTop: 10,
-    paddingBottom: 5
   },
   listItem: {
     padding: 10,

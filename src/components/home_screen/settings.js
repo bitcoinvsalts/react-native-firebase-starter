@@ -7,11 +7,11 @@ import {
 } from 'react-native'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { observer } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 
 
-@observer(['appStore'])
+@inject ('appStore') @observer
 export default class Settings extends Component {
   constructor(props) {
     super(props)

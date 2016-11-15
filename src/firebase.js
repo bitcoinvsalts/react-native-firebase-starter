@@ -2,9 +2,10 @@
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCUeoGyNIbnQ5t3vHoIKCcdLBRKy3mSx6I",
-  authDomain: "rnfirebasestarter.firebaseapp.com",
-  databaseURL: "https://rnfirebasestarter.firebaseio.com",
-  storageBucket: "rnfirebasestarter.appspot.com",
+  apiKey: "AIzaSyB3MkuNyc_1XW0p0BiFh5yBFawpuxZSz3g",
+  authDomain: "rv-help.firebaseapp.com",
+  databaseURL: "https://rv-help.firebaseio.com",
+  storageBucket: "rv-help.appspot.com",
+  messagingSenderId: "908329221036"  
 }
 export const firebaseApp = firebase.initializeApp(firebaseConfig)

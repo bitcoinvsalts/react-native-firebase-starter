@@ -11,13 +11,13 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
-import { observer } from 'mobx-react/native'
+import { inject, observer } from 'mobx-react/native'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import Post from './post'
 
 
-@observer(['appStore'])
+@inject ('appStore') @observer
 export default class Timeline extends Component {
   constructor(props) {
     super(props)
@@ -31,10 +31,13 @@ export default class Timeline extends Component {
   }
 
   componentDidMount() {
-    console.log("--------- TIMELINE ---------")
+    console.log("--------- TIMELINE ---------timeline.js")
     firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(30).once('value')
-    .then((snapshot) => {
-      this.props.appStore.posts = snapshot.val()
+      .then((snapshot) => {
+        debugger
+        const val = snapshot.val()
+        console.log('snapshot',val)
+        this.props.appStore.posts = val
     })
     .catch((error) => {
       console.error(error);
@@ -49,10 +52,11 @@ export default class Timeline extends Component {
   }
 
   _onRefresh = () => {
-    console.log("--------- REFRESHING ---------");
+    console.log("--------- REFRESHING ---------timeline.js");
     this.setState({ isRefreshing: true })
     firebaseApp.database().ref('posts/').orderByChild('timestamp').limitToLast(30).once('value')
-    .then((snapshot) => {
+      .then((snapshot) => {
+        debugger
       this.props.appStore.posts = snapshot.val()
       this.setState({isRefreshing: false, updateNotification: null})
     })
@@ -107,7 +111,7 @@ export default class Timeline extends Component {
   }
 
   _renderPosts = () => {
-    console.log("--- renderPosts ---")
+    console.log("--- renderPosts ---timeline.js")
     const postArray = []
     _.forEach(this.props.appStore.posts, (value, index) => {
       const timeString = moment(value.timestamp).fromNow()

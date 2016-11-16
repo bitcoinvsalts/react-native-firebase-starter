@@ -274,14 +274,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   postImage: {
-    //flex: 1,
     alignSelf: 'center',
     height: 320,
     width: 240,
-    borderWidth: 3,
-    borderColor: '#e2e2e2',
-    borderRadius: 2,
     marginBottom: 10,
-    backgroundColor: '#dddddd',
+    backgroundColor: '#fff',
   },
 })

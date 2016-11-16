@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
+  Image,
   StyleSheet,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -19,6 +20,9 @@ export default class Posts extends Component {
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
+        <View style={styles.imageWrapper}>
+          <Image source={{ uri:this.props.imagePath }} resizeMode="contain" style={styles.postImage}/>
+        </View>
         <View style={styles.postInfo}>
           <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.username}>
@@ -46,15 +50,16 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
   },
+  title: {
+    fontSize: 20,
+    backgroundColor: '#aaa',
+  },
   postInfo: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   itemIcon: {
     marginRight: 10
-  },
-  title: {
-    fontSize: 20,
   },
   username: {
     color: getColor(),
@@ -67,5 +72,22 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 5,
     fontSize: 14
-  }
+  },
+  imageWrapper: {
+    //flex: 1,
+    flexDirection:'row',
+    //alignItems: 'stretch',
+  },
+  postImage: {
+    flexShrink: 1,
+    //alignSelf: 'center',
+    //padding: 0,
+    //height: 320,
+    //width: 240,
+    //borderWidth: 3,
+    //borderColor: '#e2e2e2',
+    //borderRadius: 2,
+    //marginBottom: 10,
+    //backgroundColor: '#dddddd',
+  },
 })

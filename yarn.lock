@@ -796,6 +796,10 @@ balanced-match@^0.4.1:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-0.4.2.tgz#cb3f3e3c732dc0f01ee70b403f302e61d7709838"
 
+base-64@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+
 base62@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/base62/-/base62-1.1.1.tgz#974e82c11bd5e00816b508a7ed9c7b9086c9db6b"
@@ -2064,7 +2068,7 @@ glob@^6.0.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.0.3, glob@^7.0.5:
+glob@^7.0.3, glob@^7.0.5, glob@^7.0.6:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -3073,6 +3077,10 @@ load-json-file@^1.0.0:
     pinkie-promise "^2.0.0"
     strip-bom "^2.0.0"
 
+lodash:
+  version "4.17.2"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.2.tgz#34a3055babe04ce42467b607d700072c7ff6bf42"
+
 lodash._arraycopy@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._arraycopy/-/lodash._arraycopy-3.0.0.tgz#76e7b7c1f1fb92547374878a562ed06a3e50f6e1"
@@ -3221,7 +3229,7 @@ lodash@^3.1.0, lodash@^3.10.1, lodash@^3.2.0, lodash@^3.3.1, lodash@^3.5.0, loda
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
 
@@ -3429,12 +3437,6 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@0.5.x:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
-
-mobx-persist@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/mobx-persist/-/mobx-persist-0.1.3.tgz#7ffc6fb45342a60240a93f19802d45de12a2ad6a"
-  dependencies:
-    serializr "^1.1.7"
 
 mobx-react@^3.3.0:
   version "3.5.9"
@@ -4019,11 +4021,26 @@ react-native-experimental-navigation@0.26.x:
     fbjs "^0.8.1"
     react-addons-pure-render-mixin "^15.0.2"
 
+react-native-fetch-blob:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-fetch-blob/-/react-native-fetch-blob-0.10.0.tgz#9bb0b2a9f7156a0cfc5070a44fe1f15e083484a0"
+  dependencies:
+    base-64 "0.1.0"
+    glob "^7.0.6"
+
+react-native-image-picker:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.23.0.tgz#683dab19edd9175377587a43ae740e004a30e060"
+
 react-native-keyboard-aware-scroll-view@0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-native-keyboard-aware-scroll-view/-/react-native-keyboard-aware-scroll-view-0.2.2.tgz#5a265263508eec4d501f2d3e33860011c88fd10d"
   dependencies:
     react-timer-mixin "^0.13.3"
+
+react-native-loading-spinner-overlay:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-0.3.0.tgz#3659c7c35523087e8db8f04c9e526d519f907b2b"
 
 react-native-mobx@^0.3.1:
   version "0.3.1"
@@ -4042,7 +4059,7 @@ react-native-router-flux@^3.31.2:
     react-native-tabs "^1.0.9"
     react-static-container "1.0.1"
 
-react-native-scrollable-tab-view@^0.6.0:
+react-native-scrollable-tab-view:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-scrollable-tab-view/-/react-native-scrollable-tab-view-0.6.0.tgz#36050cf72dae0dc00b6b8d7f9a570955d99a213b"
   dependencies:
@@ -4397,10 +4414,6 @@ send@0.13.2:
     on-finished "~2.3.0"
     range-parser "~1.0.3"
     statuses "~1.2.1"
-
-serializr@^1.1.7:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/serializr/-/serializr-1.1.8.tgz#a5ae514b1f11372d95d359aa31e4cb2657530883"
 
 serve-favicon@~2.3.0:
   version "2.3.0"

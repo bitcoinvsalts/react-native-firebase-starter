@@ -92,6 +92,7 @@ export default class Profile extends Component {
         posterName={data.username}
         postTime={timeString}
         postContent={data.text}
+        imagePath={data.image}
       />
     )
   }
@@ -111,7 +112,7 @@ export default class Profile extends Component {
           <Text>Nothing there yet.</Text>
         </View>
       )
-    } 
+    }
   }
 
   _userEdit = () => {

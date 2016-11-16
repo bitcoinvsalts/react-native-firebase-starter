@@ -7,10 +7,10 @@ import {
   UIManager,
   StatusBar,
   StyleSheet,
+  Image
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { getColor } from '../components/config'
-import LogoCircle from '../components/login_screen/logo_circle'
 import InitialView from '../components/login_screen/initial_view'
 import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
@@ -24,7 +24,6 @@ export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialRun: true,
       initialScreen: false,
       signIn: false,
       signUp: false,
@@ -55,7 +54,6 @@ export default class LoginScreen extends Component {
   }
 
   componentDidMount() {
-    this.setState({initialRun: false})
   }
 
   componentDidUpdate() {
@@ -63,8 +61,6 @@ export default class LoginScreen extends Component {
   }
 
   render() {
-    //const animationDelay = this.state.initialRun ? 500 : 0
-
     const initialView = this.state.initialScreen ?
       <InitialView
       onSignIn={this._onSignIn}
@@ -89,7 +85,7 @@ export default class LoginScreen extends Component {
     : null
 
     return (
-      <View style={styles.container}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.container} >
         <StatusBar
           backgroundColor={getColor('googleBlue700')}
           barStyle='light-content'
@@ -97,16 +93,14 @@ export default class LoginScreen extends Component {
         />
         <View style={styles.logoContainer}>
           <TouchableOpacity onPress={this._onLogoClicked}>
-            <LogoCircle />
+            <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
           </TouchableOpacity>
         </View>
-        <KeyboardAwareScrollView>
-          { initialView }
-          { signIn }
-          { signUp }
-          { fogotPass }
-        </KeyboardAwareScrollView>
-      </View>
+        { initialView }
+        { signIn }
+        { signUp }
+        { fogotPass }
+      </KeyboardAwareScrollView>
     )
   }
 
@@ -168,12 +162,15 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: '#FFFFFF'
-  },
-  logoContainer: {
+    backgroundColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 260,
-  }
+  },
+  logoContainer: {
+    backgroundColor: '#FFF',
+  },
+  logoImage : {
+    height: 300,
+    width: 300,
+  },
 })

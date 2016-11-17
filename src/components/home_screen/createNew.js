@@ -179,7 +179,7 @@ export default class CreateNew extends Component {
             let updates = {}
             console.log("------> " + uid);
             updates['/posts/' + newPostKey] = postData
-            updates['/users/' + uid + '/posts/' + newPostKey] = postData
+            updates['/userposts/' + uid + '/posts/' + newPostKey] = postData
             firebaseApp.database().ref().update(updates)
             .then(() => {
               this.setState({

@@ -38,7 +38,7 @@ export default class Profile extends Component {
   componentDidMount() {
     const uid = this.props.appStore.user.uid
     console.log("--------- MY POSTS --------- " + uid)
-    firebaseApp.database().ref('users/'+ uid +'/posts').orderByChild('timestamp').on('value',
+    firebaseApp.database().ref('userposts/'+ uid +'/posts').orderByChild('timestamp').on('value',
     (snapshot) => {
       console.log("USER POST RETRIEVED");
       //this.props.appStore.myposts = snapshot.val()

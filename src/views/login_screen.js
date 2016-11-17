@@ -41,7 +41,7 @@ export default class LoginScreen extends Component {
       }
       else {
         console.log(" --- User is Signed Off --- ")
-        this.setState({initialScreen: true})
+        this.setState({ initialScreen: true })
       }
       _unsubscribe()
     })

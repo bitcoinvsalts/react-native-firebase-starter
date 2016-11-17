@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import ResponsiveImage from 'react-native-responsive-image'
 import { getColor } from '../config'
 
 
@@ -21,7 +22,7 @@ export default class Posts extends Component {
           {this.props.postTitle}
         </Text>
         <View style={styles.imageWrapper}>
-          <Image source={{ uri:this.props.imagePath }} resizeMode="contain" style={styles.postImage}/>
+          <ResponsiveImage source={{ uri:this.props.imagePath }} initWidth="100%" initHeight="600"/>
         </View>
         <View style={styles.postInfo}>
           <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
@@ -42,13 +43,14 @@ export default class Posts extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 0,
+    flex: 1,
     borderWidth: 1,
     borderColor: '#e2e2e2',
     borderRadius: 2,
     backgroundColor: '#eee',
     padding: 10,
     margin: 5,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
@@ -74,21 +76,8 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   imageWrapper: {
-    //flex: 1,
-    flexDirection:'row',
-    //alignItems: 'stretch',
-    backgroundColor: '#444',
+    flex: 1,
+    backgroundColor: '#aaa',
   },
-  postImage: {
-    flexShrink: 1,
-    //alignSelf: 'center',
-    //padding: 0,
-    height: 320,
-    width: 240,
-    //borderWidth: 3,
-    //borderColor: '#e2e2e2',
-    //borderRadius: 2,
-    //marginBottom: 10,
-    //backgroundColor: '#dddddd',
-  },
+
 })

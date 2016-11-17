@@ -20,6 +20,7 @@
     "react-native-keyboard-aware-scroll-view": "0.2.2",
     "react-native-loading-spinner-overlay": "^0.3.0",
     "react-native-mobx": "^0.3.1",
+    "react-native-responsive-image": "^1.3.0",
     "react-native-scrollable-tab-view": "^0.6.0",
     "react-native-vector-icons": "^3.0.0"
   },

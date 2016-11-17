@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import ResponsiveImage from 'react-native-responsive-image'
+import FitImage from 'react-native-fit-image'
 import { getColor } from '../config'
 
 
@@ -22,7 +22,12 @@ export default class Posts extends Component {
           {this.props.postTitle}
         </Text>
         <View style={styles.imageWrapper}>
-          <ResponsiveImage source={{ uri:this.props.imagePath }} initWidth="100%" initHeight="600"/>
+          <FitImage indicator
+          indicatorColor="black"
+          indicatorSize="large"
+          //resizeMode="contain"
+          source={{ uri:this.props.imagePath }}
+          />
         </View>
         <View style={styles.postInfo}>
           <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
@@ -54,11 +59,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    backgroundColor: '#aaa',
+    marginBottom: 5,
   },
   postInfo: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 5,
   },
   itemIcon: {
     marginRight: 10
@@ -77,6 +83,7 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {
     flex: 1,
+    //flexDirection: 'row',
     backgroundColor: '#aaa',
   },
 

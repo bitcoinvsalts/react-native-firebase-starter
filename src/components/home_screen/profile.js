@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
@@ -62,23 +63,25 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
-          <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-          <Text style={styles.itemName}>
-            Edit your account
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
-          <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-          <Text style={styles.itemName}>
-            Sign Out - {this.props.appStore.username}
-          </Text>
-        </TouchableOpacity>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          renderFooter={this._renderFooter}
-        />
+        <KeyboardAwareScrollView>
+          <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
+            <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+            <Text style={styles.itemName}>
+              Edit your account
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
+            <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+            <Text style={styles.itemName}>
+              Sign Out - {this.props.appStore.username}
+            </Text>
+          </TouchableOpacity>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+            renderFooter={this._renderFooter}
+          />
+        </KeyboardAwareScrollView>
       </View>
     )
   }

@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { observer } from 'mobx-react/native'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
@@ -57,11 +58,15 @@ export default class Timeline extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          renderFooter={this._renderFooter}
-        />
+        <KeyboardAwareScrollView>
+          <ListView
+            automaticallyAdjustContentInsets={true}
+            //initialListSize={}
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow}
+            renderFooter={this._renderFooter}
+          />
+        </KeyboardAwareScrollView>
       </View>
     )
   }

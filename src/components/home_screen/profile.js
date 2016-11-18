@@ -17,12 +17,12 @@ import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import { getColor } from '../config'
-import { observer } from 'mobx-react/native'
+import { observer,inject } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 import Post from './post'
 
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class Profile extends Component {
   constructor(props) {
     super(props)

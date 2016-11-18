@@ -16,10 +16,10 @@ import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
 import ForgotPassForm from '../components/login_screen/forgotPassword_form'
 import { firebaseApp } from '../firebase'
-import { observer } from 'mobx-react/native'
+import { observer, inject } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props)
@@ -85,7 +85,9 @@ export default class LoginScreen extends Component {
     : null
 
     return (
-      <KeyboardAwareScrollView contentContainerStyle={styles.container} >
+
+      <View style={styles.container}>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer} >
         <StatusBar
           backgroundColor={getColor('googleBlue700')}
           barStyle='light-content'
@@ -101,6 +103,8 @@ export default class LoginScreen extends Component {
         { signUp }
         { fogotPass }
       </KeyboardAwareScrollView>
+      </View>
+
     )
   }
 
@@ -162,7 +166,10 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    flexDirection: 'column',
+  },
+  scrollContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

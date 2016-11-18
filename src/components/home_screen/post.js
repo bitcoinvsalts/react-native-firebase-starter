@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
-  Image,
   StyleSheet,
   Dimensions
 } from 'react-native'
+import Image from 'react-native-image-progress'
+import ProgressBar from 'react-native-progress/Bar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 
@@ -25,6 +26,7 @@ export default class Posts extends Component {
         </Text>
         <Image
           source={{ uri:this.props.imagePath }}
+          indicator={ProgressBar}
           resizeMode='contain'
           style={{
             height: height,

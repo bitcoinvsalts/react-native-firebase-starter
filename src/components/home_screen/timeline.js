@@ -12,13 +12,13 @@ import {
 import _ from 'lodash'
 import moment from 'moment'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { observer } from 'mobx-react/native'
+import { observer,inject } from 'mobx-react/native'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import Post from './post'
 
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class Timeline extends Component {
   constructor(props) {
     super(props)

@@ -11,11 +11,11 @@ import { getColor } from '../components/config'
 import { firebaseApp } from '../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
-import { observer } from 'mobx-react/native'
+import { observer,inject } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
 
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class SettingScreen extends Component {
   constructor(props) {
     super(props)

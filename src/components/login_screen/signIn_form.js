@@ -14,10 +14,10 @@ import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
 import * as Animatable from 'react-native-animatable'
 import { Actions } from 'react-native-mobx'
-import { observer } from 'mobx-react/native'
+import { observer,inject } from 'mobx-react/native'
 
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class SignInForm extends Component {
   constructor(props) {
     super(props)

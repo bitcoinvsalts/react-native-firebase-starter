@@ -18,7 +18,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
-import { observer } from 'mobx-react/native'
+import { observer,inject } from 'mobx-react/native'
 
 
 const Blob = RNFetchBlob.polyfill.Blob
@@ -54,7 +54,7 @@ const uploadImage = (uri, imageName, mime = 'image/jpg') => {
   })
 }
 
-@observer(['appStore'])
+@inject("appStore") @observer
 export default class CreateNew extends Component {
   constructor(props) {
     super(props)

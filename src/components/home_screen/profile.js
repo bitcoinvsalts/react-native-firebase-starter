@@ -96,6 +96,8 @@ export default class Profile extends Component {
         postTime={timeString}
         postContent={data.text}
         imagePath={data.image}
+        imageWidth={data.imageWidth}
+        imageHeight={data.imageHeight}
       />
     )
   }

@@ -4028,10 +4028,6 @@ react-native-fetch-blob:
     base-64 "0.1.0"
     glob "^7.0.6"
 
-react-native-fit-image:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/react-native-fit-image/-/react-native-fit-image-1.4.5.tgz#2fb3c544bb7130d1b86af8a1bd132598ceb6e4ca"
-
 react-native-image-picker:
   version "0.23.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.23.0.tgz#683dab19edd9175377587a43ae740e004a30e060"

@@ -9,6 +9,7 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
+  Dimensions
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-picker'
@@ -24,6 +25,8 @@ const Blob = RNFetchBlob.polyfill.Blob
 const fs = RNFetchBlob.fs
 window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
 window.Blob = Blob
+
+const screenWidth = Dimensions.get('window').width
 
 const uploadImage = (uri, imageName, mime = 'image/jpg') => {
   return new Promise((resolve, reject) => {
@@ -61,6 +64,8 @@ export default class CreateNew extends Component {
       postText: '',
       postTitle: '',
       imagePath: null,
+      imageHeight: null,
+      imageWidth: null,
       spinnervisible: false,
     }
     if (Platform.OS === 'android') {
@@ -73,8 +78,18 @@ export default class CreateNew extends Component {
   }
 
   render() {
+    const height = (screenWidth*this.state.imageHeight/this.state.imageWidth)
     const photo = this.state.imagePath ?
-      <Image source={{uri: this.state.imagePath}} style={styles.postImage}/>
+      <Image
+        source={{ uri:this.state.imagePath }}
+        resizeMode='contain'
+        style={{
+          height: height,
+          width: screenWidth,
+          alignSelf: 'center',
+          marginBottom: 10,
+        }}
+      />
      :
       <Image source={require('../../assets/images/jsapp.png')} style={styles.postImage}/>
 
@@ -138,13 +153,16 @@ export default class CreateNew extends Component {
       noData: true,
     };
     ImagePicker.launchCamera(cam_options, (response) => {
+      //console.log(response)
       if (response.didCancel) {
       }
       else if (response.error) {
       }
       else {
         this.setState({
-          imagePath: response.uri
+          imagePath: response.uri,
+          imageHeight: response.height,
+          imageWidth: response.width,
         })
       }
     })
@@ -175,6 +193,8 @@ export default class CreateNew extends Component {
               title: this.state.postTitle,
               puid: newPostKey,
               image: url,
+              imageHeight: this.state.imageHeight,
+              imageWidth: this.state.imageWidth,
             }
             let updates = {}
             console.log("------> " + uid);
@@ -187,6 +207,8 @@ export default class CreateNew extends Component {
                               postTitle: '',
                               postText: '',
                               imagePath: null,
+                              imageHeight: null,
+                              imageWidth: null,
                               spinnervisible: false,
                             })
               setTimeout(() => {
@@ -275,8 +297,8 @@ const styles = StyleSheet.create({
   },
   postImage: {
     alignSelf: 'center',
-    height: 320,
-    width: 240,
+    height: 140,
+    width: 140,
     marginBottom: 10,
     backgroundColor: '#fff',
   },

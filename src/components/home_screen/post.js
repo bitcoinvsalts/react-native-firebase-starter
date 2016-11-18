@@ -4,11 +4,12 @@ import {
   View,
   Image,
   StyleSheet,
+  Dimensions
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import FitImage from 'react-native-fit-image'
 import { getColor } from '../config'
 
+const screenWidth = Dimensions.get('window').width
 
 export default class Posts extends Component {
   constructor(props) {
@@ -16,19 +17,22 @@ export default class Posts extends Component {
   }
 
   render() {
+    const height = screenWidth*this.props.imageHeight/this.props.imageWidth
     return (
       <View style={styles.card}>
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
-        <View style={styles.imageWrapper}>
-          <FitImage indicator
-          indicatorColor="black"
-          indicatorSize="large"
-          //resizeMode="contain"
+        <Image
           source={{ uri:this.props.imagePath }}
-          />
-        </View>
+          resizeMode='contain'
+          style={{
+            height: height,
+            width: screenWidth,
+            alignSelf: 'center',
+            marginBottom: 10,
+          }}
+        />
         <View style={styles.postInfo}>
           <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.username}>
@@ -81,10 +85,4 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 14
   },
-  imageWrapper: {
-    flex: 1,
-    //flexDirection: 'row',
-    backgroundColor: '#aaa',
-  },
-
 })

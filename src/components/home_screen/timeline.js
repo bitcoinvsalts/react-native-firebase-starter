@@ -61,10 +61,11 @@ export default class Timeline extends Component {
         <KeyboardAwareScrollView>
           <ListView
             automaticallyAdjustContentInsets={true}
-            //initialListSize={}
+            initialListSize={6}
             dataSource={this.state.dataSource}
             renderRow={this._renderRow}
             renderFooter={this._renderFooter}
+            onEndReached={this._onEndReached}
           />
         </KeyboardAwareScrollView>
       </View>
@@ -81,8 +82,14 @@ export default class Timeline extends Component {
         postTime={timeString}
         postContent={data.text}
         imagePath={data.image}
+        imageWidth={data.imageWidth}
+        imageHeight={data.imageHeight}
       />
     )
+  }
+
+  _onEndReached = () => {
+    console.log("--- _onEndReached ---")
   }
 
   _renderFooter = () => {

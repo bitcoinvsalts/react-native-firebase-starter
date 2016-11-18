@@ -11,9 +11,9 @@ import {
   UIManager,
   Dimensions
 } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ImagePicker from 'react-native-image-picker'
 import RNFetchBlob from 'react-native-fetch-blob'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
@@ -33,7 +33,6 @@ const uploadImage = (uri, imageName, mime = 'image/jpg') => {
     const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
       let uploadBlob = null
       const imageRef = firebaseApp.storage().ref('posts').child(imageName)
-
       fs.readFile(uploadUri, 'base64')
       .then((data) => {
         return Blob.build(data, { type: `${mime};BASE64` })
@@ -91,12 +90,11 @@ export default class CreateNew extends Component {
         }}
       />
      :
-      <Image source={require('../../assets/images/jsapp.png')} style={styles.postImage}/>
-
+      null
     return (
       <View style={styles.container}>
         <Spinner visible={this.state.spinnervisible} />
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView ref='scrollContent'>
           <Text style={styles.title}>{'ADD A NEW POST'}</Text>
           { photo }
           <TouchableOpacity style={styles.btnAdd} onPress={this._takePicture}>
@@ -175,14 +173,12 @@ export default class CreateNew extends Component {
     if (this.state.imagePath) {
       if (this.state.postTitle.length > 0) {
         if (this.state.postText.length > 0) {
-
           this.setState({ spinnervisible: true })
           const uid = this.props.appStore.user.uid
           const username = this.props.appStore.user.displayName
           const timestamp = Date.now()
           const newPostKey = firebaseApp.database().ref('posts').push().key
           const imageName = `${newPostKey}.jpg`
-
           uploadImage(this.state.imagePath, imageName)
           .then(url => {
             console.log("------> " + url);
@@ -202,6 +198,7 @@ export default class CreateNew extends Component {
             updates['/userposts/' + uid + '/posts/' + newPostKey] = postData
             firebaseApp.database().ref().update(updates)
             .then(() => {
+              this.refs.scrollContent.scrollToPosition(0, 0, true)
               this.setState({
                               postStatus: 'Posted! Thank You.',
                               postTitle: '',

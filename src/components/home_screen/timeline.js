@@ -34,7 +34,7 @@ export default class Timeline extends Component {
 
   componentDidMount() {
     console.log("--------- TIMELINE --------- ")
-    firebaseApp.database().ref('posts').orderByChild('timestamp').on('value',
+    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(2).on('value',
     (snapshot) => {
       console.log("---- TIMELINE POST RETRIEVED ----");
       //this.props.appStore.posts = snapshot.val()

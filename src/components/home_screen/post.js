@@ -6,7 +6,6 @@ import {
   Dimensions
 } from 'react-native'
 import CacheableImage from 'react-native-cacheable-image'
-import ProgressBar from 'react-native-progress/Bar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 

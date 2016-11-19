@@ -34,12 +34,12 @@ export default class Profile extends Component {
       isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
-  } 
+  }
 
   componentDidMount() {
     const uid = this.props.appStore.user.uid
     console.log("--------- MY POSTS --------- " + uid)
-    firebaseApp.database().ref('userposts/'+ uid +'/posts').orderByChild('timestamp').limitToLast(2).on('value',
+    firebaseApp.database().ref('userposts/'+ uid +'/posts').orderByChild('timestamp').limitToLast(6).on('value',
     (snapshot) => {
       console.log("USER POST RETRIEVED");
       //this.props.appStore.myposts = snapshot.val()
@@ -57,7 +57,7 @@ export default class Profile extends Component {
   }
 
   componentDidUpdate() {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    //LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
   }
 
   render() {

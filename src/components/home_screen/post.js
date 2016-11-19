@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native'
-import Image from 'react-native-image-progress'
+import CacheableImage from 'react-native-cacheable-image'
 import ProgressBar from 'react-native-progress/Bar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
@@ -24,9 +24,8 @@ export default class Posts extends Component {
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
-        <Image
+        <CacheableImage
           source={{ uri:this.props.imagePath }}
-          indicator={ProgressBar}
           resizeMode='contain'
           style={{
             height: height,

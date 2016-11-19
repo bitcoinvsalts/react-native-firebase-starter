@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { getColor } from '../components/config'
+import Background from '../components/background'
 import InitialView from '../components/login_screen/initial_view'
 import SignInForm from '../components/login_screen/signIn_form'
 import SignUpForm from '../components/login_screen/signUp_form'
@@ -85,26 +86,25 @@ export default class LoginScreen extends Component {
     : null
 
     return (
-
       <View style={styles.container}>
-      <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer} >
-        <StatusBar
-          backgroundColor={getColor('googleBlue700')}
-          barStyle='light-content'
-          animated={true}
-        />
-        <View style={styles.logoContainer}>
-          <TouchableOpacity onPress={this._onLogoClicked}>
-            <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
-          </TouchableOpacity>
-        </View>
-        { initialView }
-        { signIn }
-        { signUp }
-        { fogotPass }
-      </KeyboardAwareScrollView>
+        <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer} >
+        <Background imgSrouce={require('../assets/images/bk.png')}/>
+          <StatusBar
+            backgroundColor={getColor('googleBlue700')}
+            barStyle='light-content'
+            animated={true}
+          />
+          <View style={styles.logoContainer}>
+            <TouchableOpacity onPress={this._onLogoClicked}>
+              <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
+            </TouchableOpacity>
+          </View>
+          { initialView }
+          { signIn }
+          { signUp }
+          { fogotPass }
+        </KeyboardAwareScrollView>
       </View>
-
     )
   }
 
@@ -174,7 +174,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logoContainer: {
-    backgroundColor: '#FFF',
   },
   logoImage : {
     height: 300,

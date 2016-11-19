@@ -87,23 +87,23 @@ export default class LoginScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer} >
-        <Background imgSrouce={require('../assets/images/bk.png')}/>
-          <StatusBar
-            backgroundColor={getColor('googleBlue700')}
-            barStyle='light-content'
-            animated={true}
-          />
-          <View style={styles.logoContainer}>
-            <TouchableOpacity onPress={this._onLogoClicked}>
-              <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
-            </TouchableOpacity>
-          </View>
-          { initialView }
-          { signIn }
-          { signUp }
-          { fogotPass }
-        </KeyboardAwareScrollView>
+      <Background imgSrouce={require('../assets/images/bk.png')}/>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scrollContainer} >
+        <StatusBar
+          backgroundColor={getColor('googleBlue700')}
+          barStyle='light-content'
+          animated={true}
+        />
+        <View style={styles.logoContainer}>
+          <TouchableOpacity onPress={this._onLogoClicked}>
+            <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
+          </TouchableOpacity>
+        </View>
+        { initialView }
+        { signIn }
+        { signUp }
+        { fogotPass }
+      </KeyboardAwareScrollView>
       </View>
     )
   }

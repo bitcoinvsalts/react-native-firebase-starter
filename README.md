@@ -80,9 +80,18 @@ with:
 
     {
       "rules": {
-      ".read": "auth != null",
-      ".write": "auth != null",
-      "posts": {".indexOn": "timestamp"}
+        ".read": "auth != null",
+        ".write": "auth != null",
+        "posts": {
+        	".indexOn": "timestamp"
+        },
+        "userposts": {
+          "$uid": {
+            "posts": {
+    					".indexOn": "timestamp"
+            },
+          },
+        },
       }
     }
 

@@ -1,10 +1,10 @@
 # React Native Firebase Social Poster Starter App
+![Preview](./graphics/Screenshot_4.png)
 ![Preview](./graphics/Screenshot_1.png)
 ![Preview](./graphics/Screenshot_2.png)
 ![Preview](./graphics/Screenshot_3.png)
-![Preview](./graphics/Screenshot_4.png)
 
-#### Build your React Native / Firebase hybrid iOS and Android app, 0 to 100 (Real Quick)
+#### Build your own Social Poster app or Instagram clone
 
 [![iOS app][2]][1] [![Android app][4]][3]
 
@@ -17,6 +17,7 @@
  - [React Native](https://facebook.github.io/react-native/)
  - [MobX](https://mobxjs.github.io/mobx/)
  - [Firebase](https://firebase.google.com/)
+ - [Cacheable Image](https://github.com/jayesbe/react-native-cacheable-image)
 
 I would really appreciate any suggestions, feedback, PRs and Issues.
 
@@ -99,6 +100,10 @@ Now, you have your own copy of this application!
 ## Credits
 All the credits goes to all library creators and contributors to the open source repositories and libraries that I am using. I'm very grateful to all of them.
 
+ - [React Native Fetch Blob](https://github.com/wkh237/react-native-fetch-blob)
+ - [React Native Keyboard Aware Scroll View](https://github.com/APSL/react-native-keyboard-aware-scroll-view)
+ - [React Native Image Picker](https://github.com/marcshilling/react-native-image-picker)
+ - [React Native Cacheable Image](https://github.com/jayesbe/react-native-cacheable-image)
  - [Mister Poster](https://github.com/shoumma/Mister-Poster)
  - [React Native](https://facebook.github.io/react-native/)
  - [React Native Animatable](https://github.com/oblador/react-native-animatable)

@@ -12,7 +12,6 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
@@ -31,6 +30,7 @@ export default class Profile extends Component {
     }
     this.state = {
       isLoadingTail: true,
+      counter: 2,
       isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
@@ -39,7 +39,7 @@ export default class Profile extends Component {
   componentDidMount() {
     const uid = this.props.appStore.user.uid
     console.log("--------- MY POSTS --------- " + uid)
-    firebaseApp.database().ref('userposts/'+ uid +'/posts').orderByChild('timestamp').limitToLast(6).on('value',
+    firebaseApp.database().ref('userposts/'+ uid +'/posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
     (snapshot) => {
       console.log("USER POST RETRIEVED");
       //this.props.appStore.myposts = snapshot.val()
@@ -63,25 +63,24 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
-          <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
-            <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-            <Text style={styles.itemName}>
-              Edit your account
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
-            <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-            <Text style={styles.itemName}>
-              Sign Out - {this.props.appStore.username}
-            </Text>
-          </TouchableOpacity>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
-            renderFooter={this._renderFooter}
-          />
-        </KeyboardAwareScrollView>
+        <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
+          <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+          <Text style={styles.itemName}>
+            Edit your account
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
+          <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
+          <Text style={styles.itemName}>
+            Sign Out - {this.props.appStore.username}
+          </Text>
+        </TouchableOpacity>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          renderFooter={this._renderFooter}
+          onEndReached={this._onEndReached}
+        />
       </View>
     )
   }
@@ -100,6 +99,26 @@ export default class Profile extends Component {
         imageHeight={data.imageHeight}
       />
     )
+  }
+
+  _onEndReached = () => {
+    console.log("--- _onEndReached --- " + this.state.counter)
+    this.setState({ counter: this.state.counter + 2 })
+    this.setState({ isLoadingTail: true })
+    firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').off()
+    firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
+    (snapshot) => {
+      console.log("---- USER POST RETRIEVED ----");
+      //this.props.appStore.posts = snapshot.val()
+      if (snapshot.val()) {
+        console.log(this.state.counter);
+        this.setState({ isEmpty: false })
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+        })
+      }
+      this.setState({ isLoadingTail: false })
+    })
   }
 
   _renderFooter = () => {

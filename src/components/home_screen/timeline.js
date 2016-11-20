@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 import _ from 'lodash'
 import moment from 'moment'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { observer,inject } from 'mobx-react/native'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
@@ -27,18 +26,20 @@ export default class Timeline extends Component {
     }
     this.state = {
       isLoadingTail: true,
+      counter: 2,
       isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
 
   componentDidMount() {
-    console.log("--------- TIMELINE --------- ")
-    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(6).on('value',
+    console.log("--------- TIMELINE --------- " + this.state.counter)
+    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
     (snapshot) => {
       console.log("---- TIMELINE POST RETRIEVED ----");
       //this.props.appStore.posts = snapshot.val()
       if (snapshot.val()) {
+        console.log(this.state.counter);
         this.setState({ isEmpty: false })
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
@@ -58,16 +59,14 @@ export default class Timeline extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
-          <ListView
-            automaticallyAdjustContentInsets={true}
-            initialListSize={6}
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
-            renderFooter={this._renderFooter}
-            onEndReached={this._onEndReached}
-          />
-        </KeyboardAwareScrollView>
+        <ListView
+          automaticallyAdjustContentInsets={true}
+          initialListSize={6}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          renderFooter={this._renderFooter}
+          onEndReached={this._onEndReached}
+        />
       </View>
     )
   }
@@ -89,7 +88,23 @@ export default class Timeline extends Component {
   }
 
   _onEndReached = () => {
-    console.log("--- _onEndReached ---")
+    console.log("--- _onEndReached --- " + this.state.counter)
+    this.setState({ counter: this.state.counter + 2 })
+    this.setState({ isLoadingTail: true })
+    firebaseApp.database().ref('posts').off()
+    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
+    (snapshot) => {
+      console.log("---- TIMELINE POST RETRIEVED ----");
+      //this.props.appStore.posts = snapshot.val()
+      if (snapshot.val()) {
+        console.log(this.state.counter);
+        this.setState({ isEmpty: false })
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+        })
+      }
+      this.setState({ isLoadingTail: false })
+    })
   }
 
   _renderFooter = () => {

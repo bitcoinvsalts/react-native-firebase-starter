@@ -1,4 +1,4 @@
-# JSapp React Native Firebase Social Poster Starter App
+# React Native Firebase Social Poster Starter App
 ![Preview](./graphics/Screenshot_1.png)
 ![Preview](./graphics/Screenshot_2.png)
 ![Preview](./graphics/Screenshot_3.png)

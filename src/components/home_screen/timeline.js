@@ -28,6 +28,7 @@ export default class Timeline extends Component {
       isLoadingTail: true,
       counter: 2,
       isEmpty: false,
+      isFinished: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
   }
@@ -39,7 +40,6 @@ export default class Timeline extends Component {
       console.log("---- TIMELINE POST RETRIEVED ----");
       //this.props.appStore.posts = snapshot.val()
       if (snapshot.val()) {
-        console.log(this.state.counter);
         this.setState({ isEmpty: false })
         this.setState({
           dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
@@ -88,17 +88,20 @@ export default class Timeline extends Component {
   }
 
   _onEndReached = () => {
-    if (!this.state.isEmpty) {
+    if (!this.state.isEmpty && !this.state.isFinished) {
       console.log("--- _onEndReached --- " + this.state.counter)
       this.setState({ counter: this.state.counter + 1 })
       this.setState({ isLoadingTail: true })
       firebaseApp.database().ref('posts').off()
       firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
       (snapshot) => {
-        console.log("---- TIMELINE POST RETRIEVED ----");
+        console.log("---- TIMELINE POST RETRIEVED ----")
         //this.props.appStore.posts = snapshot.val()
+        if (_.toArray(snapshot.val()).length < this.state.counter) {
+          this.setState({ isFinished: true })
+          console.log("---- TIMELINE FINISHED !!!! ----");
+        }
         if (snapshot.val()) {
-          console.log(this.state.counter);
           this.setState({ isEmpty: false })
           this.setState({
             dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),

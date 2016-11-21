@@ -30,6 +30,7 @@ export default class Profile extends Component {
     }
     this.state = {
       isLoadingTail: true,
+      isFinished: false,
       counter: 2,
       isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
@@ -102,7 +103,7 @@ export default class Profile extends Component {
   }
 
   _onEndReached = () => {
-    if (!this.state.isEmpty) {
+    if (!this.state.isEmpty && !this.state.isFinished) {
       console.log("--- _onEndReached --- " + this.state.counter)
       this.setState({ counter: this.state.counter + 1 })
       this.setState({ isLoadingTail: true })
@@ -111,6 +112,10 @@ export default class Profile extends Component {
       (snapshot) => {
         console.log("---- USER POST RETRIEVED ----");
         //this.props.appStore.posts = snapshot.val()
+        if (_.toArray(snapshot.val()).length < this.state.counter) {
+          this.setState({ isFinished: true })
+          console.log("---- USER POST FINISHED !!!! ----")
+        }
         if (snapshot.val()) {
           console.log(this.state.counter);
           this.setState({ isEmpty: false })

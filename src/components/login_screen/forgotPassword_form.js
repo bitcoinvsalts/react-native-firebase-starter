@@ -113,7 +113,7 @@ export default class ForgotPassForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     marginTop: 40,
     alignItems: 'center',
     paddingBottom: 20,

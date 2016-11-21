@@ -190,11 +190,10 @@ export default class SignUpForm extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     paddingBottom: 20,
     marginTop: 10,
-    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 25,

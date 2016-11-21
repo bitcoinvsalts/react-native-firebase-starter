@@ -88,7 +88,7 @@ with:
         "userposts": {
           "$uid": {
             "posts": {
-    					".indexOn": "timestamp"
+              ".indexOn": "timestamp"
             },
           },
         },

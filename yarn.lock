@@ -4022,9 +4022,9 @@ react-native-animatable@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-0.6.1.tgz#bd85023d42ad0ceb3cc98d7b490f7d6dd6ba11b0"
 
-react-native-cacheable-image:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/react-native-cacheable-image/-/react-native-cacheable-image-1.4.1.tgz#7bf069805f74a0274709c463580b20804e2979ee"
+react-native-cacheable-image@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-cacheable-image/-/react-native-cacheable-image-1.4.2.tgz#18b1e1618122e12f4f87de071f01c8e1d0ada976"
   dependencies:
     crypto-js "^3.1.6"
     react-native-fs "^2.0.1-rc.2"

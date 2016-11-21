@@ -16,7 +16,7 @@
     "react": "15.3.2",
     "react-native": "^0.37.0",
     "react-native-animatable": "^0.6.1",
-    "react-native-cacheable-image": "^1.4.1",
+    "react-native-cacheable-image": "1.4.2",
     "react-native-fetch-blob": "^0.10.0",
     "react-native-fs": "^2.0.1-rc.2",
     "react-native-image-picker": "^0.23.0",

@@ -88,23 +88,25 @@ export default class Timeline extends Component {
   }
 
   _onEndReached = () => {
-    console.log("--- _onEndReached --- " + this.state.counter)
-    this.setState({ counter: this.state.counter + 2 })
-    this.setState({ isLoadingTail: true })
-    firebaseApp.database().ref('posts').off()
-    firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
-    (snapshot) => {
-      console.log("---- TIMELINE POST RETRIEVED ----");
-      //this.props.appStore.posts = snapshot.val()
-      if (snapshot.val()) {
-        console.log(this.state.counter);
-        this.setState({ isEmpty: false })
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
-        })
-      }
-      this.setState({ isLoadingTail: false })
-    })
+    if (!this.state.isEmpty) {
+      console.log("--- _onEndReached --- " + this.state.counter)
+      this.setState({ counter: this.state.counter + 1 })
+      this.setState({ isLoadingTail: true })
+      firebaseApp.database().ref('posts').off()
+      firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
+      (snapshot) => {
+        console.log("---- TIMELINE POST RETRIEVED ----");
+        //this.props.appStore.posts = snapshot.val()
+        if (snapshot.val()) {
+          console.log(this.state.counter);
+          this.setState({ isEmpty: false })
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
+          })
+        }
+        this.setState({ isLoadingTail: false })
+      })
+    }
   }
 
   _renderFooter = () => {

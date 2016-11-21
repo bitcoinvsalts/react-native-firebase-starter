@@ -135,28 +135,37 @@ export default class SignUpForm extends Component {
       this.setState({errMsg: "Please enter your passowrd."})
     }
     else {
-      firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        user.updateProfile({displayName: this.state.name})
-        .then(() => {
-          const uid = user.uid
-          const username = user.displayName
-          const email = user.email
-          firebaseApp.database().ref('users/' + user.uid)
-          .set({
-            uid,
-            username,
-            email
+      firebaseApp.database().ref('usernameList').child(this.state.name.toLowerCase()).once('value')
+      .then((snapshot) => {
+        if (snapshot.val()) {
+          this.setState({ errMsg: "Username not available." })
+        }
+        else {
+          firebaseApp.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .then((user) => {
+            firebaseApp.database().ref('usernameList').child(this.state.name.toLowerCase()).set(user.uid)
+            user.updateProfile({displayName: this.state.name})
+            .then(() => {
+              const uid = user.uid
+              const username = user.displayName
+              const email = user.email
+              firebaseApp.database().ref('users/' + user.uid)
+              .set({
+                uid,
+                username,
+                email
+              })
+              this.props.appStore.username = user.displayName
+              this.props.appStore.user = user
+              Actions.home({ type: 'replace' })
+            }, function(error) {
+              console.log(error);
+            });
           })
-          this.props.appStore.username = user.displayName
-          this.props.appStore.user = user
-          Actions.home({ type: 'replace' })
-        }, function(error) {
-          console.log(error);
-        });
-      })
-      .catch((error) => {
-        this.setState({ errMsg: error.message });
+          .catch((error) => {
+            this.setState({ errMsg: error.message });
+          })
+        }
       })
     }
   }

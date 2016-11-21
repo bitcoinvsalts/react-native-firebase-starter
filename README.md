@@ -82,13 +82,16 @@ with:
       "rules": {
         ".read": "auth != null",
         ".write": "auth != null",
+        "usernameList" : {
+          ".read": true
+        },
         "posts": {
         	".indexOn": "timestamp"
         },
         "userposts": {
           "$uid": {
             "posts": {
-              ".indexOn": "timestamp"
+    				  ".indexOn": "timestamp"
             },
           },
         },

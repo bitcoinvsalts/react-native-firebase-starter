@@ -109,13 +109,26 @@ export default class SettingScreen extends Component {
       }
       else {
         this.setState({ errMsg: "Saving your new name..." })
-        this.props.appStore.username = this.state.name
-        this.props.appStore.user.updateProfile({ displayName: this.state.name })
-        .then(() => {
-          this.setState({ errMsg: "Name succesfully saved!" })
-        })
-        .catch((error) => {
-          this.setState({ errMsg: error.message })
+        firebaseApp.database().ref('usernameList').child(this.state.name.toLowerCase()).once('value')
+        .then((snapshot) => {
+          if (snapshot.val()) {
+            this.setState({ errMsg: "Sorry username not available." })
+          }
+          else {
+            this.props.appStore.username = this.state.name
+            firebaseApp.database().ref('usernameList').child(this.props.appStore.user.displayName.toLowerCase()).remove()
+            .then(() => {
+              firebaseApp.database().ref('users').child(this.props.appStore.user.uid).update({username:this.state.name})
+              firebaseApp.database().ref('usernameList').child(this.state.name.toLowerCase()).set(this.props.appStore.user.uid)
+              this.props.appStore.user.updateProfile({ displayName: this.state.name })
+              .then(() => {
+                this.setState({ errMsg: "Name succesfully saved!" })
+              })
+              .catch((error) => {
+                this.setState({ errMsg: error.message })
+              })
+            })
+          }
         })
       }
     }

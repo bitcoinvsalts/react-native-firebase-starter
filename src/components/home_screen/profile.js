@@ -67,12 +67,12 @@ export default class Profile extends Component {
         <View style={styles.profileInfoContainer}>
           <View style={styles.profileNameContainer}>
             <Text style={styles.profileName}>
-              {this.props.currentUser.name}
+              {this.props.appStore.username}
             </Text>
           </View>
           <View style={styles.profileCountsContainer}>
             <Text style={styles.profileCounts}>
-              {this.state.postsCount}
+              0
             </Text>
             <Text style={styles.countsName}>
               POSTS

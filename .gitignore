@@ -48,3 +48,5 @@ android/app/build.gradle
 android/app/build.gradle
 android/gradle.properties
 ios/MyApp.xcodeproj/project.pbxproj
+
+src/firebase.js

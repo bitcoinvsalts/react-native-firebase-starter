@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginBottom: 10,
-    color: '#000'
+    color: '#000',
+    backgroundColor: 'transparent',
   },
   errMsg: {
     color: '#000',

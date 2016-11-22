@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginBottom: 10,
     color: '#000',
+    backgroundColor: 'transparent',
   },
   errMsg: {
     width: 280,
@@ -190,6 +191,7 @@ const styles = StyleSheet.create({
   fogotBtnContainer: {
     height: 40,
     justifyContent: 'center',
+    backgroundColor: 'transparent',
   },
   forgotBtn: {
     fontSize: 12,

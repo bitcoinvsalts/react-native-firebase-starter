@@ -37,7 +37,7 @@ export default class Timeline extends Component {
     console.log("--------- TIMELINE --------- " + this.state.counter)
     firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
     (snapshot) => {
-      console.log("---- TIMELINE POST RETRIEVED ----");
+      console.log("---- TIMELINE POST RETRIEVED ---- "+ this.state.counter +" - "+ _.toArray(snapshot.val()).length)
       //this.props.appStore.posts = snapshot.val()
       if (snapshot.val()) {
         this.setState({ isEmpty: false })
@@ -72,7 +72,6 @@ export default class Timeline extends Component {
   }
 
   _renderRow = (data) => {
-    console.log("--- _renderRow ---")
     const timeString = moment(data.timestamp).fromNow()
     return (
       <Post
@@ -89,15 +88,16 @@ export default class Timeline extends Component {
 
   _onEndReached = () => {
     if (!this.state.isEmpty && !this.state.isFinished) {
-      console.log("--- _onEndReached --- " + this.state.counter)
       this.setState({ counter: this.state.counter + 1 })
       this.setState({ isLoadingTail: true })
       firebaseApp.database().ref('posts').off()
       firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
       (snapshot) => {
-        console.log("---- TIMELINE POST RETRIEVED ----")
+        console.log("---- TIMELINE POST ON END RETRIEVED ---- "+ this.state.counter +" - "+ _.toArray(snapshot.val()).length)
+        console.log(snapshot.val())
         //this.props.appStore.posts = snapshot.val()
         if (_.toArray(snapshot.val()).length < this.state.counter) {
+          console.log("---- TIMELINE POST FINISHED ----");
           this.setState({ isFinished: true })
         }
         if (snapshot.val()) {
@@ -112,7 +112,6 @@ export default class Timeline extends Component {
   }
 
   _renderFooter = () => {
-    console.log("--- _renderFooter ---")
     if (this.state.isLoadingTail) {
       return (
         <View style={styles.waitView}>

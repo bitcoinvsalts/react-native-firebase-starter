@@ -116,7 +116,6 @@ export default class SignInForm extends Component {
       .then((user) => {
         firebaseApp.database().ref('users').child(user.uid).once('value')
         .then((snapshot) => {
-          console.log(snapshot.val())
           this.props.appStore.post_count = parseInt(snapshot.val().post_count)
         })
         this.props.appStore.user = user

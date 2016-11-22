@@ -100,7 +100,6 @@ export default class Profile extends Component {
   }
 
   _renderRow = (data) => {
-    console.log("--- _renderRow ---")
     const timeString = moment(data.timestamp).fromNow()
     return (
       <Post
@@ -117,7 +116,6 @@ export default class Profile extends Component {
 
   _onEndReached = () => {
     if (!this.state.isEmpty && !this.state.isFinished) {
-      console.log("--- _onEndReached --- " + this.state.counter)
       this.setState({ counter: this.state.counter + 1 })
       this.setState({ isLoadingTail: true })
       firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').off()
@@ -142,7 +140,6 @@ export default class Profile extends Component {
   }
 
   _renderFooter = () => {
-    console.log("--- _renderFooter ---")
     if (this.state.isLoadingTail) {
       return (
         <View style={styles.waitView}>

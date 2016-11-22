@@ -151,7 +151,6 @@ export default class CreateNew extends Component {
       noData: true,
     };
     ImagePicker.launchCamera(cam_options, (response) => {
-      //console.log(response)
       if (response.didCancel) {
       }
       else if (response.error) {
@@ -181,7 +180,6 @@ export default class CreateNew extends Component {
           const imageName = `${newPostKey}.jpg`
           uploadImage(this.state.imagePath, imageName)
           .then(url => {
-            console.log("------> " + url);
             const postData = {
               username: username,
               timestamp: timestamp,
@@ -193,7 +191,6 @@ export default class CreateNew extends Component {
               imageWidth: this.state.imageWidth,
             }
             let updates = {}
-            console.log("------> " + uid);
             this.props.appStore.post_count = this.props.appStore.post_count + 1
             updates['/users/' + uid + '/post_count'] = this.props.appStore.post_count
             updates['/posts/' + newPostKey] = postData

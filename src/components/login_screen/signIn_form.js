@@ -114,6 +114,11 @@ export default class SignInForm extends Component {
     else {
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
+        firebaseApp.database().ref('users').child(user.uid).once('value')
+        .then((snapshot) => {
+          console.log(snapshot.val())
+          this.props.appStore.post_count = parseInt(snapshot.val().post_count)
+        })
         this.props.appStore.user = user
         this.props.appStore.username = user.displayName
         console.log("user displayName: " + user.displayName);

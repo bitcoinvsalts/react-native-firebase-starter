@@ -14,7 +14,6 @@ import _ from 'lodash'
 import moment from 'moment'
 import { firebaseApp } from '../../firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
-import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import { getColor } from '../config'
 import { observer,inject } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
@@ -72,25 +71,24 @@ export default class Profile extends Component {
           </View>
           <View style={styles.profileCountsContainer}>
             <Text style={styles.profileCounts}>
-              0
+              {this.props.appStore.post_count}
             </Text>
             <Text style={styles.countsName}>
               POSTS
             </Text>
           </View>
+          <View style={styles.profileCountsContainer}>
+            <TouchableOpacity onPress={this._userEdit}>
+              <Icon name='md-settings' size={30} color='rgba(255,255,255,.9)'/>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.profileCountsContainer}>
+            <TouchableOpacity onPress={this._logOut}>
+              <Icon name='md-log-out' size={30} color='rgba(255,255,255,.9)'/>
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
-          <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-          <Text style={styles.itemName}>
-            Edit your account
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.listItem} onPress={this._logOut}>
-          <Icon name='md-log-out' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
-          <Text style={styles.itemName}>
-            Sign Out - {this.props.appStore.username}
-          </Text>
-        </TouchableOpacity>
+
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
@@ -182,25 +180,20 @@ const styles = StyleSheet.create({
   profileInfoContainer: {
     flexDirection: 'row',
     height: 65,
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10,
+    margin: 5,
     borderRadius: 2,
     backgroundColor: getColor()
   },
   profileNameContainer: {
-    flex: 3,
+    flex: 2,
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   profileName: {
-    marginLeft: 20,
+    marginLeft: 10,
     fontFamily: 'Roboto-Bold',
     fontSize: 20,
-    color: '#ffffff',
-    //fontFamily: 'MagmaWave',
-    fontFamily: 'MagmaWave Caps'
+    color: '#fff',
   },
   profileCountsContainer: {
     flex: 1,
@@ -211,7 +204,7 @@ const styles = StyleSheet.create({
   profileCounts: {
     fontFamily: 'Roboto-Regular',
     fontSize: 30,
-    color: '#ffffff'
+    color: '#fff'
   },
   countsName: {
     fontFamily: 'Roboto-Bold',
@@ -224,16 +217,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 100,
   },
-  listItem: {
-    padding: 10,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  itemIcon: {
-    marginLeft: 20,
-    marginRight: 20
-  },
-  itemName: {
-    fontSize: 14
-  }
 })

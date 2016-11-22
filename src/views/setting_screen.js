@@ -122,6 +122,7 @@ export default class SettingScreen extends Component {
               firebaseApp.database().ref('usernameList').child(this.state.name.toLowerCase()).set(this.props.appStore.user.uid)
               this.props.appStore.user.updateProfile({ displayName: this.state.name })
               .then(() => {
+                this.props.appStore.username = this.props.appStore.user.displayName
                 this.setState({ errMsg: "Name succesfully saved!" })
               })
               .catch((error) => {

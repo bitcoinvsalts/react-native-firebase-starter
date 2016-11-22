@@ -148,14 +148,17 @@ export default class SignUpForm extends Component {
             .then(() => {
               const uid = user.uid
               const username = user.displayName
+              const post_count = 0
               const email = user.email
               firebaseApp.database().ref('users/' + user.uid)
               .set({
                 uid,
                 username,
+                post_count,
                 email
               })
               this.props.appStore.username = user.displayName
+              this.props.appStore.post_count = post_count
               this.props.appStore.user = user
               Actions.home({ type: 'replace' })
             }, function(error) {

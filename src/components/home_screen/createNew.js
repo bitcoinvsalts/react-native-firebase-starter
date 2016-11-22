@@ -194,6 +194,8 @@ export default class CreateNew extends Component {
             }
             let updates = {}
             console.log("------> " + uid);
+            this.props.appStore.post_count = this.props.appStore.post_count + 1
+            updates['/users/' + uid + '/post_count'] = this.props.appStore.post_count
             updates['/posts/' + newPostKey] = postData
             updates['/userposts/' + uid + '/posts/' + newPostKey] = postData
             firebaseApp.database().ref().update(updates)

@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     fontWeight: '400',
+    fontWeight: '800',
     fontSize: 20,
     color: getColor()
   }

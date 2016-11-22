@@ -27,7 +27,7 @@ export default class InitialView extends Component {
       style={styles.container}
       delay={this.props.animDelay}
       onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>JSapp My App</Text>
+        <Text style={styles.title}>JSapp Social Poster App</Text>
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   },
   btnText: {
     fontWeight: '400',
+    fontWeight: '800',
     fontSize: 20,
     color: getColor()
   }

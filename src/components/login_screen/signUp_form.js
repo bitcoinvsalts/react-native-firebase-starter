@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
   submitBtn: {
     fontSize: 20,
     fontWeight: '400',
+    fontWeight: '800',
     color: getColor()
   }
 })

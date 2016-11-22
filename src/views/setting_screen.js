@@ -174,12 +174,6 @@ const styles = StyleSheet.create({
     marginTop: 70,
     backgroundColor: '#ffffff'
   },
-  title: {
-    fontSize: 25,
-    fontWeight: '800',
-    marginBottom: 10,
-    color: '#000'
-  },
   errMsg: {
     color: '#000',
     fontSize: 12,

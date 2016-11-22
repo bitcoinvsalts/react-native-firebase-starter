@@ -64,6 +64,21 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.profileInfoContainer}>
+          <View style={styles.profileNameContainer}>
+            <Text style={styles.profileName}>
+              {this.props.currentUser.name}
+            </Text>
+          </View>
+          <View style={styles.profileCountsContainer}>
+            <Text style={styles.profileCounts}>
+              {this.state.postsCount}
+            </Text>
+            <Text style={styles.countsName}>
+              POSTS
+            </Text>
+          </View>
+        </View>
         <TouchableOpacity style={styles.listItem} onPress={this._userEdit}>
           <EvilIcon name='pencil' size={30} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.itemName}>
@@ -164,6 +179,45 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  profileInfoContainer: {
+    flexDirection: 'row',
+    height: 65,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 2,
+    backgroundColor: getColor()
+  },
+  profileNameContainer: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  profileName: {
+    marginLeft: 20,
+    fontFamily: 'Roboto-Bold',
+    fontSize: 20,
+    color: '#ffffff',
+    //fontFamily: 'MagmaWave',
+    fontFamily: 'MagmaWave Caps'
+  },
+  profileCountsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 5
+  },
+  profileCounts: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 30,
+    color: '#ffffff'
+  },
+  countsName: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 12,
+    color: '#ffffff'
+  }
   waitView: {
     flex: 1,
     justifyContent: 'center',

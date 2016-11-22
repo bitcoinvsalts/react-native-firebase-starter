@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginBottom: 10,
     fontSize: 14,
+    backgroundColor: 'transparent',
   },
   inputContainer: {
     backgroundColor: 'rgba(0,0,0,.3)',

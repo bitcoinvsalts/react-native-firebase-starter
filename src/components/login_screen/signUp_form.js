@@ -211,6 +211,7 @@ const styles = StyleSheet.create({
     width: 280,
     textAlign: 'center',
     fontSize: 14,
+    backgroundColor: 'transparent',
   },
   inputContainer: {
     backgroundColor: 'rgba(0,0,0,.3)',

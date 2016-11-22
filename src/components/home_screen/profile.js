@@ -191,7 +191,6 @@ const styles = StyleSheet.create({
   },
   profileName: {
     marginLeft: 10,
-    fontFamily: 'Roboto-Bold',
     fontSize: 20,
     color: '#fff',
   },
@@ -202,12 +201,10 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   profileCounts: {
-    fontFamily: 'Roboto-Regular',
     fontSize: 30,
     color: '#fff'
   },
   countsName: {
-    fontFamily: 'Roboto-Bold',
     fontSize: 12,
     color: '#ffffff'
   },

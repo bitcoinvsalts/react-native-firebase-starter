@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
   errMsg: {
     color: '#000',
     fontSize: 14,
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: 'transparent',
   },
   inputContainer: {
     backgroundColor: 'rgba(0,0,0,.3)',
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: '800',
     color: getColor()
   }
 })

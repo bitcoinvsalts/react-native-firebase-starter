@@ -98,7 +98,7 @@ export default class LoginScreen extends Component {
           barStyle='light-content'
           animated={true}
         />
-        <View style={styles.logoContainer}>
+        <View>
           <TouchableOpacity onPress={this._onLogoClicked}>
             <Image source={require('../assets/images/jsapp.png')} style={styles.logoImage}/>
           </TouchableOpacity>
@@ -176,8 +176,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  logoContainer: {
   },
   logoImage : {
     height: 240,

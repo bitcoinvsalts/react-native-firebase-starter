@@ -94,7 +94,6 @@ export default class Timeline extends Component {
       firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter+1).on('value',
       (snapshot) => {
         console.log("---- TIMELINE POST ON END RETRIEVED ---- "+ this.state.counter +" - "+ _.toArray(snapshot.val()).length)
-        console.log(snapshot.val())
         if (_.toArray(snapshot.val()).length < this.state.counter) {
           console.log("---- TIMELINE POST FINISHED ----");
           this.setState({ isFinished: true })

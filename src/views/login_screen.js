@@ -38,6 +38,10 @@ export default class LoginScreen extends Component {
         console.log(" --- User Signed In ---> " + user.displayName)
         this.props.appStore.user = user
         this.props.appStore.username = user.displayName
+        firebaseApp.database().ref('users').child(user.uid).once('value')
+        .then((snapshot) => {
+          this.props.appStore.post_count = parseInt(snapshot.val().post_count)
+        })
         Actions.home({ type: 'replace' })
       }
       else {

@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Bold',
     fontSize: 12,
     color: '#ffffff'
-  }
+  },
   waitView: {
     flex: 1,
     justifyContent: 'center',

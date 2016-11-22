@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    fontWeight: '800',
     marginBottom: 5,
   },
   postInfo: {

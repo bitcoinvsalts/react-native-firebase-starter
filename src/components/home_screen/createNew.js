@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingBottom: 10,
     fontSize: 15,
+    fontWeight: '800',
     textAlign: 'center',
     color: getColor()
   },

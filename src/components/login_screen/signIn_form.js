@@ -206,7 +206,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   submitBtn: {
-    fontWeight: '400',
     fontWeight: '800',
     fontSize: 20,
     color: getColor()

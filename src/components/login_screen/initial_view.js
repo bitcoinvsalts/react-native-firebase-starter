@@ -95,7 +95,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnText: {
-    fontWeight: '400',
     fontWeight: '800',
     fontSize: 20,
     color: getColor()

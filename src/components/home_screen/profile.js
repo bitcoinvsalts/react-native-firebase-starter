@@ -119,10 +119,9 @@ export default class Profile extends Component {
       this.setState({ counter: this.state.counter + 1 })
       this.setState({ isLoadingTail: true })
       firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').off()
-      firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
+      firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').orderByChild('timestamp').limitToLast(this.state.counter+1).on('value',
       (snapshot) => {
         console.log("---- USER POST RETRIEVED ----");
-        //this.props.appStore.posts = snapshot.val()
         if (_.toArray(snapshot.val()).length < this.state.counter) {
           this.setState({ isFinished: true })
           console.log("---- USER POST FINISHED !!!! ----")

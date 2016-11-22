@@ -99,7 +99,6 @@ export default class Timeline extends Component {
         //this.props.appStore.posts = snapshot.val()
         if (_.toArray(snapshot.val()).length < this.state.counter) {
           this.setState({ isFinished: true })
-          console.log("---- TIMELINE FINISHED !!!! ----");
         }
         if (snapshot.val()) {
           this.setState({ isEmpty: false })

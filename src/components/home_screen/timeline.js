@@ -38,7 +38,6 @@ export default class Timeline extends Component {
     firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter).on('value',
     (snapshot) => {
       console.log("---- TIMELINE POST RETRIEVED ---- "+ this.state.counter +" - "+ _.toArray(snapshot.val()).length)
-      //this.props.appStore.posts = snapshot.val()
       if (snapshot.val()) {
         this.setState({ isEmpty: false })
         this.setState({
@@ -74,7 +73,7 @@ export default class Timeline extends Component {
   _renderRow = (data) => {
     const timeString = moment(data.timestamp).fromNow()
     return (
-      <Post
+      <Post key={data.puid}
         postTitle={data.title}
         posterName={data.username}
         postTime={timeString}

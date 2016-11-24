@@ -30,7 +30,7 @@ export default class Profile extends Component {
     this.state = {
       isLoadingTail: true,
       isFinished: false,
-      counter: 2,
+      counter: 1,
       isEmpty: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
     }
@@ -102,7 +102,7 @@ export default class Profile extends Component {
   _renderRow = (data) => {
     const timeString = moment(data.timestamp).fromNow()
     return (
-      <Post
+      <Post key={data.puid}
         postTitle={data.title}
         posterName={data.username}
         postTime={timeString}

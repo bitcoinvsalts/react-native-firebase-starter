@@ -26,7 +26,7 @@ export default class Timeline extends Component {
     }
     this.state = {
       isLoadingTail: true,
-      counter: 2,
+      counter: 1,
       isEmpty: false,
       isFinished: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),

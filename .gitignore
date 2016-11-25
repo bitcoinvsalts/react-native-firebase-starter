@@ -97,3 +97,5 @@ ios/Fabric.framework/Info.plist
 ios/Fabric.framework/uploadDSYM
 
 ios/MyApp.app.dSYM.zip
+
+ios/MyApp/Info.plist

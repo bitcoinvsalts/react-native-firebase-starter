@@ -25,8 +25,8 @@ export default class Timeline extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      isLoadingTail: true,
       counter: 1,
+      isLoading: true,
       isEmpty: false,
       isFinished: false,
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
@@ -40,14 +40,12 @@ export default class Timeline extends Component {
       console.log("---- TIMELINE POST RETRIEVED ---- "+ this.state.counter +" - "+ _.toArray(snapshot.val()).length)
       if (snapshot.val()) {
         this.setState({ isEmpty: false })
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
-        })
+        this.setState({ dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))) })
       }
       else {
         this.setState({ isEmpty: true })
       }
-      this.setState({ isLoadingTail: false })
+      this.setState({ isLoading: false })
     })
   }
 
@@ -59,12 +57,13 @@ export default class Timeline extends Component {
     return (
       <View style={styles.container}>
         <ListView
-          automaticallyAdjustContentInsets={true}
-          initialListSize={6}
+          automaticallyAdjustContentInsets={false}
+          initialListSize={1}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
           renderFooter={this._renderFooter}
           onEndReached={this._onEndReached}
+          onEndReachedThreshold={1}
         />
       </View>
     )
@@ -72,6 +71,7 @@ export default class Timeline extends Component {
 
   _renderRow = (data) => {
     const timeString = moment(data.timestamp).fromNow()
+    console.log("TIMELINE :::: _renderRow " + data.title)
     return (
       <Post key={data.puid}
         postTitle={data.title}
@@ -86,9 +86,10 @@ export default class Timeline extends Component {
   }
 
   _onEndReached = () => {
-    if (!this.state.isEmpty && !this.state.isFinished) {
+    console.log("TIMELINE ----> _onEndReached :+++:");
+    if (!this.state.isEmpty && !this.state.isFinished && !this.state.isLoading) {
       this.setState({ counter: this.state.counter + 1 })
-      this.setState({ isLoadingTail: true })
+      this.setState({ isLoading: true })
       firebaseApp.database().ref('posts').off()
       firebaseApp.database().ref('posts').orderByChild('timestamp').limitToLast(this.state.counter+1).on('value',
       (snapshot) => {
@@ -103,13 +104,13 @@ export default class Timeline extends Component {
             dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
           })
         }
-        this.setState({ isLoadingTail: false })
+        this.setState({ isLoading: false })
       })
     }
   }
 
   _renderFooter = () => {
-    if (this.state.isLoadingTail) {
+    if (this.state.isLoading) {
       return (
         <View style={styles.waitView}>
           <ActivityIndicator size='large'/>

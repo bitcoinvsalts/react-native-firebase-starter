@@ -66,6 +66,7 @@ import com.android.build.OutputFile
  */
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -90,20 +91,22 @@ android {
         applicationId "me.jsapp.myapp"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 3
-        versionName "1.2"
+        versionCode 6           //increment this
+        versionName "1.3.2"     //and this too
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    /*
     signingConfigs {
-        //release {
-        //    storeFile file(MYAPP_RELEASE_STORE_FILE)
-        //    storePassword MYAPP_RELEASE_STORE_PASSWORD
-        //    keyAlias MYAPP_RELEASE_KEY_ALIAS
-        //    keyPassword MYAPP_RELEASE_KEY_PASSWORD
-        //}
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
     }
+    */
     splits {
         abi {
             reset()
@@ -135,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-code-push')
     compile project(':react-native-fs')
     compile project(':react-native-fetch-blob')
     compile project(':react-native-image-picker')

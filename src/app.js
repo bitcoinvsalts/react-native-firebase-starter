@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import codePush from 'react-native-code-push'
 
 import { Router, Scene } from 'react-native-mobx'
 import { Provider } from 'mobx-react/native'
@@ -9,7 +10,7 @@ import SettingScreen from './views/setting_screen'
 
 import appStore from './store/AppStore'
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
       <Provider appStore={appStore}>
@@ -40,3 +41,5 @@ export default class App extends Component {
     )
   }
 }
+
+export default App = codePush({ updateDialog: true, installMode: codePush.InstallMode.IMMEDIATE })(App)

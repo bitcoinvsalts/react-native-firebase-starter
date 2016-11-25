@@ -3,9 +3,10 @@ import {
   Text,
   View,
   StyleSheet,
+  Image,
   Dimensions
 } from 'react-native'
-import CacheableImage from 'react-native-cacheable-image'
+//import CacheableImage from 'react-native-cacheable-image'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 
@@ -23,7 +24,7 @@ export default class Posts extends Component {
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
-        <CacheableImage
+        <Image
           source={{ uri:this.props.imagePath }}
           resizeMode='contain'
           style={{

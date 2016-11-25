@@ -28,7 +28,7 @@ export default class Profile extends Component {
       UIManager.setLayoutAnimationEnabledExperimental(true)
     }
     this.state = {
-      isLoadingTail: true,
+      isLoading: true,
       isFinished: false,
       counter: 1,
       isEmpty: false,
@@ -52,7 +52,7 @@ export default class Profile extends Component {
       else {
         this.setState({ isEmpty: true })
       }
-      this.setState({ isLoadingTail: false })
+      this.setState({ isLoading: false })
     })
   }
 
@@ -90,10 +90,13 @@ export default class Profile extends Component {
         </View>
 
         <ListView
+          automaticallyAdjustContentInsets={true}
+          initialListSize={1}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
           renderFooter={this._renderFooter}
           onEndReached={this._onEndReached}
+          onEndReachedThreshold={1}
         />
       </View>
     )
@@ -115,9 +118,9 @@ export default class Profile extends Component {
   }
 
   _onEndReached = () => {
-    if (!this.state.isEmpty && !this.state.isFinished) {
+    if (!this.state.isEmpty && !this.state.isFinished && !this.state.isLoading) {
       this.setState({ counter: this.state.counter + 1 })
-      this.setState({ isLoadingTail: true })
+      this.setState({ isLoading: true })
       firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').off()
       firebaseApp.database().ref('userposts/'+ this.props.appStore.user.uid +'/posts').orderByChild('timestamp').limitToLast(this.state.counter+1).on('value',
       (snapshot) => {
@@ -133,13 +136,13 @@ export default class Profile extends Component {
             dataSource: this.state.dataSource.cloneWithRows(_.reverse(_.toArray(snapshot.val()))),
           })
         }
-        this.setState({ isLoadingTail: false })
+        this.setState({ isLoading: false })
       })
     }
   }
 
   _renderFooter = () => {
-    if (this.state.isLoadingTail) {
+    if (this.state.isLoading) {
       return (
         <View style={styles.waitView}>
           <ActivityIndicator size='large'/>

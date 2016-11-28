@@ -23,8 +23,6 @@ const screenWidth = Dimensions.get('window').width
 @inject("appStore") @observer
 export default class ChatScreen extends Component {
   constructor(props) {
-    console.log("CHAT CONSTRUCTOR!!! : " + props.title);
-    console.log(props);
     super(props)
     this.state = {
       errMsg: null,

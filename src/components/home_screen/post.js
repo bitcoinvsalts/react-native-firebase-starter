@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
+  TouchableOpacity,
   StyleSheet,
   Image,
   Dimensions
 } from 'react-native'
+import { Actions } from 'react-native-mobx'
 //import CacheableImage from 'react-native-cacheable-image'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
@@ -17,6 +19,10 @@ export default class Posts extends Component {
     super(props)
   }
 
+  _openChat = () => {
+    Actions.chat({ title:this.props.postTitle, postProps:this.props })
+  }
+
   render() {
     const height = screenWidth*this.props.imageHeight/this.props.imageWidth
     return (
@@ -24,16 +30,18 @@ export default class Posts extends Component {
         <Text style={styles.title}>
           {this.props.postTitle}
         </Text>
-        <Image
-          source={{ uri:this.props.imagePath }}
-          resizeMode='contain'
-          style={{
-            height: height,
-            width: screenWidth,
-            alignSelf: 'center',
-            marginBottom: 10,
-          }}
-        />
+        <TouchableOpacity onPress={this._openChat}>
+          <Image
+            source={{ uri:this.props.imagePath }}
+            resizeMode='contain'
+            style={{
+              height: height,
+              width: screenWidth,
+              alignSelf: 'center',
+              marginBottom: 10,
+            }}
+          />
+        </TouchableOpacity>
         <View style={styles.postInfo}>
           <Icon name='md-arrow-dropright' size={15} color='rgba(0,0,0,.5)' style={styles.itemIcon}/>
           <Text style={styles.username}>

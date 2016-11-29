@@ -28,7 +28,7 @@ export default class InitialView extends Component {
       delay={this.props.animDelay}
       onAnimationEnd={this._handleAnimEnd.bind(this)}>
         <Text style={styles.title}>JSapp Social Poster App</Text>
-        <Text style={styles.version}>v1.3.2</Text>
+        <Text style={styles.version}>v1.3.3</Text>
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>

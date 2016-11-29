@@ -18,6 +18,7 @@ import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { getColor } from '../config'
 import { firebaseApp } from '../../firebase'
+import firebase from 'firebase'
 import { observer,inject } from 'mobx-react/native'
 
 
@@ -175,14 +176,13 @@ export default class CreateNew extends Component {
           this.setState({ spinnervisible: true })
           const uid = this.props.appStore.user.uid
           const username = this.props.appStore.user.displayName
-          const timestamp = Date.now()
           const newPostKey = firebaseApp.database().ref('posts').push().key
           const imageName = `${newPostKey}.jpg`
           uploadImage(this.state.imagePath, imageName)
           .then(url => {
             const postData = {
               username: username,
-              timestamp: timestamp,
+              timestamp: firebase.database.ServerValue.TIMESTAMP,
               text: this.state.postText,
               title: this.state.postTitle,
               puid: newPostKey,

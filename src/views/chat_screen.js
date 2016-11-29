@@ -66,8 +66,6 @@ export default class ChatScreen extends Component {
   }
 
   _onSend = (messages = []) => {
-    console.log("messages.length: " + messages.length);
-    console.log(messages);
     for (let i = 0; i < messages.length; i++) {
       firebaseApp.database().ref('messages').child(this.props.postProps.postId).push({
         text: messages[i].text,

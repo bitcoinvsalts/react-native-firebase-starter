@@ -106,6 +106,7 @@ export default class Profile extends Component {
     const timeString = moment(data.timestamp).fromNow()
     return (
       <Post key={data.puid}
+        postId={data.puid}
         postTitle={data.title}
         posterName={data.username}
         postTime={timeString}

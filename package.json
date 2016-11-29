@@ -20,6 +20,7 @@
     "react-native-code-push": "^1.16.0-beta",
     "react-native-fetch-blob": "0.10.1-beta.2",
     "react-native-fs": "^2.0.1-rc.2",
+    "react-native-gifted-chat": "^0.0.10",
     "react-native-image-picker": "^0.23.0",
     "react-native-keyboard-aware-scroll-view": "^0.2.4",
     "react-native-loading-spinner-overlay": "^0.3.0",

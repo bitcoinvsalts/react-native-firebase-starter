@@ -146,8 +146,8 @@ export default class CreateNew extends Component {
   _takePicture = () => {
     const cam_options = {
       mediaType: 'photo',
-      maxWidth: 1000,
-      maxHeight: 1000,
+      maxWidth: 600,
+      maxHeight: 600,
       quality: 1,
       noData: true,
     };

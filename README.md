@@ -174,7 +174,33 @@ atom src/store/AppStore.js
 ```
 
 
-Then install the dependencies using:
+### CodePush Setup
+
+Ref: [I am a CodePusher and I love it. Thanks MS and not M$ anymore](https://jsapp.me/i-am-a-codepusher-and-i-love-it-thanks-ms-and-not-m-anymore-7be936e86c75#.e4r2dmyqb)
+
+**Install** the CodePush CLI
+https://microsoft.github.io/code-push/index.html#getting_started
+
+```
+npm install -g code-push-cli
+```
+
+**Create a CodePush account** or **Login** if you have one already
+```
+code-push register
+```
+OR
+```
+code-push login
+```
+Register your app with the service, create one for each platform
+
+```
+code-push app add myapp-and
+code-push app add myapp-ios
+```
+
+Now we are ready to install the dependencies using:
 
 ```
 yarn

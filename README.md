@@ -18,8 +18,6 @@
  - [CodePush](https://microsoft.github.io/code-push/) : Push code updates to your apps, instantly
  - [OneSignal](https://onesignal.com/) : Unlimited push notifications‎
 
-I really appreciate any suggestions, feedback, PRs and issues.
-
 ## How to install this app?
 ### Prerequisites
 To create your own copy of this application, here are the prerequisites:
@@ -230,5 +228,6 @@ All the credits goes to all library creators and contributors to the open source
  - [Moment JS](http://momentjs.com/)
  - [Lodash](https://lodash.com/)
 
+I really appreciate any suggestions, feedback, PRs and issues.
 
 Made with ♥ by [JSapp.me](http://jsapp.me)

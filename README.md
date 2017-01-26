@@ -191,7 +191,7 @@ https://microsoft.github.io/code-push/index.html#getting_started
 npm install -g code-push-cli
 ```
 
-**Create a CodePush account** or **Login** if you have one already
+**Create a CodePush account** or **Login** if you have one already.
 ```
 code-push register
 ```
@@ -199,7 +199,7 @@ OR
 ```
 code-push login
 ```
-Register your app with the service, create one for each platform
+Register your app with the service, create one for each platform.
 
 ```
 code-push app add myapp-and
@@ -220,18 +220,30 @@ To link all the other packages to react native:
 react-native link
 ```
 
-We are now ready to lunch our app
+We are now ready to lunch our app on an android device.
 ```
 react-native run-android
-```
-or
-```
-yarn run ios
 ```
 
 To see the logs:
 ```
 react-native log-android
+```
+
+To open the app on Xcode:
+```
+yarn run ios
+```
+You might need to add a Signing Team for MyApp and MyApptest to build it.
+
+To run the app on an iOS simulator:
+```
+react-native run-ios
+```
+
+To see the logs:
+```
+react-native log-ios
 ```
 
 Congratulation, your app is now ready and fully functional. Keep in mind this app is only a starter. Now it's time for customization and improvements.

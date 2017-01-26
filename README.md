@@ -101,20 +101,19 @@ https://medium.com/differential/react-native-push-notifications-with-onesignal-9
 
 **Login** or **Register** at https://onesignal.com
 
-Add new app and select the Android platform first
+**Add new app** and select the Android platform first
 
 ![Preview](./graphics/onesignal_android_platform.png)
 
 Open a new tab and go to your Firebase app Settings > CLOUD MESSAGING: https://console.firebase.google.com/project/myapp-1dbb8/settings/cloudmessaging
 
 ![Preview](./graphics/cloud_messaging.png)
-https://documentation.onesignal.com/docs/generate-a-google-server-api-key
 
 Save the two values listed:
-* Server key, a.k.a the Google Server API key
-* Sender ID, a.k.a the Google Project Number *a.k.a my_onesignal_google_project_number you will need it later*
+* **Server key**, a.k.a the **Google Server API key**
+* **Sender ID**, a.k.a the **Google Project Number** *a.k.a my_onesignal_google_project_number (you will need it later)*
 
-Paste those two values on the OneSignal > **Google Android (GCM) Configuration** and Save it
+Copy/Paste those two values on the OneSignal > **Google Android (GCM) Configuration** and Save it
 
 Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > App Settings
 

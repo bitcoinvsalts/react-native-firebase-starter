@@ -115,7 +115,7 @@ Save the two values listed:
 
 Copy/Paste those two values on the first tab: OneSignal > **Google Android (GCM) Configuration** and **Save** it
 
-Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > App Settings
+Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > **App Settings**
 
 ![Preview](./graphics/onesignal_ios_platform.png)
 
@@ -144,6 +144,8 @@ After pressing **Next**, you’ll see something like this
 ![Preview](./graphics/ios_wizard_2.png)
 
 Download those files and remember the password for the p12 file. Then head back to OneSignal, **upload the file**, enter your password and **Save**
+
+![Preview](./graphics/onesignal_ios_platform_2.png)
 
 ####Your Push Notification platforms are now set up. Now we can actually work on integrating this with our app.
 

@@ -78,25 +78,40 @@ https://console.firebase.google.com/project/YOURPROJECT/database/rules
 
 with:
 
-    {
-      "rules": {
-        ".read": "auth != null",
-        ".write": "auth != null",
-        "usernameList" : {
-          ".read": true
-        },
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "usernameList" : {
+      ".read": true
+    },
+    "posts": {
+        ".indexOn": "createdAt",
+        ".read": true
+    },
+    "user_posts": {
+      "$uid": {
         "posts": {
-            ".indexOn": "createdAt"
+          ".indexOn": "createdAt"
         },
-        "user_posts": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "createdAt"
-            },
-          },
+      },
+    },
+    "user_orders": {
+      "$uid": {
+        "posts": {
+          ".indexOn": "createdAt"
         },
-      }
-    }
+      },
+    },
+    "user_chats": {
+      "$uid": {
+        "posts": {
+          ".indexOn": "updatedAt"
+        },
+      },
+    },
+  }
+}
 
 and edit the firebase configuration file with your own settings:
 

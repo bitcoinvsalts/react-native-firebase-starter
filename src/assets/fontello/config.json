@@ -1,0 +1,54 @@
+{
+  "name": "",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "8ae13b5b9b9927247cc048020e8da45a",
+      "css": "fishing",
+      "code": 59392,
+      "src": "custom_icons",
+      "selected": true,
+      "svg": {
+        "path": "M625 633.3H725V733.3C725 825.2 650.2 900 558.3 900 466.4 900 391.7 825.2 391.7 733.3V325.7C459.3 304.5 508.3 241.3 508.3 166.7 508.3 74.6 433.7 0 341.7 0 249.6 0 175 74.6 175 166.7 175 241.3 224.1 304.5 291.7 325.7V733.3C291.7 880.6 411.1 1000 558.3 1000S825 880.6 825 733.3V333.3L625 633.3ZM341.7 233.3C304.8 233.3 275 203.5 275 166.7 275 129.8 304.8 100 341.7 100 378.5 100 408.3 129.8 408.3 166.7 408.3 203.5 378.5 233.3 341.7 233.3Z",
+        "width": 1000
+      },
+      "search": [
+        "fishing"
+      ]
+    },
+    {
+      "uid": "90e0aff5c929e444038355746a952aaf",
+      "css": "shopping-basket",
+      "code": 62097,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "dcedf50ab1ede3283d7a6c70e2fe32f3",
+      "css": "chat",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "6a12c2b74456ea21cc984e11dec227a1",
+      "css": "globe",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "1gf923f9wvaezxmfon515dglxa3drf0e",
+      "css": "plus",
+      "code": 59395,
+      "src": "typicons"
+    },
+    {
+      "uid": "bbd66ef66bb8fa9edde54d9a90b89150",
+      "css": "user",
+      "code": 59396,
+      "src": "entypo"
+    }
+  ]
+}

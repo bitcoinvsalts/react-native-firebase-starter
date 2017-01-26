@@ -63,6 +63,7 @@ export default class CreateNew extends Component {
       postStatus: null,
       postText: '',
       postTitle: '',
+      postPrice: '',
       imagePath: null,
       imageHeight: null,
       imageWidth: null,
@@ -77,26 +78,42 @@ export default class CreateNew extends Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
   }
 
+  componentDidMount() {
+  }
+
   render() {
-    const height = (screenWidth*this.state.imageHeight/this.state.imageWidth)
+    const height = ((screenWidth-40)*this.state.imageHeight/this.state.imageWidth)
     const photo = this.state.imagePath ?
-      <Image
-        source={{ uri:this.state.imagePath }}
-        resizeMode='contain'
-        style={{
-          height: height,
-          width: screenWidth,
-          alignSelf: 'center',
-          marginBottom: 10,
-        }}
-      />
+      <View style={{ flex:1, }}>
+        <Image
+          source={{ uri:this.state.imagePath }}
+          resizeMode='contain'
+          style={{
+            height: height,
+            width: screenWidth-40,
+            alignSelf: 'center',
+            marginBottom: 10,
+          }}
+        />
+      </View>
      :
-      null
+       <View style={{ flex:1, marginBottom: 10,}}>
+         <Image
+           source={require('./../../assets/images/myapp.png')}
+           style={{
+             height: 100,
+             width: 100,
+             backgroundColor:'#4285f4',
+             alignSelf: 'center',
+             borderRadius: 5,
+           }}
+         />
+       </View>
     return (
       <View style={styles.container}>
         <Spinner visible={this.state.spinnervisible} />
         <KeyboardAwareScrollView ref='scrollContent'>
-          <Text style={styles.title}>{'ADD A NEW POST'}</Text>
+          <Text style={styles.title}>{'NEW ITEM'}</Text>
           { photo }
           <TouchableOpacity style={styles.btnAdd} onPress={this._takePicture}>
             <Icon
@@ -109,13 +126,29 @@ export default class CreateNew extends Component {
           <View style={styles.titleContainer}>
             <TextInput
             style={styles.inputField}
+            maxLength={34}
             value={this.state.postTitle}
             onChangeText={(text) => this.setState({ postTitle: text })}
             underlineColorAndroid='transparent'
-            placeholder='Enter a Post Title'
+            placeholder='Title'
             placeholderTextColor='rgba(0,0,0,.6)'
             onSubmitEditing={(event) => {
               this.refs.SecondInput.focus();
+            }}
+            />
+          </View>
+          <View style={styles.titleContainer}>
+            <TextInput
+            ref='SecondInput'
+            maxLength={34}
+            style={styles.inputField}
+            value={this.state.postPrice}
+            onChangeText={(text) => this.setState({ postPrice: text })}
+            underlineColorAndroid='transparent'
+            placeholder='Price'
+            placeholderTextColor='rgba(0,0,0,.6)'
+            onSubmitEditing={(event) => {
+              this.refs.ThirdInput.focus();
             }}
             />
           </View>
@@ -128,11 +161,11 @@ export default class CreateNew extends Component {
           </TouchableOpacity>
           <View style={styles.inputContainer}>
             <TextInput
-            ref='SecondInput'
+            ref='ThirdInput'
             multiline={true}
             style={styles.inputField}
             underlineColorAndroid='transparent'
-            placeholder='Please enter a Post Content'
+            placeholder='Item description (optional)'
             value={this.state.postText}
             onChangeText={(text) => this.setState({ postText: text })}
             placeholderTextColor='rgba(0,0,0,.6)'
@@ -172,7 +205,7 @@ export default class CreateNew extends Component {
     })
     if (this.state.imagePath) {
       if (this.state.postTitle.length > 0) {
-        if (this.state.postText.length > 0) {
+        if (this.state.postPrice.length > 0) {
           this.setState({ spinnervisible: true })
           const uid = this.props.appStore.user.uid
           const username = this.props.appStore.user.displayName
@@ -180,11 +213,44 @@ export default class CreateNew extends Component {
           const imageName = `${newPostKey}.jpg`
           uploadImage(this.state.imagePath, imageName)
           .then(url => {
+            fetch('https://onesignal.com/api/v1/notifications',
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': this.props.appStore.onesignal_api_key,
+              },
+              body: JSON.stringify(
+              {
+                app_id: this.props.appStore.onesignal_app_id,
+                included_segments: ["All"],
+                headings: {"en": "New item"},
+                android_sound: "fishing",
+                data: {"puid": newPostKey},
+                big_picture: url,
+                ios_sound: "fishing.caf",
+                contents: {"en": this.props.appStore.user.displayName + " just added a new item: " + this.state.postTitle + " for " + this.state.postPrice},
+                //filters: [{"field":"tag","key":"username","relation":"=","value":"Herve"}],
+              })
+            })
+            .then((responseData) => {
+                console.log("Push POST:" + JSON.stringify(responseData));
+            })
+            .done()
+            console.log(this.state.postText);
             const postData = {
               username: username,
-              timestamp: firebase.database.ServerValue.TIMESTAMP,
-              text: this.state.postText,
+              uid: uid,
+              createdAt: firebase.database.ServerValue.TIMESTAMP,
+              updatedAt: firebase.database.ServerValue.TIMESTAMP,
+              status: "available",
+              clientId: "",
+              clientName: "",
+              new_messages: 0,
+              text: this.state.postText.replace(/(\r\n|\n|\r)/gm,""),
               title: this.state.postTitle,
+              price: this.state.postPrice,
               puid: newPostKey,
               image: url,
               imageHeight: this.state.imageHeight,
@@ -193,14 +259,18 @@ export default class CreateNew extends Component {
             let updates = {}
             this.props.appStore.post_count = this.props.appStore.post_count + 1
             updates['/users/' + uid + '/post_count'] = this.props.appStore.post_count
+            this.props.appStore.chat_count = this.props.appStore.chat_count + 1
+            updates['/users/' + uid + '/chat_count'] = this.props.appStore.chat_count
             updates['/posts/' + newPostKey] = postData
-            updates['/userposts/' + uid + '/posts/' + newPostKey] = postData
+            updates['/user_posts/' + uid + '/posts/' + newPostKey] = postData
+            updates['/user_chats/' + uid + '/posts/' + newPostKey] = postData
+            updates['/messages_notif/' + newPostKey + '/include_player_ids'] = [this.props.appStore.user.uid]
             firebaseApp.database().ref().update(updates)
             .then(() => {
-              this.refs.scrollContent.scrollToPosition(0, 0, true)
               this.setState({
                               postStatus: 'Posted! Thank You.',
                               postTitle: '',
+                              postPrice: '',
                               postText: '',
                               imagePath: null,
                               imageHeight: null,
@@ -210,6 +280,9 @@ export default class CreateNew extends Component {
               setTimeout(() => {
                 this.setState({ postStatus: null })
               }, 3000)
+              setTimeout(() => {
+                this.refs.scrollContent.scrollToPosition(0, 0, true)
+              }, 1000)
             })
             .catch(() => {
               this.setState({ postStatus: 'Something went wrong!!!' })
@@ -222,13 +295,13 @@ export default class CreateNew extends Component {
           })
 
         } else {
-          this.setState({ postStatus: 'Please enter a post content.' })
+          this.setState({ postStatus: 'Please enter a price' })
         }
       } else {
-        this.setState({ postStatus: 'Please enter a post title.' })
+        this.setState({ postStatus: 'Please enter a title' })
       }
     } else {
-      this.setState({ postStatus: 'Please take a picture' })
+      this.setState({ postStatus: 'Please take a photo' })
     }
   }
 }
@@ -236,8 +309,9 @@ export default class CreateNew extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: screenWidth,
     padding: 10,
-    flexDirection: 'column',
+    //flexDirection: 'column',
   },
   title: {
     marginTop: 10,
@@ -280,7 +354,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 4,
     paddingBottom: 4,
-    fontSize: 14,
+    fontSize: 13,
   },
   btnAdd: {
     width: 280,

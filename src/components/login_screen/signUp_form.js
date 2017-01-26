@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   View,
+  ScrollView,
   Text,
   TextInput,
   BackAndroid,
@@ -8,13 +9,17 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
-  StyleSheet
+  StyleSheet,
+  Modal,
+  TouchableHighlight,
 } from 'react-native'
 import { firebaseApp } from '../../firebase'
 import { getColor } from '../config'
 import * as Animatable from 'react-native-animatable'
 import { Actions } from 'react-native-mobx'
 import { observer,inject } from 'mobx-react/native'
+import OneSignal from 'react-native-onesignal'
+import Terms from './terms'
 
 
 @inject("appStore") @observer
@@ -30,11 +35,14 @@ export default class SignUpForm extends Component {
       signUpSuccess: false,
       name: '',
       email: '',
-      password: ''
+      password: '',
+      modalVisible: false,
     }
   }
 
   componentDidMount() {
+    console.log("--------- SIGN UP --------- ")
+    this.props.appStore.tracker.trackScreenView('SIGN UP')
     BackAndroid.addEventListener('backBtnPressed', this._handleBackBtnPress)
   }
 
@@ -44,6 +52,10 @@ export default class SignUpForm extends Component {
 
   componentWillUnmount() {
     BackAndroid.removeEventListener('backBtnPressed', this._handleBackBtnPress)
+  }
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
   render() {
@@ -57,6 +69,27 @@ export default class SignUpForm extends Component {
       null
     :
       <View>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.state.modalVisible}
+        >
+          <View style={{ marginTop:22 }}>
+            <ScrollView>
+              <TouchableOpacity style={{ alignItems: 'center', }} onPress={() => {this.setModalVisible(!this.state.modalVisible)}}>
+                <View style={styles.submitBtnContainer}>
+                  <Text style={styles.submitBtn}>CLOSE</Text>
+                </View>
+              </TouchableOpacity>
+              <Terms/>
+              <TouchableOpacity style={{ alignItems: 'center', }} onPress={() => {this.setModalVisible(!this.state.modalVisible)}}>
+                <View style={styles.submitBtnContainer}>
+                  <Text style={styles.submitBtn}>CLOSE</Text>
+                </View>
+              </TouchableOpacity>
+            </ScrollView>
+         </View>
+        </Modal>
         <View style={[styles.inputContainer, { marginBottom: 10 }]}>
           <TextInput
           style={styles.inputField}
@@ -109,6 +142,11 @@ export default class SignUpForm extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        <View>
+          <TouchableHighlight style={styles.showModal} onPress={() => { this.setModalVisible(true) }}>
+            <Text style={{color:'#FFF'}}>By signing up you agree to our terms of use.</Text>
+          </TouchableHighlight>
+        </View>
       </View>
 
     return (
@@ -149,17 +187,25 @@ export default class SignUpForm extends Component {
               const uid = user.uid
               const username = user.displayName
               const post_count = 0
+              const chat_count = 0
+              const order_count = 0
               const email = user.email
               firebaseApp.database().ref('users/' + user.uid)
               .set({
                 uid,
                 username,
                 post_count,
-                email
+                chat_count,
+                order_count,
+                email,
               })
               this.props.appStore.username = user.displayName
               this.props.appStore.post_count = post_count
+              this.props.appStore.order_count = order_count
+              this.props.appStore.chat_count = chat_count
               this.props.appStore.user = user
+              OneSignal.sendTag("username", user.displayName)
+              OneSignal.sendTag("uid", user.uid)
               Actions.home({ type: 'replace' })
             }, function(error) {
               console.log(error);
@@ -201,11 +247,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     marginBottom: 10,
-    color: '#000',
+    color: '#fff',
     backgroundColor: 'transparent',
   },
   errMsg: {
-    color: '#000',
+    color: '#fff',
     fontSize: 12,
     marginBottom: 10,
     width: 280,
@@ -222,7 +268,7 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 15,
     paddingRight: 15,
-    color: '#000'
+    color: '#fff'
   },
   btnContainers: {
     marginTop: 15,
@@ -242,5 +288,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '800',
     color: getColor()
+  },
+  showModal: {
+    marginTop: 40,
+    alignItems: 'center',
   }
 })

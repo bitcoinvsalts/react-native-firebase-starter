@@ -13,6 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import EvilIcon from 'react-native-vector-icons/EvilIcons'
 import { observer,inject } from 'mobx-react/native'
 import { Actions } from 'react-native-mobx'
+import OneSignal from 'react-native-onesignal'
 
 
 @inject("appStore") @observer
@@ -27,6 +28,14 @@ export default class SettingScreen extends Component {
       email: this.props.appStore.user.email,
       password: ''
     }
+  }
+
+  componentDidMount() {
+    console.log("--------- SETTINGS --------- ")
+  }
+
+  componentWillUnmount() {
+    console.log("---- SETTINGS UNMOUNT ---")
   }
 
   render() {
@@ -123,6 +132,7 @@ export default class SettingScreen extends Component {
               this.props.appStore.user.updateProfile({ displayName: this.state.name })
               .then(() => {
                 this.props.appStore.username = this.props.appStore.user.displayName
+                OneSignal.sendTag("username", this.props.appStore.user.displayName)
                 this.setState({ errMsg: "Name succesfully saved!" })
               })
               .catch((error) => {

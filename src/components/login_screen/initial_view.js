@@ -7,8 +7,10 @@ import {
 } from 'react-native'
 import { getColor } from '../config'
 import * as Animatable from 'react-native-animatable'
+import { observer, inject } from 'mobx-react/native'
 
 
+@inject("appStore") @observer
 export default class InitialView extends Component {
   constructor(props) {
     super(props)
@@ -19,6 +21,11 @@ export default class InitialView extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log("--------- INITIAL VIEW --------- ")
+    this.props.appStore.tracker.trackScreenView('INITIAL VIEW')
+  }
+
   render() {
     const animation = this.state.init ? 'bounceInUp' : 'bounceOutDown'
     return (
@@ -27,12 +34,12 @@ export default class InitialView extends Component {
       style={styles.container}
       delay={this.props.animDelay}
       onAnimationEnd={this._handleAnimEnd.bind(this)}>
-        <Text style={styles.title}>JSapp Social Poster App</Text>
-        <Text style={styles.version}>v1.3.3</Text>
+        <Text style={styles.title}>MyApp</Text>
+        <Text style={styles.version}>v1.9</Text>
         <View style={styles.btnBox}>
           <TouchableOpacity onPress={this._handleSignInPress.bind(this)}>
             <View style={styles.btnContainer}>
-              <Text style={styles.btnText}>{ 'Sign In'.toUpperCase() }</Text>
+              <Text style={styles.btnText}>{ 'Login'.toUpperCase() }</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._handleSignUpPress.bind(this)}>
@@ -75,13 +82,13 @@ const styles = StyleSheet.create({
   title: {
     backgroundColor: 'transparent',
     marginTop: 20,
-    fontWeight: '800',
-    fontSize: 20,
+    fontWeight: '300',
+    fontSize: 80,
     color: '#fff',
   },
   version: {
     backgroundColor: 'transparent',
-    fontSize: 8,
+    fontSize: 6,
     marginBottom: 20,
     color: '#fff',
   },

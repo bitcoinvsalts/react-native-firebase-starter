@@ -9,7 +9,7 @@
   [3]: https://play.google.com/store/apps/details?id=me.jsapp.myapp
   [4]: ./graphics/google-play-badge.png  
 
-#### Build your own Instagram + WhatsApp + chat marketplace mobile app clone
+#### Build your own Instagram + WhatsApp + chat marketplace mobile app clone with push notifications and code deployment integrated
 
 ## Built with
  - [React Native](https://facebook.github.io/react-native/) : One language, JavaScript, one source code.
@@ -28,7 +28,7 @@ To create your own copy of this application, here are the prerequisites:
  - [Xcode](https://developer.apple.com/xcode/) installed to test the app on an iOS devices or simulator.
 
 ### Build your own copy
-First clone the repository using:
+Clone the repository using:
 
 ```
 git clone https://github.com/jsappme/react-native-firebase-starter.git
@@ -43,7 +43,7 @@ Go to your Firebase console: https://console.firebase.google.com/
 
 - First create a new project and click on Add Firebase to your web app.
 
-- Copy and Paste your Firebase variables into:
+- Open the Firebase config file using your favorite editor (in my case [Atom](https://atom.io/)) and Copy/Paste your Firebase variables into:
 
 ```
 atom src/firebase.js

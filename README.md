@@ -1,10 +1,7 @@
-# React Native Firebase Social Poster Starter App
-![Preview](./graphics/Screenshot_4.png)
-![Preview](./graphics/Screenshot_1.png)
-![Preview](./graphics/Screenshot_2.png)
-![Preview](./graphics/Screenshot_3.png)
+# The Ultimate React Native starter using Firebase, Mobx, Code-Push and OneSignal
+![Preview](./graphics/myapp.gif)
 
-#### Build your own Social Poster app or Instagram clone
+#### Build your own Instagram / WhatsApp / Chat Marketplace clone
 
 [![iOS app][2]][1] [![Android app][4]][3]
 

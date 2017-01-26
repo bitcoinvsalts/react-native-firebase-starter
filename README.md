@@ -210,13 +210,12 @@ Save both deployment keys, you will need them very soon
 
 To link the react-native-code-push package to react native:
 ```
-react-native link
+react-native link react-native-code-push
 ```
 
 You will be prompted to enter the CodePush deployment key for both platforms
 
-
-To link some packages to react native:
+To link all the other packages to react native:
 ```
 react-native link
 ```

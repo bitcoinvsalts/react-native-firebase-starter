@@ -4,7 +4,6 @@ import android.app.Application;
 import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.microsoft.codepush.react.CodePush;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -46,8 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSharePackage(),
             new ImagePickerPackage(),
             new RNFSPackage(),
-            new RNFetchBlobPackage(),
-            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG)
+            new RNFetchBlobPackage()
       );
     }
   };

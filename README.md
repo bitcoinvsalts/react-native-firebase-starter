@@ -1,8 +1,7 @@
 # The ultimate React Native starter using Firebase, Mobx, Code-Push and OneSignal
 ![Preview](./graphics/myapp.gif)
 
-#### Build your own Instagram + WhatsApp + chat marketplace mobile app clone
-
+## Download from the app stores
 [![iOS app][2]][1] [![Android app][4]][3]
 
   [1]: https://itunes.apple.com/us/app/jsapp-my-app/id1165501349?mt=8
@@ -10,7 +9,9 @@
   [3]: https://play.google.com/store/apps/details?id=me.jsapp.myapp
   [4]: ./graphics/google-play-badge.png  
 
-## Built With
+#### Build your own Instagram + WhatsApp + chat marketplace mobile app clone
+
+## Built with
  - [React Native](https://facebook.github.io/react-native/) : One language, JavaScript, one source code.
  - [MobX](https://mobxjs.github.io/mobx/) : Simple, scalable state management (easier than Redux)
  - [Firebase](https://firebase.google.com/) : Cloud based database and storage service

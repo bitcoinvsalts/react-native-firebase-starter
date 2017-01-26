@@ -36,7 +36,6 @@ export default class ChatScreen extends Component {
       clientName: "",
       spinnervisible: true,
     }
-    console.log("XXXXXXXXXXX")
     this.props.appStore.current_page = 'chat'
     this.props.appStore.current_puid = this.props.puid
   }

@@ -35,6 +35,12 @@ git clone https://github.com/jsappme/react-native-firebase-starter.git
 cd react-native-firebase-starter
 ```
 
+Now we are ready to install the dependencies using:
+
+```
+yarn
+```
+
 ### Firebase Setup:
 
 After **Login** or **Register** at https://firebase.google.com/
@@ -200,13 +206,17 @@ code-push app add myapp-and
 code-push app add myapp-ios
 ```
 
-Now we are ready to install the dependencies using:
+Save both deployment keys, you will need them very soon
 
+To link the react-native-code-push package to react native:
 ```
-yarn
+react-native link
 ```
 
-To link the react-native-vector-icons package to react native:
+You will be prompted to enter the CodePush deployment key for both platforms
+
+
+To link some packages to react native:
 ```
 react-native link
 ```

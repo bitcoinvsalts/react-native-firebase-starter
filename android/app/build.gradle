@@ -139,6 +139,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-code-push')
     compile project(':react-native-google-analytics-bridge')
     compile project(':react-native-onesignal')
     compile project(':react-native-vector-icons')
@@ -146,7 +147,6 @@ dependencies {
     compile project(':react-native-image-picker')
     compile project(':react-native-fs')
     compile project(':react-native-fetch-blob')
-    compile project(':react-native-code-push')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules

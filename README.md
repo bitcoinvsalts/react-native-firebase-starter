@@ -181,10 +181,11 @@ atom ios/MyApp/AppDelegate.m
 atom src/store/AppStore.js
 ```
 
+That's it for the push notification configuration.
 
 ### CodePush Setup
 
-Ref: [I am a CodePusher and I love it. Thanks MS and not M$ anymore](https://jsapp.me/i-am-a-codepusher-and-i-love-it-thanks-ms-and-not-m-anymore-7be936e86c75#.e4r2dmyqb)
+Why CodePush? [I am a CodePusher and I love it. Thanks MS and not M$ anymore](https://jsapp.me/i-am-a-codepusher-and-i-love-it-thanks-ms-and-not-m-anymore-7be936e86c75#.e4r2dmyqb)
 
 **Install** the CodePush CLI
 https://microsoft.github.io/code-push/index.html#getting_started
@@ -197,11 +198,11 @@ npm install -g code-push-cli
 ```
 code-push register
 ```
-OR
+or
 ```
 code-push login
 ```
-Register your app with the service, create one for each platform.
+**Register your app** with the service, create one for each platform.
 
 ```
 code-push app add myapp-and
@@ -214,15 +215,15 @@ To link the react-native-code-push package to react native:
 ```
 react-native link react-native-code-push
 ```
-
 You will be prompted to enter the CodePush deployment key for both platforms
+
 
 To link all the other packages to react native:
 ```
 react-native link
 ```
 
-We are now ready to lunch our app on an android device.
+###We are now ready to lunch our app on an android device.
 ```
 react-native run-android
 ```
@@ -232,13 +233,14 @@ To see the logs:
 react-native log-android
 ```
 
-To open the app on Xcode:
+###To open the app on Xcode:
 ```
 yarn run ios
 ```
 You might need to add a Signing Team for MyApp and MyApptest to build it.
 
-To run the app on an iOS simulator:
+
+###To run the app on an iOS simulator:
 ```
 react-native run-ios
 ```
@@ -248,7 +250,7 @@ To see the logs:
 react-native log-ios
 ```
 
-Congratulation, your app is now ready and fully functional. Keep in mind this app is only a starter. Now it's time for customization and improvements.
+Congratulation, your app is now ready. Keep in mind this app is only a starter. Now it's time for customization and improvements.
 
 
 ##License
@@ -256,12 +258,14 @@ Congratulation, your app is now ready and fully functional. Keep in mind this ap
 
 
 ## Credits
-All the credits goes to all library creators and contributors to the open source repositories and libraries that I am using. I'm very grateful to all of them.
+All the credits goes to all library creators and contributors to the open source repositories and libraries that I am using. I'm very grateful to all of them. Here are some of them:
 
+ - [React Native CodePush](https://github.com/Microsoft/react-native-code-push)
+ - [React Native Gifted Chat](https://github.com/FaridSafi/react-native-gifted-chat)
+ - [React Native OneSignal](https://github.com/geektimecoil/react-native-onesignal)
  - [React Native Fetch Blob](https://github.com/wkh237/react-native-fetch-blob)
  - [React Native Keyboard Aware Scroll View](https://github.com/APSL/react-native-keyboard-aware-scroll-view)
  - [React Native Image Picker](https://github.com/marcshilling/react-native-image-picker)
- - [React Native Cacheable Image](https://github.com/jayesbe/react-native-cacheable-image)
  - [Mister Poster](https://github.com/shoumma/Mister-Poster)
  - [React Native](https://facebook.github.io/react-native/)
  - [React Native Animatable](https://github.com/oblador/react-native-animatable)

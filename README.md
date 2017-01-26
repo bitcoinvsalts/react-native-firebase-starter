@@ -32,8 +32,10 @@ To create your own copy of this application, here are the prerequisites:
 ### Build your own copy
 First clone the repository using:
 
-    git clone https://github.com/jsappme/react-native-firebase-starter.git
-    cd react-native-firebase-starter
+```
+git clone https://github.com/jsappme/react-native-firebase-starter.git
+cd react-native-firebase-starter
+```
 
 ### Firebase Setup:
 
@@ -45,7 +47,9 @@ Go to your Firebase console: https://console.firebase.google.com/
 
 - Copy and Paste your Firebase variables into:
 
-    atom src/firebase.js
+```
+atom src/firebase.js
+```
 
 - Next setup the Firebase Auth by enabling Email/Password Signup method:
 https://console.firebase.google.com/project/myapp/authentication/providers
@@ -53,40 +57,42 @@ https://console.firebase.google.com/project/myapp/authentication/providers
 - Copy and Paste your Firebase rules at:
 https://console.firebase.google.com/project/myapp/database/rules
 
-    {
-      "rules": {
-        ".read": "auth != null",
-        ".write": "auth != null",
-        "usernameList" : {
-          ".read": true
-        },
+```
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "usernameList" : {
+      ".read": true
+    },
+    "posts": {
+        ".indexOn": "createdAt",
+        ".read": true
+    },
+    "user_posts": {
+      "$uid": {
         "posts": {
-            ".indexOn": "createdAt",
-            ".read": true
+          ".indexOn": "createdAt"
         },
-        "user_posts": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "createdAt"
-            },
-          },
+      },
+    },
+    "user_orders": {
+      "$uid": {
+        "posts": {
+          ".indexOn": "createdAt"
         },
-        "user_orders": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "createdAt"
-            },
-          },
+      },
+    },
+    "user_chats": {
+      "$uid": {
+        "posts": {
+          ".indexOn": "updatedAt"
         },
-        "user_chats": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "updatedAt"
-            },
-          },
-        },
-      }
-    }
+      },
+    },
+  }
+}
+```
 
 That's it for Firebase. Now let's setup the push notifications.
 

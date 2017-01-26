@@ -126,7 +126,9 @@ https://documentation.onesignal.com/docs/generate-a-google-server-api-key
 
 - Set an Explicit App ID, the same you define as PRODUCT_BUNDLE_IDENTIFIER (set twice) in:
 
-    atom ios/MyApp.xcodeproj/project.pbxproj
+```
+atom ios/MyApp.xcodeproj/project.pbxproj
+```
 
 ![Preview](./graphics/app_id_suffix.png)
 
@@ -156,95 +158,51 @@ Your Push Notifcation platforms are now set up. Now we can actually work on inte
 - Edit, Find and Replace the following values:
 
 * my_onesignal_google_project_number in:
-    atom android/app/build.gradle
+```
+atom android/app/build.gradle
+```
 
 * my_onesignal_app_id in:
-    atom android/app/build.gradle
-    atom src/store/AppStore.js
-    atom ios/MyApp/AppDelegate.m
+```
+atom android/app/build.gradle
+atom src/store/AppStore.js
+atom ios/MyApp/AppDelegate.m
+```
 
 * my_onesignal_api_key in:
-    atom src/store/AppStore.js
+```
+atom src/store/AppStore.js
+```
 
 
 Then install the dependencies using:
 
-    yarn
+```
+yarn
+```
 
 To link the react-native-vector-icons package to react native:
-
-    react-native link
+```
+react-native link
+```
 
 Then run the following command to run the app on the emulator.
-
-    react-native run-android
-
+```
+react-native run-android
+```
 or if you have Xcode installed:
-
-    react-native run-ios
+```
+react-native run-ios
+```
 
 To see the logs:
-
-    react-native log-android
-
+```
+react-native log-android
+```
 or
-
-    react-native log-ios
-
-##Firebase Setup
-
-Create a new app at:
-https://console.firebase.google.com/
-
-Enable the Email/Password provider for your sign-in method at:
-https://console.firebase.google.com/project/YOURPROJECT/authentication/providers
-
-Copy your Firebase variables by clicking on Add Firebase to your web app at:
-https://console.firebase.google.com/project/YOURPROJECT/settings/general/
-
-Edit and publish your rules and indexOn at:
-https://console.firebase.google.com/project/YOURPROJECT/database/rules
-
-with:
-
-    {
-      "rules": {
-        ".read": "auth != null",
-        ".write": "auth != null",
-        "usernameList" : {
-          ".read": true
-        },
-        "posts": {
-            ".indexOn": "createdAt",
-            ".read": true
-        },
-        "user_posts": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "createdAt"
-            },
-          },
-        },
-        "user_orders": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "createdAt"
-            },
-          },
-        },
-        "user_chats": {
-          "$uid": {
-            "posts": {
-              ".indexOn": "updatedAt"
-            },
-          },
-        },
-      }
-    }
-
-and edit the firebase configuration file with your own settings:
-
-    atom src/firebase.js
+```
+react-native log-ios
+```
 
 Now, you have your own copy of this application!
 

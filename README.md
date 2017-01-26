@@ -111,7 +111,7 @@ https://medium.com/differential/react-native-push-notifications-with-onesignal-9
 
 ![Preview](./graphics/onesignal_android_platform.png)
 
-Open a new tab and go to your Firebase app Settings > CLOUD MESSAGING: https://console.firebase.google.com/project/myapp/settings/cloudmessaging
+Open a new tab and go to your Firebase app Settings > **CLOUD MESSAGING**: https://console.firebase.google.com/project/myapp/settings/cloudmessaging
 
 ![Preview](./graphics/cloud_messaging.png)
 
@@ -151,18 +151,18 @@ After pressing **Next**, you’ll see something like this
 
 ![Preview](./graphics/ios_wizard_2.png)
 
-Download those files and remember the password for the p12 file. Then head back to OneSignal, **upload the file**, enter your password and **Save**
+Download those files and remember the password for the p12 file. Then head back to OneSignal, **upload the file**, **enter your password** and **Save**
 
 ![Preview](./graphics/onesignal_ios_platform_2.png)
 
 ####Your Push Notification platforms are now set up. Now we can actually work on integrating this with our app.
 
-Go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
+Back on the first tab, go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
 
 * **OneSignal App ID** a.k.a. ***my_onesignal_app_id***
 * **REST API Key** a.k.a. ***my_onesignal_api_key***
 
-Edit, Find and Replace the following values:
+Edit, **Find** and **Replace** these strings by their values into the following files:
 
 * ***my_onesignal_google_project_number*** in:
 ```

@@ -18,7 +18,7 @@
  - [CodePush](https://microsoft.github.io/code-push/) : Push code updates to your apps, instantly
  - [OneSignal](https://onesignal.com/) : Unlimited push notifications‎
 
-I would really appreciate any suggestions, feedback, PRs and issues.
+I really appreciate any suggestions, feedback, PRs and issues.
 
 ## How to install this app?
 ### Prerequisites
@@ -26,10 +26,8 @@ To create your own copy of this application, here are the prerequisites:
 
  - [Yarn](https://yarnpkg.com/) installed on your system or simply use npm if you prefer.
  - [React Native](https://facebook.github.io/react-native/) installed on your system.
- - Have the [Android SDK](https://developer.android.com/studio/index.html) and paths set properly.
- - An android emulator or real device to run the app.
- - Xcode installed to test the app on an iOS devices or simulator.
-
+ - [Android SDK](https://developer.android.com/studio/index.html) installed to run the app on an android device.
+ - [Xcode](https://developer.apple.com/xcode/) installed to test the app on an iOS devices or simulator.
 
 ### Build your own copy
 First clone the repository using:

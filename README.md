@@ -105,21 +105,21 @@ https://medium.com/differential/react-native-push-notifications-with-onesignal-9
 
 ![Preview](./graphics/onesignal_android_platform.png)
 
-Open a new tab and go to your Firebase app Settings > CLOUD MESSAGING: https://console.firebase.google.com/project/myapp-1dbb8/settings/cloudmessaging
+Open a new tab and go to your Firebase app Settings > CLOUD MESSAGING: https://console.firebase.google.com/project/myapp/settings/cloudmessaging
 
 ![Preview](./graphics/cloud_messaging.png)
 
 Save the two values listed:
 * **Server key**, a.k.a the **Google Server API key**
-* **Sender ID**, a.k.a the **Google Project Number** *a.k.a my_onesignal_google_project_number (you will need it later)*
+* **Sender ID**, a.k.a the **Google Project Number** a.k.a ***my_onesignal_google_project_number*** (you will need it later)*
 
-Copy/Paste those two values on the OneSignal > **Google Android (GCM) Configuration** and Save it
+Copy/Paste those two values on the first tab: OneSignal > **Google Android (GCM) Configuration** and **Save** it
 
 Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > App Settings
 
 ![Preview](./graphics/onesignal_ios_platform.png)
 
-Open a new tab and create our app within the [Apple Developer portal](https://developer.apple.com/account/ios/identifier/bundle)
+Open a new tab and **create our app** within the [Apple Developer portal](https://developer.apple.com/account/ios/identifier/bundle)
 
 Set an **Explicit App ID**, the same you define as **PRODUCT_BUNDLE_IDENTIFIER** (set twice) in:
 
@@ -139,34 +139,34 @@ Sign into your account and make sure you choose the proper team
 
 ![Preview](./graphics/ios_wizard_1.png)
 
-After pressing Next, you’ll see something like this
+After pressing **Next**, you’ll see something like this
 
 ![Preview](./graphics/ios_wizard_2.png)
 
-Download those files and remember the password for the p12 file. Then head back to OneSignal, upload our file, enter your password and Save
+Download those files and remember the password for the p12 file. Then head back to OneSignal, **upload the file**, enter your password and **Save**
 
-Your Push Notifcation platforms are now set up. Now we can actually work on integrating this with our app.
+####Your Push Notification platforms are now set up. Now we can actually work on integrating this with our app.
 
-Go to MyApp > App Settings > **Keys & IDs** and copy the two values:
+Go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
 
-* OneSignal App ID *a.k.a. my_onesignal_app_id*
-* REST API Key *a.k.a. my_onesignal_api_key*
+* **OneSignal App ID** a.k.a. ***my_onesignal_app_id***
+* **REST API Key** a.k.a. ***my_onesignal_api_key***
 
 Edit, Find and Replace the following values:
 
-* my_onesignal_google_project_number in:
+* ***my_onesignal_google_project_number*** in:
 ```
 atom android/app/build.gradle
 ```
 
-* my_onesignal_app_id in:
+* ***my_onesignal_app_id*** in:
 ```
 atom android/app/build.gradle
 atom src/store/AppStore.js
 atom ios/MyApp/AppDelegate.m
 ```
 
-* my_onesignal_api_key in:
+* ***my_onesignal_api_key*** in:
 ```
 atom src/store/AppStore.js
 ```

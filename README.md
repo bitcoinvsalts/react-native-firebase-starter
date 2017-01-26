@@ -1,7 +1,7 @@
 # The ultimate React Native starter using Firebase, Mobx, Code-Push and OneSignal
 ![Preview](./graphics/myapp.gif)
 
-#### Build your own Instagram + WhatsApp + Chat Marketplace clone
+#### Build your own Instagram + WhatsApp + chat marketplace mobile app clone
 
 [![iOS app][2]][1] [![Android app][4]][3]
 
@@ -17,9 +17,9 @@
  - [CodePush](https://microsoft.github.io/code-push/) : Push code updates to your apps, instantly
  - [OneSignal](https://onesignal.com/) : Unlimited push notifications‎
 
-I would really appreciate any suggestions, feedback, PRs and Issues.
+I would really appreciate any suggestions, feedback, PRs and issues.
 
-## How to create your own copy of this app?
+## How to install this app?
 ### Prerequisites
 To create your own copy of this application, here are the prerequisites:
 

@@ -47,7 +47,7 @@ After **Login** or **Register** at https://firebase.google.com/
 
 Go to your Firebase console: https://console.firebase.google.com/
 
-Create a new project and click on **Add Firebase to your web app**.
+**Create a new project** and click on **Add Firebase to your web app**.
 
 Open the Firebase config file using your favorite editor (in my case [Atom](https://atom.io/)) and Copy/Paste your Firebase variables:
 
@@ -120,6 +120,8 @@ Save the two values listed:
 * **Sender ID**, a.k.a the **Google Project Number** a.k.a ***my_onesignal_google_project_number*** (you will need it later)*
 
 Copy/Paste those two values on the first tab: OneSignal > **Google Android (GCM) Configuration** and **Save** it
+
+![Preview](./graphics/onesignal_android_platform_2.png)
 
 Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > **App Settings**
 

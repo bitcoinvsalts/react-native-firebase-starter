@@ -11,11 +11,11 @@
   [4]: ./graphics/google-play-badge.png  
 
 ## Built With
- - [React Native](https://facebook.github.io/react-native/)
- - [MobX](https://mobxjs.github.io/mobx/) Simple, scalable state management (easier than Redux)
- - [Firebase](https://firebase.google.com/) Cloud based database and storage service
- - [CodePush](https://microsoft.github.io/code-push/) Push code updates to your apps, instantly
- - [OneSignal](https://onesignal.com/) Unlimited push notifications‎
+ - [React Native](https://facebook.github.io/react-native/) : One language, JavaScript, one source code.
+ - [MobX](https://mobxjs.github.io/mobx/) : Simple, scalable state management (easier than Redux)
+ - [Firebase](https://firebase.google.com/) : Cloud based database and storage service
+ - [CodePush](https://microsoft.github.io/code-push/) : Push code updates to your apps, instantly
+ - [OneSignal](https://onesignal.com/) : Unlimited push notifications‎
 
 I would really appreciate any suggestions, feedback, PRs and Issues.
 

@@ -220,25 +220,21 @@ To link all the other packages to react native:
 react-native link
 ```
 
-Then run the following command to run the app on the emulator.
+We are now ready to lunch our app
 ```
 react-native run-android
 ```
-or if you have Xcode installed:
+or
 ```
-react-native run-ios
+yarn run ios
 ```
 
 To see the logs:
 ```
 react-native log-android
 ```
-or
-```
-react-native log-ios
-```
 
-Now, you have your own copy of this application!
+Congratulation, your app is now ready and fully functional. Keep in mind this app is only a starter. Now it's time for customization and improvements.
 
 
 ##License

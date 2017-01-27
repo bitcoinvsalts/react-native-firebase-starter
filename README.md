@@ -41,6 +41,8 @@ Now we are ready to install the dependencies using:
 yarn
 ```
 
+In order to run the app you will need to setup Firebase (CodePush and OneSignal are optional).
+
 ### Firebase Setup:
 
 After **Login** or **Register** at https://firebase.google.com/
@@ -123,7 +125,7 @@ Copy/Paste those two values on the first tab: OneSignal > **Google Android (GCM)
 
 ![Preview](./graphics/onesignal_android_platform_2.png)
 
-Let's configure the **iOS platform** by clicking on Configure next to **Apple iOS** in MyApp > **App Settings**
+Let's configure the **iOS platform** by clicking on **Configure** next to **Apple iOS** in MyApp > **App Settings**
 
 ![Preview](./graphics/onesignal_ios_platform.png)
 
@@ -151,18 +153,18 @@ After pressing **Next**, you’ll see something like this
 
 ![Preview](./graphics/ios_wizard_2.png)
 
-Download those files and remember the password for the p12 file. Then head back to OneSignal, **upload the file**, **enter your password** and **Save**
+Download those files and remember the password for the p12 file. Then head back to OneSignal tab, **upload the file**, **enter your password** and **Save**
 
 ![Preview](./graphics/onesignal_ios_platform_2.png)
 
 ####Your Push Notification platforms are now set up. Now we can actually work on integrating this with our app.
 
-Back on the first tab, go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
+On your browser, go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
 
 * **OneSignal App ID** a.k.a. ***my_onesignal_app_id***
 * **REST API Key** a.k.a. ***my_onesignal_api_key***
 
-Edit, **Find** and **Replace** these strings by their values into the following files:
+**Edit**, **Find** and **Replace** these strings by their values into the following files:
 
 * ***my_onesignal_google_project_number*** in:
 ```
@@ -187,7 +189,7 @@ That's it for the push notification configuration.
 
 Why CodePush? [I am a CodePusher and I love it. Thanks MS and not M$ anymore](https://jsapp.me/i-am-a-codepusher-and-i-love-it-thanks-ms-and-not-m-anymore-7be936e86c75#.e4r2dmyqb)
 
-**Install** the CodePush CLI
+**Install the CodePush CLI**
 https://microsoft.github.io/code-push/index.html#getting_started
 
 ```
@@ -211,14 +213,14 @@ code-push app add myapp-ios
 
 Save both deployment keys, you will need them very soon
 
-To link the react-native-code-push package to react native:
+To **link the react-native-code-push** package to react native:
 ```
 react-native link react-native-code-push
 ```
 You will be prompted to enter the CodePush deployment key for both platforms
 
 
-To link all the other packages to react native:
+To **link all the other packages** to react native:
 ```
 react-native link
 ```

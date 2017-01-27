@@ -40,5 +40,4 @@ android/app/libs
 android/keystores/debug.keystore
 yarn-error.log
 
-# CUSTOM JSAPP
-# firebase.js
+android/app/my-release-key.keystore

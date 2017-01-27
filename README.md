@@ -211,16 +211,17 @@ code-push app add myapp-and
 code-push app add myapp-ios
 ```
 
-Save both deployment keys, you will need them very soon
-
-To **link the react-native-code-push** package to react native:
+Copy/Paste these **Staging** deployment keys to their respective platform files:
+***my_codepush_android_key*** in
 ```
-react-native link react-native-code-push
+atom android/app/src/main/res/values/strings.xml
 ```
-You will be prompted to enter the CodePush deployment key for both platforms
+***my_codepush_ios_key*** in
+```
+atom ios/MyApp/Info.plist
+```
 
-
-To **link all the other packages** to react native:
+**To link some packages** to react native (optional because everything is already linked).
 ```
 react-native link
 ```

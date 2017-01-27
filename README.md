@@ -174,8 +174,8 @@ atom android/app/build.gradle
 * ***my_onesignal_app_id*** in:
 ```
 atom android/app/build.gradle
-atom src/store/AppStore.js
 atom ios/MyApp/AppDelegate.m
+atom src/store/AppStore.js
 ```
 
 * ***my_onesignal_api_key*** in:
@@ -221,7 +221,7 @@ atom android/app/src/main/res/values/strings.xml
 atom ios/MyApp/Info.plist
 ```
 
-**To link some packages** to react native (optional because everything is already linked).
+Finally, please **link** some packages to react native.
 ```
 react-native link
 ```

@@ -212,6 +212,7 @@ code-push app add myapp-ios
 ```
 
 Copy/Paste these **Staging** deployment keys to their respective platform files:
+
 ***my_codepush_android_key*** in
 ```
 atom android/app/src/main/res/values/strings.xml
@@ -221,12 +222,12 @@ atom android/app/src/main/res/values/strings.xml
 atom ios/MyApp/Info.plist
 ```
 
-Finally, please **link** some packages to react native.
+**Finally link some packages to react native.**
 ```
 react-native link
 ```
 
-###We are now ready to lunch our app on an android device.
+###Congratulation, we are now ready to lunch our app on an android device.
 ```
 react-native run-android
 ```
@@ -253,7 +254,7 @@ To see the logs:
 react-native log-ios
 ```
 
-Congratulation, your app is now ready. Keep in mind this app is only a starter. Now it's time for customization and improvements.
+Keep in mind this app is only a starter. Now it's time for some customizations and improvements.
 
 
 ##License

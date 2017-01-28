@@ -14,7 +14,7 @@ import appStore from './store/AppStore'
 
 class App extends Component {
   componentDidMount() {
-    console.log("-------xxxx------ App - componentDidMount ------xxxx-------")
+    console.log("-------x------ App - componentDidMount ------x-------")
     OneSignal.inFocusDisplaying(0)
     OneSignal.configure({
       onNotificationReceived: function(notification) {

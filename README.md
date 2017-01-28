@@ -254,7 +254,15 @@ To see the logs:
 react-native log-ios
 ```
 
-Keep in mind this app is only a starter. Now it's time for some customizations and improvements.
+### Google Analytics Setup
+
+Edit the Google Analytics Tracker variable:
+```
+atom src/store/AppStore.js
+```
+
+
+This app is only a starter. Now it's time for some customizations and improvements.
 
 
 ##License

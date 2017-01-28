@@ -262,7 +262,7 @@ atom src/store/AppStore.js
 ```
 
 
-Keep in mind this app is only a starter. Now it's time for some customizations and improvements.
+This app is only a starter. Now it's time for some customizations and improvements.
 
 
 ##License

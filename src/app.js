@@ -18,7 +18,7 @@ class App extends Component {
     OneSignal.inFocusDisplaying(0)
     OneSignal.configure({
       onNotificationReceived: function(notification) {
-        //console.log('NOTIFICATION RECEIVED: ', notification);
+        //console.log('NOTIFICATION RECEIVED: ', notification)
         if (notification.payload.additionalData.new_message && appStore.current_puid != notification.payload.additionalData.puid) {
           console.log("       appStore.new_messages + 1 : " + appStore.current_puid)
           appStore.new_messages = appStore.new_messages + 1

@@ -136,7 +136,7 @@ Set an **Explicit App ID**, the same you define as **PRODUCT_BUNDLE_IDENTIFIER**
 atom ios/MyApp.xcodeproj/project.pbxproj
 ```
 
-You can change this bundle identifier for android too in:
+You can change this bundle identifier for android in:
 ```
 atom android/app/build.gradle
 ```

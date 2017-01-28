@@ -132,9 +132,13 @@ Let's configure the **iOS platform** by clicking on **Configure** next to **Appl
 Open a new tab and **create our app** within the [Apple Developer portal](https://developer.apple.com/account/ios/identifier/bundle)
 
 Set an **Explicit App ID**, the same you define as **PRODUCT_BUNDLE_IDENTIFIER** (set twice) in:
-
 ```
 atom ios/MyApp.xcodeproj/project.pbxproj
+```
+
+You can change this bundle identifier for android in:
+```
+atom android/app/build.gradle
 ```
 
 ![Preview](./graphics/app_id_suffix.png)

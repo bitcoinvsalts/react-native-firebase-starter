@@ -21,7 +21,7 @@
   NSURL *jsCodeLocation;
 
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-                                                       appId:@"f4332f39-a1b7-4bdc-b55b-8f7f03fee87d" 
+                                                       appId:@"my_onesignal_app_id" 
                                                        settings:@{kOSSettingsKeyInFocusDisplayOption : @(OSNotificationDisplayTypeNone), kOSSettingsKeyAutoPrompt : @YES}];
 
 

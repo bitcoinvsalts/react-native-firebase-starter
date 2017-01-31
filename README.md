@@ -252,38 +252,6 @@ atom android/app/src/main/res/values/strings.xml
 atom ios/NewApp/Info.plist
 ```
 
-**Finally link some packages to react native.**
-```
-react-native link
-```
-
-###Congratulation, we are now ready to lunch our app on an android device.
-```
-react-native run-android
-```
-
-To see the logs:
-```
-react-native log-android
-```
-
-###To open the app on Xcode:
-```
-yarn run ios
-```
-You might need to add a Signing Team for NewApp and NewApptest to build it.
-
-
-###To run the app on an iOS simulator:
-```
-react-native run-ios
-```
-
-To see the logs:
-```
-react-native log-ios
-```
-
 ### Google Analytics Setup
 
 Edit the Google Analytics Tracker variable:

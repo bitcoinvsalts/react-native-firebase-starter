@@ -38,8 +38,8 @@ cd NewApp
 You need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. For example, the App Id of our demo app is *me.jsapp.myapp*. Find and replace all the instances of *myapp* and *MyApp* with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity.
 
 For example:
-+ *myapp* --> *newapp*
-+ *NewApp* --> *NewApp*
++ *myapp* to *newapp*
++ *NewApp* to *NewApp*
 
 Now we are ready to install the dependencies using:
 

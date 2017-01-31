@@ -35,11 +35,7 @@ git clone https://github.com/jsappme/react-native-firebase-starter.git NewApp
 cd NewApp
 ```
 
-You need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. For example, the App Id of our demo app is ***me.jsapp.myapp***. Find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity.
-
-For example:
-+ ***myapp*** to ***newapp***
-+ ***NewApp*** to ***NewApp***
+You need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. For example, the App Id of our demo app is ***me.jsapp.myapp***. Find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity.  For our example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
 
 If you change the prefix the App Id ***me.jsapp*** to something else, you will need to change the folder structure in *android/app/src/main/java*.
 

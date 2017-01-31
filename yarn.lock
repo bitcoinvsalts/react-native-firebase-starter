@@ -3188,13 +3188,6 @@ react-native-fetch-blob@^0.10.2-beta.6:
     base-64 "0.1.0"
     glob "^7.0.6"
 
-react-native-fs@^2.1.0-rc.1:
-  version v2.1.0-rc.1
-  resolved "https://registry.yarnpkg.com/react-native-fs/-/react-native-fs-2.1.0-rc.1.tgz#f6078891005478648738db396e822ec0aefc4b95"
-  dependencies:
-    base-64 "^0.1.0"
-    utf8 "^2.1.1"
-
 react-native-gifted-chat@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.0.10.tgz#4ff71c9869e174eba357d086e33b4baff7fea0c6"
@@ -4042,10 +4035,6 @@ ultron@1.0.x:
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
-
-utf8@^2.1.1:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/utf8/-/utf8-2.1.2.tgz#1fa0d9270e9be850d9b05027f63519bf46457d96"
 
 util-deprecate@1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"

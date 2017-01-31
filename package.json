@@ -18,7 +18,6 @@
 		"react-native-animatable": "^1.1.0",
 		"react-native-code-push": "1.17.0-beta",
 		"react-native-fetch-blob": "^0.10.2-beta.6",
-		"react-native-fs": "^2.1.0-rc.1",
 		"react-native-gifted-chat": "^0.0.10",
 		"react-native-google-analytics-bridge": "^5.0.0",
 		"react-native-image-picker": "^0.25.1",

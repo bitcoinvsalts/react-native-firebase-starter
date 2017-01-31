@@ -10,7 +10,6 @@ import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import cl.json.RNSharePackage;
 import com.imagepicker.ImagePickerPackage;
-import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
@@ -45,7 +44,6 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new RNSharePackage(),
             new ImagePickerPackage(),
-            new RNFSPackage(),
             new RNFetchBlobPackage()
       );
     }

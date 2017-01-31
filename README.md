@@ -37,15 +37,15 @@ cd NewApp
 
 >If you want to enable **Push Notification**, you need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. Example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
 
->If you change the prefix the App ID ***me.jsapp*** to something else, you will need to change the folder structure in *android/app/src/main/java*.
+>If you change the prefix the App ID ***me.jsapp*** to something else, you need to change the folder structure in *android/app/src/main/java*.
 
-Let's install all the dependencies using:
+Let's install all the dependencies:
 
 ```
 yarn
 ```
 
-In order to run the app you will need to setup Firebase (CodePush and OneSignal are optional).
+In order to run the app you have to setup Firebase (CodePush and OneSignal are optional).
 
 ### Firebase Setup:
 

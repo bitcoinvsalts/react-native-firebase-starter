@@ -18,14 +18,14 @@
  - [CodePush](https://microsoft.github.io/code-push/) : Push code updates to your apps, instantly
  - [OneSignal](https://onesignal.com/) : Unlimited push notifications‎
 
-## How to install this app?
+## How to install the app?
 ### Prerequisites
 To create your own copy of this application, here are the prerequisites:
 
  - [Yarn](https://yarnpkg.com/) installed on your system or simply use npm if you prefer.
  - [React Native](https://facebook.github.io/react-native/) installed on your system.
- - [Android SDK](https://developer.android.com/studio/index.html) installed to run the app on an android device.
- - [Xcode](https://developer.apple.com/xcode/) installed to test the app on an iOS devices or simulator.
+ - [Android SDK](https://developer.android.com/studio/index.html) installed to run the app on android devices.
+ - [Xcode](https://developer.apple.com/xcode/) installed to test the app on iOS devices or simulator.
 
 ### Build your own copy
 Clone the repository:
@@ -35,9 +35,8 @@ git clone https://github.com/jsappme/react-native-firebase-starter.git NewApp
 cd NewApp
 ```
 
->If you want to enable **Push Notification**, you need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. Example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
-
->If you change the prefix the App ID ***me.jsapp*** to something else, you need to change the folder structure in *android/app/src/main/java*.
+>If you want to enable **Push Notification**, you will need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. Example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
+>If you change the prefix of the App ID ***me.jsapp*** to something else, you need to change the folder structure in *android/app/src/main/java*.
 
 Let's install all the dependencies:
 
@@ -104,9 +103,41 @@ https://console.firebase.google.com/project/newapp/database/rules
 }
 ```
 
-That's it for Firebase. Now let's setup the push notifications.
+That's it for Firebase.
 
-### OneSignal Setup
+**Make sure all the packages are linked to React Native:**
+```
+react-native link
+```
+
+###We are now ready to lunch the app on an android device.
+```
+react-native run-android
+```
+
+To see the logs:
+```
+react-native log-android
+```
+
+###To open the app on Xcode:
+```
+yarn run ios
+```
+You might need to add a Signing Team for NewApp and NewApptest to build it.
+
+
+###To run the app on an iOS simulator:
+```
+react-native run-ios
+```
+
+To see the logs:
+```
+react-native log-ios
+```
+
+### OneSignal Setup for the Push Notification
 
 *With the help from this great article by Spencer Carli:
 https://medium.com/differential/react-native-push-notifications-with-onesignal-9db6a7d75e1e#.dwpff7u2z*
@@ -185,7 +216,7 @@ atom src/store/AppStore.js
 
 That's it for the push notification configuration.
 
-### CodePush Setup
+### CodePush Setup for Code Deployment
 
 Why CodePush? [I am a CodePusher and I love it. Thanks MS and not M$ anymore](https://jsapp.me/i-am-a-codepusher-and-i-love-it-thanks-ms-and-not-m-anymore-7be936e86c75#.e4r2dmyqb)
 

@@ -121,7 +121,7 @@ react-native log-android
 ```
 yarn run ios
 ```
-You might need to add a Signing Team for NewApp and NewApptest to build it.
+You might need to add a Signing Team for MyApp and MyApptest to build it.
 
 ###To run the app on an iOS simulator:
 ```

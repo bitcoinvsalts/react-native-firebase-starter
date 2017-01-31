@@ -1,5 +1,5 @@
 # The ultimate React Native starter using Firebase, Mobx, Code-Push and OneSignal
-![Preview](./graphics/myapp.gif)
+![Preview](./graphics/screenshots.gif)
 
 ## Download the app on your phone directly
 [![iOS app][2]][1] [![Android app][4]][3]
@@ -31,9 +31,15 @@ To create your own copy of this application, here are the prerequisites:
 Clone the repository using:
 
 ```
-git clone https://github.com/jsappme/react-native-firebase-starter.git
-cd react-native-firebase-starter
+git clone https://github.com/jsappme/react-native-firebase-starter.git NewApp
+cd NewApp
 ```
+
+You need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. For example, the App Id of our demo app is *me.jsapp.myapp*. Find and replace all the instances of *myapp* and *MyApp* with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity.
+
+For example:
+*myapp* --> *newapp*
+*NewApp* --> *NewApp*
 
 Now we are ready to install the dependencies using:
 
@@ -58,10 +64,10 @@ atom src/firebase.js
 ```
 
 Next setup the **Firebase Auth** by enabling **Email/Password Signup** method:
-https://console.firebase.google.com/project/myapp/authentication/providers
+https://console.firebase.google.com/project/newapp/authentication/providers
 
 Copy and Paste your **Firebase rules** at:
-https://console.firebase.google.com/project/myapp/database/rules
+https://console.firebase.google.com/project/newapp/database/rules
 
 ```
 {
@@ -113,7 +119,7 @@ https://medium.com/differential/react-native-push-notifications-with-onesignal-9
 
 ![Preview](./graphics/onesignal_android_platform.png)
 
-Open a new tab and go to your Firebase app Settings > **CLOUD MESSAGING**: https://console.firebase.google.com/project/myapp/settings/cloudmessaging
+Open a new tab and go to your Firebase app Settings > **CLOUD MESSAGING**: https://console.firebase.google.com/project/newapp/settings/cloudmessaging
 
 ![Preview](./graphics/cloud_messaging.png)
 
@@ -125,25 +131,17 @@ Copy/Paste those two values on the first tab: OneSignal > **Google Android (GCM)
 
 ![Preview](./graphics/onesignal_android_platform_2.png)
 
-Let's configure the **iOS platform** by clicking on **Configure** next to **Apple iOS** in MyApp > **App Settings**
+Let's configure the **iOS platform** by clicking on **Configure** next to **Apple iOS** in NewApp > **App Settings**
 
 ![Preview](./graphics/onesignal_ios_platform.png)
 
 Open a new tab and **create our app** within the [Apple Developer portal](https://developer.apple.com/account/ios/identifier/bundle)
 
-Set an **Explicit App ID**, the same you define as **PRODUCT_BUNDLE_IDENTIFIER** (set twice) in:
-```
-atom ios/MyApp.xcodeproj/project.pbxproj
-```
-
-You can change this bundle identifier for android in:
-```
-atom android/app/build.gradle
-```
-
 ![Preview](./graphics/app_id_suffix.png)
 
-Enable push notifications for this app
+Enter the **Explicit App ID** of the app, in this case, *me.jsapp.newapp*.
+
+Next **enable Push Notifications** for the app.
 
 ![Preview](./graphics/app_services.png)
 
@@ -163,7 +161,7 @@ Download those files and remember the password for the p12 file. Then head back 
 
 ####Your Push Notification platforms are now set up. Now we can actually work on integrating this with our app.
 
-On your browser, go to OneSignal > MyApp > App Settings > **Keys & IDs** and copy the two values:
+On your browser, go to OneSignal > NewApp > App Settings > **Keys & IDs** and copy the two values:
 
 * **OneSignal App ID** a.k.a. ***my_onesignal_app_id***
 * **REST API Key** a.k.a. ***my_onesignal_api_key***
@@ -178,7 +176,7 @@ atom android/app/build.gradle
 * ***my_onesignal_app_id*** in:
 ```
 atom android/app/build.gradle
-atom ios/MyApp/AppDelegate.m
+atom ios/NewApp/AppDelegate.m
 atom src/store/AppStore.js
 ```
 
@@ -211,8 +209,8 @@ code-push login
 **Register your app** with the service, create one for each platform.
 
 ```
-code-push app add myapp-and
-code-push app add myapp-ios
+code-push app add newapp-and
+code-push app add newapp-ios
 ```
 
 Copy/Paste these **Staging** deployment keys to their respective platform files:
@@ -223,7 +221,7 @@ atom android/app/src/main/res/values/strings.xml
 ```
 ***my_codepush_ios_key*** in
 ```
-atom ios/MyApp/Info.plist
+atom ios/NewApp/Info.plist
 ```
 
 **Finally link some packages to react native.**
@@ -245,7 +243,7 @@ react-native log-android
 ```
 yarn run ios
 ```
-You might need to add a Signing Team for MyApp and MyApptest to build it.
+You might need to add a Signing Team for NewApp and NewApptest to build it.
 
 
 ###To run the app on an iOS simulator:

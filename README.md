@@ -35,9 +35,6 @@ git clone https://github.com/jsappme/react-native-firebase-starter.git NewApp
 cd NewApp
 ```
 
->If you want to enable **Push Notification**, you will need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. Example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
->If you change the prefix of the App ID ***me.jsapp*** to something else, you need to change the folder structure in *android/app/src/main/java*.
-
 Let's install all the dependencies:
 
 ```
@@ -103,7 +100,7 @@ https://console.firebase.google.com/project/newapp/database/rules
 }
 ```
 
-That's it for Firebase.
+That's it for Firebase!
 
 **Make sure all the packages are linked to React Native:**
 ```
@@ -126,7 +123,6 @@ yarn run ios
 ```
 You might need to add a Signing Team for NewApp and NewApptest to build it.
 
-
 ###To run the app on an iOS simulator:
 ```
 react-native run-ios
@@ -141,6 +137,9 @@ react-native log-ios
 
 *With the help from this great article by Spencer Carli:
 https://medium.com/differential/react-native-push-notifications-with-onesignal-9db6a7d75e1e#.dwpff7u2z*
+
+>If you want to enable **Push Notification**, you will need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. Example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
+>If you change the prefix of the App ID ***me.jsapp*** to something else, you need to change the folder structure in *android/app/src/main/java*.
 
 **Login** or **Register** at https://onesignal.com
 

@@ -28,16 +28,16 @@ To create your own copy of this application, here are the prerequisites:
  - [Xcode](https://developer.apple.com/xcode/) installed to test the app on an iOS devices or simulator.
 
 ### Build your own copy
-Clone the repository and cd to it:
+Clone the repository:
 
 ```
 git clone https://github.com/jsappme/react-native-firebase-starter.git NewApp
 cd NewApp
 ```
 
-If you want to set the Push Notifications, you will need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. For example, the App Id of our demo app is ***me.jsapp.myapp***. Find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity.  For our example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
+>If you want to enable Push Notification, you need to choose an **Explicit App ID** (a.k.a **Product Bundle Identifier** in iOS) for your app. The App Id of this demo app is ***me.jsapp.myapp***. In order to change it, you need to find and replace all the instances of ***myapp*** and ***MyApp*** with your new App Id in the file names and in the content of all the files in the NewApp folder while respecting the case sensitivity. For our example: ***myapp*** to ***newapp*** and ***MyApp*** to ***NewApp***.
 
-If you change the prefix the App Id ***me.jsapp*** to something else, you will need to change the folder structure in *android/app/src/main/java*.
+>If you change the prefix the App Id ***me.jsapp*** to something else, you will need to change the folder structure in *android/app/src/main/java*.
 
 Now we are ready to install the dependencies using:
 
